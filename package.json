@@ -1,0 +1,14 @@
+{
+  "name": "shreeyasudarshan-ecommerce",
+  "version": "1.0.0",
+  "description": "Full MERN Stack E-Commerce Platform for Shreeyasudarshan Trading Company",
+  "scripts": {
+    "install-all": "cd backend && npm install && cd ../frontend && npm install",
+    "server": "cd backend && npm run dev",
+    "client": "cd frontend && npm run dev",
+    "dev": "node start-dev.js"
+  },
+  "keywords": ["mern", "ecommerce", "jute-bags", "cotton-bags", "handloom"],
+  "author": "Shreeyasudarshan Trading Company",
+  "license": "ISC"
+}
