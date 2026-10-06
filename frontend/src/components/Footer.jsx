@@ -180,7 +180,7 @@ export default function Footer({ setActivePage }) {
           }}
         >
           <div>
-            © 2025 Shreeyasudarshan Trading Company. All Rights Reserved.
+            © 2026 Shreeyasudarshan Trading Company. All Rights Reserved.
           </div>
 
           <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>

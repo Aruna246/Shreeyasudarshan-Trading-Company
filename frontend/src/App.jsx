@@ -154,8 +154,8 @@ const defaultProducts = [
   },
   {
     id: "p7",
-    name: "Checkered Handloom Floor Mat",
-    slug: "checkered-handloom-floor-mat",
+    name: "Checked Handloom Floor Mat",
+    slug: "checked-handloom-floor-mat",
     category: "Handloom Floor Mats",
     price: 380,
     originalPrice: 480,
@@ -164,12 +164,12 @@ const defaultProducts = [
     reviewsCount: 54,
     inStock: true,
     minBulkOrder: 20,
-    description: "Exquisite handloom cotton floor mat with vibrant checkered pattern in pink, cyan, blue, yellow, and maroon with a bold black border. Perfect for living rooms, doorways, and gifting.",
+    description: "Exquisite handloom cotton floor mat with vibrant checked pattern in pink, cyan, blue, yellow, and maroon with a bold black border. Perfect for living rooms, doorways, and gifting.",
     dimensions: "60cm (L) x 40cm (W)",
     material: "100% Handloom Cotton Yarn",
     features: [
       "Authentic Bhavani Handloom Weave",
-      "Vibrant Multi-Color Checkered Design",
+      "Vibrant Multi-Color Checked Design",
       "Durable & Long-Lasting",
       "Ideal for Gifting & Bulk Export"
     ],

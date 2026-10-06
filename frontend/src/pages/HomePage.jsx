@@ -57,11 +57,11 @@ export default function HomePage({ setActivePage, products }) {
     { name: 'Fancy Jute Bags', image: '/images/fancy_jute_bag.jpg' },
     { name: 'Leather Bags', image: '/images/leather_travel_bag.jpg' },
     { name: 'Stripe Floor Mat', image: '/images/floor_mat_product_1.jpg' },
-    { name: 'Checkered Floor Mat', image: '/images/floor_mat_product_2.jpg' },
+    { name: 'Checked Floor Mat', image: '/images/floor_mat_product_2.jpg' },
   ];
 
   // 3 bags + 2 floor mats for featured
-  const bags = products.filter(p => ['Jute Fashion Bags','Cotton Carry Bags','Cotton Shopping Bags','Leather Travel Bags','Fancy Jute Bags'].includes(p.category));
+  const bags = products.filter(p => ['Jute Fashion Bags', 'Cotton Carry Bags', 'Cotton Shopping Bags', 'Leather Travel Bags', 'Fancy Jute Bags'].includes(p.category));
   const mats = products.filter(p => p.category === 'Handloom Floor Mats');
   const featured = [...bags.slice(0, 3), ...mats.slice(0, 2)];
 
@@ -73,19 +73,69 @@ export default function HomePage({ setActivePage, products }) {
         .hero-slide-in { animation: slideIn 0.35s ease forwards; }
         .hero-slide-out { animation: slideOut 0.28s ease forwards; }
         @media (max-width: 680px) {
-          .hero-grid { grid-template-columns: 1fr !important; min-height: auto !important; }
-          .hero-img-wrap { max-height: 240px !important; }
+          .hero-grid { grid-template-columns: 1fr !important; min-height: auto !important; padding: 24px 16px !important; gap: 20px !important; }
+          .hero-img-wrap {
+            height: 250px !important;
+            max-height: 250px !important;
+            display: flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+            background-color: #ffffff !important;
+            border-radius: 14px !important;
+          }
+          .hero-img-wrap img.mat-slide-img {
+            object-fit: contain !important;
+            padding: 10px !important;
+            background-color: #ffffff !important;
+            width: 100% !important;
+            height: 100% !important;
+          }
+          .hero-img-wrap img.bags-slide-img {
+            object-fit: cover !important;
+            width: 100% !important;
+            height: 100% !important;
+          }
           .hero-title { font-size: 1.8rem !important; }
           .cat-grid { grid-template-columns: repeat(3, 1fr) !important; gap: 14px !important; }
-          .cat-circle { width: 90px !important; height: 90px !important; }
-          .featured-grid { grid-template-columns: repeat(2, 1fr) !important; gap: 14px !important; }
-          .featured-card-img { height: 140px !important; }
+          .cat-circle { width: 85px !important; height: 85px !important; }
+          .featured-grid { grid-template-columns: repeat(2, 1fr) !important; gap: 12px !important; }
+          .featured-card { padding: 10px !important; border-radius: 14px !important; height: 100% !important; }
+          .featured-card-img { height: 135px !important; margin-bottom: 8px !important; }
+          .featured-card-img img { padding: 4px !important; }
+          .featured-card-title {
+            font-size: 0.85rem !important;
+            line-height: 1.3 !important;
+            height: 2.6em !important;
+            overflow: hidden !important;
+            display: -webkit-box !important;
+            -webkit-line-clamp: 2 !important;
+            -webkit-box-orient: vertical !important;
+            margin-bottom: 4px !important;
+          }
+          .featured-card-price {
+            font-size: 0.95rem !important;
+            margin-bottom: 8px !important;
+          }
+          .featured-add-btn {
+            width: 100% !important;
+            padding: 9px 4px !important;
+            font-size: 0.78rem !important;
+            border-radius: 20px !important;
+            gap: 4px !important;
+            justify-content: center !important;
+            margin-top: auto !important;
+          }
+          .featured-add-btn span {
+            white-space: nowrap !important;
+          }
           .feat-header { flex-direction: column !important; }
-          .pillar-grid { grid-template-columns: repeat(2,1fr) !important; }
+          .pillar-grid { grid-template-columns: repeat(2, 1fr) !important; }
           .why-grid { grid-template-columns: 1fr !important; }
         }
         @media (max-width: 420px) {
           .cat-grid { grid-template-columns: repeat(2, 1fr) !important; }
+        }
+        @media (max-width: 350px) {
           .featured-grid { grid-template-columns: 1fr !important; }
         }
       `}</style>
@@ -171,12 +221,21 @@ export default function HomePage({ setActivePage, products }) {
           <div className="hero-img-wrap" style={{
             position: 'relative', borderRadius: '18px',
             overflow: 'hidden', boxShadow: '0 12px 36px rgba(27,67,50,0.13)',
-            maxHeight: '420px'
+            maxHeight: '420px', backgroundColor: '#ffffff'
           }}>
             <img
               src={slide.image}
               alt={slide.alt}
-              style={{ width: '100%', height: '100%', maxHeight: '420px', objectFit: 'cover', display: 'block' }}
+              className={slide.id === 'mats' ? 'mat-slide-img' : 'bags-slide-img'}
+              style={{
+                width: '100%',
+                height: '100%',
+                maxHeight: '420px',
+                objectFit: slide.id === 'mats' ? 'contain' : 'cover',
+                padding: slide.id === 'mats' ? '16px' : '0',
+                backgroundColor: slide.id === 'mats' ? '#ffffff' : 'transparent',
+                display: 'block'
+              }}
             />
             {/* Prev/Next arrows */}
             <button
@@ -298,13 +357,15 @@ export default function HomePage({ setActivePage, products }) {
               {featured.map((prod) => (
                 <div
                   key={prod.id}
+                  className="featured-card"
                   style={{
                     backgroundColor: '#ffffff', borderRadius: '16px',
                     border: '1px solid #e7e0d3', padding: '14px',
                     display: 'flex', flexDirection: 'column',
                     alignItems: 'center', textAlign: 'center',
                     boxShadow: '0 4px 16px rgba(0,0,0,0.03)',
-                    transition: 'all 0.25s ease'
+                    transition: 'all 0.25s ease',
+                    height: '100%'
                   }}
                   onMouseEnter={e => {
                     e.currentTarget.style.transform = 'translateY(-5px)';
@@ -319,7 +380,7 @@ export default function HomePage({ setActivePage, products }) {
                     className="featured-card-img"
                     onClick={() => setActiveModalProduct(prod)}
                     style={{
-                      width: '100%', height: '180px',
+                      width: '100%', height: '170px',
                       backgroundColor: '#ffffff',
                       borderRadius: '10px', marginBottom: '12px',
                       overflow: 'hidden', cursor: 'pointer',
@@ -331,26 +392,38 @@ export default function HomePage({ setActivePage, products }) {
                       style={{ width: '100%', height: '100%', objectFit: 'contain', padding: '8px' }}
                     />
                   </div>
-                  <h3
-                    onClick={() => setActiveModalProduct(prod)}
-                    style={{
-                      fontSize: '0.95rem', fontFamily: "'Plus Jakarta Sans', sans-serif",
-                      fontWeight: 700, color: '#1b4332', marginBottom: '4px', cursor: 'pointer'
-                    }}
-                  >
-                    {prod.name}
-                  </h3>
-                  <div style={{ fontSize: '1rem', fontWeight: '800', color: '#1b4332', marginBottom: '12px' }}>
-                    ₹{prod.price.toLocaleString('en-IN')}.00
+
+                  <div style={{ flex: 1, display: 'flex', flexDirection: 'column', width: '100%', justifyContent: 'space-between' }}>
+                    <div>
+                      <h3
+                        onClick={() => setActiveModalProduct(prod)}
+                        className="featured-card-title"
+                        style={{
+                          fontSize: '0.95rem', fontFamily: "'Plus Jakarta Sans', sans-serif",
+                          fontWeight: 700, color: '#1b4332', marginBottom: '6px', cursor: 'pointer',
+                          lineHeight: 1.3
+                        }}
+                      >
+                        {prod.name}
+                      </h3>
+                      <div className="featured-card-price" style={{ fontSize: '1.02rem', fontWeight: '800', color: '#1b4332', marginBottom: '12px' }}>
+                        ₹{prod.price.toLocaleString('en-IN')}.00
+                      </div>
+                    </div>
+
+                    <button
+                      className="btn-primary featured-add-btn"
+                      style={{
+                        width: '100%', padding: '10px 12px', fontSize: '0.84rem',
+                        marginTop: 'auto', display: 'inline-flex', alignItems: 'center',
+                        justifyContent: 'center', gap: '6px', borderRadius: '25px'
+                      }}
+                      onClick={() => addToCart(prod, 1)}
+                    >
+                      <ShoppingCart size={15} />
+                      <span>Add to Cart</span>
+                    </button>
                   </div>
-                  <button
-                    className="btn-primary"
-                    style={{ width: '100%', padding: '9px', fontSize: '0.84rem' }}
-                    onClick={() => addToCart(prod, 1)}
-                  >
-                    <ShoppingCart size={14} />
-                    <span>Add to Cart</span>
-                  </button>
                 </div>
               ))}
             </div>

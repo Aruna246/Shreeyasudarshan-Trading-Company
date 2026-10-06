@@ -179,6 +179,63 @@ input, select, textarea {
   color: var(--color-primary);
 }
 
+/* Top Bar Styles */
+.top-bar {
+  background-color: #0c261a;
+  color: #e2efe7;
+  font-size: 0.82rem;
+  padding: 8px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.top-bar-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.top-bar-left {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  opacity: 0.95;
+  flex-wrap: wrap;
+}
+
+.top-bar-divider {
+  opacity: 0.4;
+}
+
+.top-bar-highlight {
+  color: #b7dfc8;
+  font-weight: 600;
+}
+
+.top-bar-contact {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  opacity: 0.95;
+}
+
+.top-bar-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: inherit;
+  transition: color var(--transition-fast);
+}
+
+.top-bar-link:hover {
+  color: #52b788;
+}
+
+.top-bar-dot {
+  opacity: 0.4;
+}
+
 /* Responsive utilities */
 @media (max-width: 900px) {
   .hide-on-mobile {
@@ -196,6 +253,42 @@ input, select, textarea {
   }
   .container {
     padding: 0 16px;
+  }
+
+  /* Top Bar Mobile View: Number on one line & Email ID on separate line */
+  .top-bar {
+    padding: 8px 0;
+  }
+
+  .top-bar-container {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    text-align: center;
+  }
+
+  .top-bar-left {
+    justify-content: center;
+    font-size: 0.78rem;
+  }
+
+  .top-bar-contact {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    gap: 4px;
+  }
+
+  .top-bar-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.76rem;
+    padding: 2px 0;
+    word-break: break-all;
   }
 }
 
