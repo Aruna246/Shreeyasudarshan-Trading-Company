@@ -1,0 +1,6 @@
+import { createFileRoute } from '@tanstack/react-router';
+import { Eyebrow, ProductCollection } from '@/components/storefront';
+import { pageHead } from '@/lib/catalog';
+import logo from '@/assets/company-logo.png.asset.json';
+export const Route=createFileRoute('/shop')({validateSearch:(search:Record<string,unknown>):{category?:string}=>{const category=search['category'];return category==='Bags'||category==='Floor mats'?{category}:{};},head:()=>pageHead('The Collection','Explore bags and floor mats by ShreeyaSudarshan Trading Company. Find your next everyday favourite.'),component:Shop});
+function Shop(){const {category}=Route.useSearch();return <><section className="catalog-heading"><img src={logo.url} alt="" aria-hidden="true"/><Eyebrow>The considered collection</Eyebrow><h1>{category??'Everyday essentials.'}</h1><p>For the places you go. For the place you call home.</p></section><section className="section page-width"><ProductCollection key={category??'All'} filter={category??'All'}/><p className="preview-note mt-8">A first look at the collection. Product imagery, details and prices are illustrative.</p></section></>;}

@@ -1,0 +1,9 @@
+import { createFileRoute, Link } from '@tanstack/react-router';
+import { ArrowRight } from 'lucide-react';
+import { Eyebrow, EverydayBand } from '@/components/storefront';
+import { Button } from '@/components/ui/button';
+import { pageHead } from '@/lib/catalog';
+import hero from '@/assets/living-hero.jpg';
+import logo from '@/assets/company-logo.png.asset.json';
+export const Route=createFileRoute('/our-story')({head:()=>pageHead('Our Story','Meet ShreeyaSudarshan Trading Company, a manufacturer of bags and floor mats.'),component:Story});
+function Story(){return <><section className="catalog-heading"><img src={logo.url} alt="" aria-hidden="true"/><Eyebrow>ShreeyaSudarshan Trading Company</Eyebrow><h1>Made for the everyday.</h1><p>Bags and floor mats. One considered world.</p></section><section className="section page-width brand-story"><img src={hero} className="story-photo" alt="Bags and floor mats in a thoughtful home setting" width={1920} height={1088}/><img className="brand-watermark" src={logo.url} alt="" aria-hidden="true"/><div className="story-content"><Eyebrow>Our world</Eyebrow><h2 className="editorial-title">The things you carry.<br/><em>The spaces you love.</em></h2><p>ShreeyaSudarshan Trading Company manufactures bags and floor mats. Our storefront brings these two worlds together: essentials for life on the move, and finishing touches for life at home.</p><p>A celebration of texture, natural tones, and simple forms. Explore a first glimpse of our everyday collection.</p><Button variant="editorial" asChild><Link to="/shop">Explore the collection <ArrowRight/></Link></Button></div></section><EverydayBand/></>;}
