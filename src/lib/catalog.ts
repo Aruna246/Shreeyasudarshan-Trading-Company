@@ -1,6 +1,16 @@
 import tote from '@/assets/green-tote.jpg';
-import mat from '@/assets/sage-mat.jpg';
 import woven from '@/assets/woven-bag.jpg';
+
+import matMaroonCheck from '@/assets/mat-maroon-check.jpg';
+import matPinkBlackStripe from '@/assets/mat-pink-black-stripe.jpg';
+import matTexturedMultistripe from '@/assets/mat-textured-multistripe.jpg';
+import matTasseledRunner from '@/assets/mat-tasseled-runner.jpg';
+
+import matShaggyPalette from '@/assets/mat-shaggy-palette.jpg';
+import matIkatCrossstitch from '@/assets/mat-ikat-crossstitch.jpg';
+import matSolidRibbonFan from '@/assets/mat-solid-ribbon-fan.jpg';
+import matFringeDiamondWeave from '@/assets/mat-fringe-diamond-weave.jpg';
+import matGridGeometricFan from '@/assets/mat-grid-geometric-fan.jpg';
 
 export type Product = {
   id: string;
@@ -27,15 +37,70 @@ export const defaultProducts: Product[] = [
     size: '38 × 34 × 12 cm',
   },
   {
-    id: 'sage-mat',
-    name: 'The Sage Stripe Mat',
+    id: 'mat-ikat-crossstitch',
+    name: 'The Heritage Lattice Weave Mat',
     category: 'Floor mats',
-    material: 'Woven texture · Sage',
-    price: 690,
-    image: mat,
-    badge: 'A softer welcome',
-    description: 'Quiet green stripes, tactile texture, and a natural finish. An understated accent for an entrance or a favourite corner.',
+    material: 'Thick Handloom Cotton · Crimson & Multi',
+    price: 720,
+    image: matIkatCrossstitch,
+    badge: 'Artisan Favorite',
+    description: 'Distinctive raised lattice flower weave in rich crimson, mustard ochre, turquoise and tangerine. Crafted with thick handloom cotton cord for plush underfoot comfort.',
     size: '60 × 90 cm',
+  },
+  {
+    id: 'mat-fringe-diamond-weave',
+    name: 'The Jaipur Diamond Knotted Mat',
+    category: 'Floor mats',
+    material: 'Handloom Cotton · Jewel Tones',
+    price: 680,
+    image: matFringeDiamondWeave,
+    badge: 'Signature Fringes',
+    description: 'Delicate geometric diamond micro-weave framed by hand-braided colorful tassels in royal purple, ruby, sapphire blue, and onyx black.',
+    size: '60 × 95 cm',
+  },
+  {
+    id: 'mat-shaggy-palette',
+    name: 'The Pastel Textured Shag Mat',
+    category: 'Floor mats',
+    material: 'Chenille & Shag Cotton · Multi Palette',
+    price: 790,
+    image: matShaggyPalette,
+    badge: 'Ultra Soft',
+    description: 'Luxuriously soft textured shag tufting with alternating ridges of blush pink, honey gold, terracotta, olive green, and indigo.',
+    size: '50 × 80 cm',
+  },
+  {
+    id: 'mat-grid-geometric-fan',
+    name: 'The Modern Grid Checker Mat',
+    category: 'Floor mats',
+    material: 'Woven Cotton · Magenta, Lime & Emerald',
+    price: 580,
+    image: matGridGeometricFan,
+    badge: 'Contemporary Weave',
+    description: 'Crisp textured two-tone rectangular grid weave offering high durability, easy washing, and bold modern room accents.',
+    size: '50 × 80 cm',
+  },
+  {
+    id: 'mat-solid-ribbon-fan',
+    name: 'The Classic Ribbed Cotton Mat',
+    category: 'Floor mats',
+    material: 'Pure Handloom Cotton · Vibrant Solids',
+    price: 520,
+    image: matSolidRibbonFan,
+    badge: 'Everyday Essential',
+    description: 'Classic horizontal ribbed cotton mat available in rich jewel solids including deep teal, scarlet red, royal violet, and peacock blue.',
+    size: '45 × 75 cm',
+  },
+  {
+    id: 'mat-maroon-check',
+    name: 'The Crimson Block Weave Mat',
+    category: 'Floor mats',
+    material: 'Woven Cotton · Crimson & Cream',
+    price: 590,
+    image: matMaroonCheck,
+    badge: 'Artisan Weave',
+    description: 'Rich maroon and cream checkerboard weave with subtle woven texture. Crafted with thick handloom cotton threads for a resilient finish.',
+    size: '50 × 80 cm',
   },
   {
     id: 'woven-bag',
@@ -49,15 +114,37 @@ export const defaultProducts: Product[] = [
     size: '32 × 28 × 10 cm',
   },
   {
-    id: 'natural-mat',
-    name: 'The Natural Welcome Mat',
+    id: 'mat-pink-black-stripe',
+    name: 'The Rose Noir Striped Mat',
     category: 'Floor mats',
-    material: 'Woven texture · Natural',
-    price: 590,
-    image: mat,
-    badge: 'Simple essentials',
-    description: 'Natural tones and an easy rectangular shape bring a considered finishing touch to everyday spaces.',
-    size: '45 × 75 cm',
+    material: 'Handloom Cotton · Rose & Charcoal',
+    price: 620,
+    image: matPinkBlackStripe,
+    badge: 'Bestseller',
+    description: 'Contrast charcoal black and natural beige stripes framed by deep rose pink borders with handcrafted fringe tassels on both ends.',
+    size: '60 × 90 cm',
+  },
+  {
+    id: 'mat-textured-multistripe',
+    name: 'The Sunburst Ribbed Rug',
+    category: 'Floor mats',
+    material: 'Knotted Cotton · Mustard & Plum',
+    price: 740,
+    image: matTexturedMultistripe,
+    badge: 'Signature Texture',
+    description: 'Plush ribbed weave with cheerful golden yellow bands and deep wine plum tones, finished with delicate braided cotton tassels.',
+    size: '60 × 100 cm',
+  },
+  {
+    id: 'mat-tasseled-runner',
+    name: 'The Artisan Fringe Runner',
+    category: 'Floor mats',
+    material: 'Natural Woven Cotton · Multi Stripe',
+    price: 680,
+    image: matTasseledRunner,
+    badge: 'Handcrafted',
+    description: 'Carefully woven handloom runner with rhythmic stripe patterns and authentic hand-tied knotted tassels along the borders.',
+    size: '55 × 95 cm',
   },
 ];
 
@@ -99,9 +186,9 @@ export const defaultOrders: Order[] = [
     date: '2026-10-24 14:30',
     items: [
       { productId: 'everyday-tote', name: 'The Everyday Tote', price: 890, quantity: 1, image: tote },
-      { productId: 'sage-mat', name: 'The Sage Stripe Mat', price: 690, quantity: 1, image: mat },
+      { productId: 'mat-maroon-check', name: 'The Crimson Block Weave Mat', price: 590, quantity: 1, image: matMaroonCheck },
     ],
-    totalAmount: 1580,
+    totalAmount: 1480,
     status: 'Processing',
     paymentMethod: 'UPI / Online',
   },
@@ -127,9 +214,9 @@ export const defaultOrders: Order[] = [
     address: '7, Palm Grove Avenue, RS Puram, Coimbatore, 641002',
     date: '2026-10-24 19:40',
     items: [
-      { productId: 'natural-mat', name: 'The Natural Welcome Mat', price: 590, quantity: 2, image: mat },
+      { productId: 'mat-ikat-crossstitch', name: 'The Heritage Lattice Weave Mat', price: 720, quantity: 2, image: matIkatCrossstitch },
     ],
-    totalAmount: 1180,
+    totalAmount: 1440,
     status: 'Pending',
     paymentMethod: 'Cash on Delivery',
   },

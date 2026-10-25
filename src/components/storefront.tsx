@@ -21,6 +21,7 @@ import {
 import { Button } from '@/components/ui/button';
 import { Sheet, SheetContent, SheetTitle, SheetDescription } from '@/components/ui/sheet';
 import { Dialog, DialogContent, DialogTitle, DialogDescription } from '@/components/ui/dialog';
+import { cn } from '@/lib/utils';
 import {
   defaultProducts,
   defaultOrders,
@@ -109,7 +110,17 @@ export function Storefront({ children }: { children: ReactNode }) {
     try {
       const storedProds = localStorage.getItem(PRODUCTS_STORAGE_KEY);
       if (storedProds) {
-        setProductList(JSON.parse(storedProds));
+        const parsed: Product[] = JSON.parse(storedProds);
+        // Exclude removed products (e.g. mat-blue-stripe, sage-mat)
+        const validParsed = parsed.filter(p => p.id !== 'mat-blue-stripe' && p.id !== 'sage-mat');
+        // Merge missing default products so newly added collections appear seamlessly
+        const existingIds = new Set(validParsed.map(p => p.id));
+        const missingDefaults = defaultProducts.filter(p => !existingIds.has(p.id));
+        const merged = [...validParsed, ...missingDefaults];
+        setProductList(merged);
+        localStorage.setItem(PRODUCTS_STORAGE_KEY, JSON.stringify(merged));
+      } else {
+        localStorage.setItem(PRODUCTS_STORAGE_KEY, JSON.stringify(defaultProducts));
       }
       const storedOrders = localStorage.getItem(ORDERS_STORAGE_KEY);
       if (storedOrders) {
@@ -236,16 +247,13 @@ export function Storefront({ children }: { children: ReactNode }) {
         Home
       </Link>
       <Link to="/shop" className={location.pathname === '/shop' ? 'active' : ''} onClick={() => setMenuOpen(false)}>
-        All collections
-      </Link>
-      <Link to="/shop" search={{ category: 'Bags' }} onClick={() => setMenuOpen(false)}>
-        Bags
-      </Link>
-      <Link to="/shop" search={{ category: 'Floor mats' }} onClick={() => setMenuOpen(false)}>
-        Floor mats
+        Shop
       </Link>
       <Link to="/our-story" className={location.pathname === '/our-story' ? 'active' : ''} onClick={() => setMenuOpen(false)}>
         Our story
+      </Link>
+      <Link to="/contact-us" className={location.pathname === '/contact-us' ? 'active' : ''} onClick={() => setMenuOpen(false)}>
+        Contact us
       </Link>
     </>
   );
@@ -271,9 +279,18 @@ export function Storefront({ children }: { children: ReactNode }) {
       <div className="site-watermark" aria-hidden="true">
         <img src={logo.url} alt="" width={1064} height={1042} />
       </div>
-      <div className="announcement">
-        THOUGHTFULLY MADE. BEAUTIFULLY EVERYDAY.
-        <span className="hidden sm:inline ml-3 opacity-75">· Free delivery across India</span>
+      <div className="announcement flex items-center justify-between px-6">
+        <span className="hidden md:inline font-medium tracking-wide">
+          Quality Bags | Trusted Manufacturer | Bulk Orders Welcome
+        </span>
+        <span className="md:hidden mx-auto font-medium">
+          Quality Bags &amp; Handloom Floor Mats
+        </span>
+        <span className="hidden md:flex items-center gap-3 text-[10px] tracking-normal font-normal opacity-90">
+          <a href="tel:+919842270384" className="hover:underline">+91 98422 70384</a>
+          <span>·</span>
+          <a href="mailto:shreeyasudarshantradingcompany@gmail.com" className="hover:underline">shreeyasudarshantradingcompany@gmail.com</a>
+        </span>
       </div>
 
       <header className="site-header page-width">
@@ -324,37 +341,36 @@ export function Storefront({ children }: { children: ReactNode }) {
             <div>
               <div className="footer-brand">ShreeyaSudarshan</div>
               <p className="footer-tag">
-                Bags for the places you go.
+                Eco-Friendly Textile &amp; Bag Manufacturers.
                 <br />
-                Floor mats for the place you call home.
+                Handloom Floor Mats &amp; Custom Packaging.
               </p>
+              <div className="mt-4 text-[11px] opacity-80 space-y-1">
+                <p># 56C, Anna Nagar 1st Street, Near IOB, Bhavani, Erode - 638301.</p>
+                <p>Phone: +91 98422 70384</p>
+                <p>Email: shreeyasudarshantradingcompany@gmail.com</p>
+              </div>
             </div>
             <div className="footer-links">
-              <h3>Explore</h3>
-              <Link to="/shop" search={{ category: 'Bags' }}>
-                Bags
-              </Link>
-              <Link to="/shop" search={{ category: 'Floor mats' }}>
-                Floor mats
-              </Link>
-              <Link to="/shop">All collections</Link>
-            </div>
-            <div className="footer-links">
-              <h3>The company</h3>
+              <h3>Quick Links</h3>
+              <Link to="/">Home</Link>
+              <Link to="/shop">Shop</Link>
               <Link to="/our-story">Our story</Link>
-              <Button
-                variant="link"
-                className="justify-start p-0 h-auto text-surface-dark-foreground text-[11px]"
-                onClick={() => setSearchOpen(true)}
-              >
-                Find your everyday essential <MoveUpRight />
-              </Button>
+              <Link to="/contact-us">Contact us</Link>
+            </div>
+            <div className="footer-links">
+              <h3>Our Products</h3>
+              <Link to="/shop" search={{ category: 'Bags' }}>Jute Fashion Bags</Link>
+              <Link to="/shop" search={{ category: 'Bags' }}>Cotton Bags</Link>
+              <Link to="/shop" search={{ category: 'Floor mats' }}>Handloom Floor Mats</Link>
+              <Link to="/shop" search={{ category: 'Floor mats' }}>Cotton Rugs</Link>
+              <Link to="/contact-us">Bulk &amp; Custom Enquiries</Link>
             </div>
           </div>
           <div className="footer-bottom">
-            <span>© {new Date().getFullYear()} ShreeyaSudarshan Trading Company</span>
-            <span>Concept storefront · Illustrative products and prices</span>
-            <span>Rooted in everyday living.</span>
+            <span>© {new Date().getFullYear()} ShreeyaSudarshan Trading Company. All Rights Reserved.</span>
+            <span>Quality Bags | Handloom Floor Mats | Trusted Manufacturer</span>
+            <span>Bhavani, Erode, Tamil Nadu</span>
           </div>
         </div>
       </footer>
@@ -740,11 +756,12 @@ export function Storefront({ children }: { children: ReactNode }) {
   );
 }
 
-export function Eyebrow({ children }: { children: ReactNode }) {
+export function Eyebrow({ children, className }: { children: ReactNode; className?: string }) {
   return (
-    <div className="eyebrow">
+    <div className={cn("eyebrow", className)}>
       <span className="eyebrow-line" />
-      {children}
+      <span className="eyebrow-text">{children}</span>
+      <span className="eyebrow-line eyebrow-line-after" />
     </div>
   );
 }
