@@ -41,7 +41,7 @@ import {
 } from '@/lib/db';
 import logo from '@/assets/company-logo.png.asset.json';
 
-const PRODUCTS_STORAGE_KEY = 'ss_boutique_products_v2';
+const PRODUCTS_STORAGE_KEY = 'ss_boutique_products_v4';
 const ORDERS_STORAGE_KEY = 'ss_boutique_orders_v1';
 
 type Store = {
@@ -647,7 +647,7 @@ export function Storefront({ children }: { children: ReactNode }) {
                   <div>
                     <h3>{p.name}</h3>
                     <p className="text-xs text-muted-foreground mt-1">
-                      {p.category} · ₹{p.price.toLocaleString('en-IN')}
+                      {p.category} · {p.priceNote || `₹${p.price.toLocaleString('en-IN')}`}
                     </p>
                   </div>
                   <ArrowRight className="ml-auto" />
@@ -712,7 +712,18 @@ export function Storefront({ children }: { children: ReactNode }) {
                 <div>
                   <div className="eyebrow">{product.category}</div>
                   <h2 className="mt-3">{product.name}</h2>
-                  <p className="mt-4 font-semibold text-lg text-primary">₹{product.price.toLocaleString('en-IN')}</p>
+                  {product.priceNote ? (
+                    <div className="mt-3.5 py-2.5 px-3.5 rounded-lg bg-stone-100/90 border border-stone-200">
+                      <p className="font-semibold text-base text-primary">
+                        {product.priceNote}
+                      </p>
+                      <p className="text-xs text-muted-foreground mt-0.5">
+                        Base starting estimate: ₹{product.price.toLocaleString('en-IN')} · Final quotation depends on quality, weave density & custom dimensions.
+                      </p>
+                    </div>
+                  ) : (
+                    <p className="mt-4 font-semibold text-lg text-primary">₹{product.price.toLocaleString('en-IN')}</p>
+                  )}
                   <p className="detail-copy">{product.description}</p>
                   <p className="text-xs text-muted-foreground">
                     {product.material}
@@ -794,9 +805,11 @@ export function ProductCard({ product }: { product: Product }) {
       </div>
       <div className="product-info">
         <h3>{product.name}</h3>
-        <div className="product-meta">
+        <div className="product-meta items-baseline gap-2">
           <span>{product.material}</span>
-          <span className="text-foreground font-medium">₹{product.price.toLocaleString('en-IN')}</span>
+          <span className="text-foreground font-medium text-xs sm:text-sm text-right leading-tight">
+            {product.priceNote || `₹${product.price.toLocaleString('en-IN')}`}
+          </span>
         </div>
         <div className="product-swatches" aria-label="Natural and forest palette">
           <span className="swatch natural" />

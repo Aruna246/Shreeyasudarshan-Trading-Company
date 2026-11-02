@@ -1,5 +1,14 @@
 import tote from '@/assets/green-tote.jpg';
 import woven from '@/assets/woven-bag.jpg';
+import bagCottonTote from '@/assets/bag-cotton-tote.jpg';
+import bagGoldenJute from '@/assets/bag-golden-jute.jpg';
+import bagSageNonwoven from '@/assets/bag-sage-nonwoven.jpg';
+import bagBlockprintFloral from '@/assets/bag-blockprint-floral.jpg';
+import bagJuteCottonCombo from '@/assets/bag-jute-cotton-combo.jpg';
+import bagRoyalNonwoven from '@/assets/bag-royal-nonwoven.jpg';
+import bagTerracottaCanvas from '@/assets/bag-terracotta-canvas.jpg';
+import bagOchreKhadi from '@/assets/bag-ochre-khadi.jpg';
+import bagCharcoalNonwoven from '@/assets/bag-charcoal-nonwoven.jpg';
 
 import matMaroonCheck from '@/assets/mat-maroon-check.jpg';
 import matPinkBlackStripe from '@/assets/mat-pink-black-stripe.jpg';
@@ -31,6 +40,7 @@ export type Product = {
   category: 'Bags' | 'Floor mats';
   material: string;
   price: number;
+  priceNote?: string;
   image: string;
   badge: string;
   description: string;
@@ -39,15 +49,136 @@ export type Product = {
 
 export const defaultProducts: Product[] = [
   {
-    id: 'everyday-tote',
-    name: 'The Everyday Tote',
+    id: 'bag-cotton-tote',
+    name: 'The Classic Handloom Cotton Tote',
     category: 'Bags',
-    material: 'Canvas · Forest',
+    material: 'Pure Handloom Cotton · Natural Ecru',
+    price: 490,
+    priceNote: 'Price varies with quality and size',
+    image: bagCottonTote,
+    badge: 'Handmade Cotton',
+    description: 'Woven on traditional handlooms from pure unbleached cotton canvas. Features a spacious exterior slip pocket, reinforced box-stitched webbing handles, and natural breathable drape.',
+    size: '38 × 35 × 12 cm',
+  },
+  {
+    id: 'bag-golden-jute',
+    name: 'The Golden Heritage Jute Tote',
+    category: 'Bags',
+    material: '100% Biodegradable Jute · Golden Honey',
+    price: 450,
+    priceNote: 'Price varies with quality and size',
+    image: bagGoldenJute,
+    badge: 'Handcrafted Jute',
+    description: 'Spun from natural golden jute yarn with a rich textured burlap weave. Eco-friendly, biodegradable, and reinforced with sturdy handles for daily shopping and market trips.',
+    size: '40 × 36 × 14 cm',
+  },
+  {
+    id: 'bag-sage-nonwoven',
+    name: 'The Eco Sage Non-Woven Carry Bag',
+    category: 'Bags',
+    material: 'Spunbond Non-Woven · Sage Olive',
+    price: 60,
+    priceNote: 'Price varies with quality and size',
+    image: bagSageNonwoven,
+    badge: 'Eco Non-Woven',
+    description: 'Lightweight yet resilient handmade non-woven bag with ultrasonic gusset seams and soft loop handles in calming sage olive. Washable, tear-resistant, and reusable.',
+    size: '36 × 40 × 10 cm',
+  },
+  {
+    id: 'bag-blockprint-floral',
+    name: 'The Artisan Handblock Floral Tote',
+    category: 'Bags',
+    material: 'Handloom Cotton · Indigo & Terracotta Motif',
+    price: 580,
+    priceNote: 'Price varies with quality and size',
+    image: bagBlockprintFloral,
+    badge: 'Handblock Print',
+    description: 'Hand-pressed with traditional botanical wooden blocks using vegetable dyes on raw unbleached cotton. Each bag is an authentic one-of-a-kind Indian craft piece.',
+    size: '38 × 34 × 10 cm',
+  },
+  {
+    id: 'bag-jute-cotton-combo',
+    name: 'The Two-Tone Jute & Cotton Market Bag',
+    category: 'Bags',
+    material: 'Woven Jute Base · Slub Cotton Upper',
+    price: 520,
+    priceNote: 'Price varies with quality and size',
+    image: bagJuteCottonCombo,
+    badge: 'Dual Weave',
+    description: 'A harmonious hybrid design pairing a structured golden jute bottom foundation with a breathable natural handloom cotton canvas upper.',
+    size: '42 × 38 × 15 cm',
+  },
+  {
+    id: 'bag-royal-nonwoven',
+    name: 'The Structured Royal Navy Non-Woven Box Tote',
+    category: 'Bags',
+    material: 'Spunbond Non-Woven · Deep Royal Navy',
+    price: 75,
+    priceNote: 'Price varies with quality and size',
+    image: bagRoyalNonwoven,
+    badge: 'Reusable Utility',
+    description: 'Structured box-gusseted handmade non-woven utility bag with reinforced base, piped seams, and wide shoulder loops. Tailored for heavy daily groceries and bulk shopping.',
+    size: '34 × 38 × 12 cm',
+  },
+  {
+    id: 'bag-terracotta-canvas',
+    name: 'The Earth Terracotta Handloom Canvas Bag',
+    category: 'Bags',
+    material: 'Vegetable Dyed Cotton · Warm Terracotta',
+    price: 540,
+    priceNote: 'Price varies with quality and size',
+    image: bagTerracottaCanvas,
+    badge: 'Natural Dye',
+    description: 'Hand-dyed using organic clay and madder root extracts, featuring double-needle seam construction, wide self-fabric handles, and an earthy warm aesthetic.',
+    size: '38 × 35 × 12 cm',
+  },
+  {
+    id: 'bag-ochre-khadi',
+    name: 'The Mustard Ochre Khadi Handloom Tote',
+    category: 'Bags',
+    material: 'Handspun Khadi Cotton · Warm Ochre',
+    price: 560,
+    priceNote: 'Price varies with quality and size',
+    image: bagOchreKhadi,
+    badge: 'Heritage Khadi',
+    description: 'Spun by hand from coarse khadi cotton yarn in bright turmeric ochre. Rich natural slub texture that softens beautifully with age and wash.',
+    size: '37 × 33 × 11 cm',
+  },
+  {
+    id: 'bag-charcoal-nonwoven',
+    name: 'The Minimal Slate Non-Woven Tote',
+    category: 'Bags',
+    material: 'Spunbond Non-Woven · Slate Charcoal',
+    price: 65,
+    priceNote: 'Price varies with quality and size',
+    image: bagCharcoalNonwoven,
+    badge: 'Everyday Eco',
+    description: 'Sleek slate grey non-woven bag tailored for modern eco-conscious living. Lightweight, fold-flat design that slips easily into a pocket or glove compartment.',
+    size: '35 × 38 × 10 cm',
+  },
+  {
+    id: 'everyday-tote',
+    name: 'The Everyday Forest Canvas Tote',
+    category: 'Bags',
+    material: 'Canvas · Forest Green & Ecru',
     price: 890,
+    priceNote: 'Price varies with quality and size',
     image: tote,
     badge: 'Everyday favourite',
-    description: 'A clean silhouette with generous space for the little things that make up your day. Natural canvas meets a deep forest-green finish.',
+    description: 'A clean silhouette with generous space for everyday essentials. Natural unbleached canvas meets deep forest-green webbing straps and bottom base trim.',
     size: '38 × 34 × 12 cm',
+  },
+  {
+    id: 'woven-bag',
+    name: 'The Weekend Weave Round Handle Bag',
+    category: 'Bags',
+    material: 'Hand-crocheted Jute & Cane · Natural',
+    price: 1290,
+    priceNote: 'Price varies with quality and size',
+    image: woven,
+    badge: 'The weekend edit',
+    description: 'A sculptural woven silhouette finished with polished circular cane handles. A relaxed handmade companion for slow mornings and artisan markets.',
+    size: '32 × 28 × 10 cm',
   },
   {
     id: 'mat-ikat-crossstitch',
@@ -114,17 +245,6 @@ export const defaultProducts: Product[] = [
     badge: 'Artisan Weave',
     description: 'Rich maroon and cream checkerboard weave with subtle woven texture. Crafted with thick handloom cotton threads for a resilient finish.',
     size: '50 × 80 cm',
-  },
-  {
-    id: 'woven-bag',
-    name: 'The Weekend Weave',
-    category: 'Bags',
-    material: 'Woven texture · Natural',
-    price: 1290,
-    image: woven,
-    badge: 'The weekend edit',
-    description: 'A sculptural woven silhouette finished with round handles. A relaxed companion for slow mornings and weekend outings.',
-    size: '32 × 28 × 10 cm',
   },
   {
     id: 'mat-pink-black-stripe',
