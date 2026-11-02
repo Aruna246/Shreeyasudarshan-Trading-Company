@@ -12,6 +12,19 @@ import matSolidRibbonFan from '@/assets/mat-solid-ribbon-fan.jpg';
 import matFringeDiamondWeave from '@/assets/mat-fringe-diamond-weave.jpg';
 import matGridGeometricFan from '@/assets/mat-grid-geometric-fan.jpg';
 
+import matGrape from '@/assets/mat-grape.jpg';
+import matColours from '@/assets/mat-colours.jpg';
+import matRainbow from '@/assets/mat-rainbow.jpg';
+import matLimestone from '@/assets/mat-limestone.jpg';
+import matGuptha from '@/assets/mat-guptha.jpg';
+import matTrack from '@/assets/mat-track.jpg';
+import matFourMatrix from '@/assets/mat-four-matrix.jpg';
+import matVasthuOval from '@/assets/mat-vasthu-round-oval.jpg';
+import matZigZagLarge from '@/assets/mat-zig-zag-large.jpg';
+import matTwoInOne from '@/assets/mat-two-in-one.jpg';
+import matThirdEye from '@/assets/mat-third-eye.jpg';
+import matRoyalVasthu from '@/assets/mat-royal-vasthu.jpg';
+
 export type Product = {
   id: string;
   name: string;
@@ -145,6 +158,138 @@ export const defaultProducts: Product[] = [
     badge: 'Handcrafted',
     description: 'Carefully woven handloom runner with rhythmic stripe patterns and authentic hand-tied knotted tassels along the borders.',
     size: '55 × 95 cm',
+  },
+  {
+    id: 'mat-grape',
+    name: 'Grape Floor Mat',
+    category: 'Floor mats',
+    material: 'Handloom Cotton · Grape & Plum',
+    price: 50,
+    image: matGrape,
+    badge: 'Popular',
+    description: 'Rich grape purple and plum tones woven with pure handloom cotton cord and finished with handcrafted fringe tassels.',
+    size: '45 × 70 cm',
+  },
+  {
+    id: 'mat-colours',
+    name: 'Colours Floor Mat',
+    category: 'Floor mats',
+    material: 'Woven Cotton · Multi Palette',
+    price: 50,
+    image: matColours,
+    badge: 'Vibrant Weave',
+    description: 'Lively multi-color woven yarn bands combining mustard yellow, coral, forest green, and ocean blue in durable handloom cotton.',
+    size: '45 × 70 cm',
+  },
+  {
+    id: 'mat-rainbow',
+    name: 'Rainbow Floor Mat',
+    category: 'Floor mats',
+    material: 'Handloom Cotton · Rainbow Stripe',
+    price: 50,
+    image: matRainbow,
+    badge: 'Bestseller',
+    description: 'Bright gradient rainbow color bands woven with premium cotton yarn and framed with classic fringe tassels.',
+    size: '45 × 70 cm',
+  },
+  {
+    id: 'mat-limestone',
+    name: 'Limestone Floor Mat',
+    category: 'Floor mats',
+    material: 'Natural Cotton · Limestone Beige',
+    price: 50,
+    image: matLimestone,
+    badge: 'Natural Earth',
+    description: 'Subtle earthy limestone beige and warm off-white ribbed handloom cotton weave, perfect for understated living spaces.',
+    size: '45 × 70 cm',
+  },
+  {
+    id: 'mat-guptha',
+    name: 'Guptha Traditional Mat',
+    category: 'Floor mats',
+    material: 'Handloom Cotton · Heritage Border',
+    price: 50,
+    image: matGuptha,
+    badge: 'Heritage Classic',
+    description: 'Traditional Indian geometric border motif in contrasting earthy terracotta maroon, ochre gold, and cream handloom cotton.',
+    size: '45 × 70 cm',
+  },
+  {
+    id: 'mat-track',
+    name: 'Track Linear Weave Mat',
+    category: 'Floor mats',
+    material: 'Durable Cotton · Linear Track Weave',
+    price: 50,
+    image: matTrack,
+    badge: 'Modern Utility',
+    description: 'Parallel running linear track stripes in slate charcoal, warm taupe, and ivory white for high-traffic durability.',
+    size: '45 × 70 cm',
+  },
+  {
+    id: 'mat-four-matrix',
+    name: 'Four Matrix Floor Mat',
+    category: 'Floor mats',
+    material: 'Textured Cotton · Quad Matrix Weave',
+    price: 55,
+    image: matFourMatrix,
+    badge: 'Geometric',
+    description: 'Four distinct checkerboard and woven matrix quadrants in indigo navy, sage green, and natural cream.',
+    size: '50 × 75 cm',
+  },
+  {
+    id: 'mat-vasthu-round-oval',
+    name: 'Vasthu Round - Oval Shape Mat',
+    category: 'Floor mats',
+    material: 'Braided Cotton · Oval Silhouette',
+    price: 50,
+    image: matVasthuOval,
+    badge: 'Vasthu Edition',
+    description: 'Traditional oval-shaped braided handloom mat crafted with concentric rings of natural jute-tone cotton, saffron, and emerald borders.',
+    size: '50 × 80 cm',
+  },
+  {
+    id: 'mat-zig-zag-large',
+    name: 'Zig Zag Large Floor Mat',
+    category: 'Floor mats',
+    material: 'Heavy Ribbed Cotton · Bold Chevron',
+    price: 60,
+    image: matZigZagLarge,
+    badge: 'Bold Chevron',
+    description: 'Bold oversized zig-zag chevron weave in slate blue and ivory cotton with plush underfoot texture.',
+    size: '55 × 85 cm',
+  },
+  {
+    id: 'mat-two-in-one',
+    name: 'Two In One Reversible Mat',
+    category: 'Floor mats',
+    material: 'Dual-Woven Cotton · Reversible',
+    price: 60,
+    image: matTwoInOne,
+    badge: 'Reversible Dual-Side',
+    description: 'Dual-tone reversible handloom mat featuring contrasting golden ochre on one face and olive green on the reverse.',
+    size: '50 × 80 cm',
+  },
+  {
+    id: 'mat-third-eye',
+    name: 'Third Eye Medallion Mat',
+    category: 'Floor mats',
+    material: 'Artisan Cotton · Centre Medallion',
+    price: 65,
+    image: matThirdEye,
+    badge: 'Artisan Special',
+    description: 'Striking mystical eye medallion center motif surrounded by intricate geometric temple borders in terracotta and indigo.',
+    size: '50 × 80 cm',
+  },
+  {
+    id: 'mat-royal-vasthu',
+    name: 'Royal Vasthu Floor Mat',
+    category: 'Floor mats',
+    material: 'Premium Cotton · Regal Auspicious',
+    price: 70,
+    image: matRoyalVasthu,
+    badge: 'Royal Vasthu',
+    description: 'Regal handloom floor mat featuring auspicious maroon and emerald green borders with intricate golden paisley patterns and plush tassels.',
+    size: '60 × 90 cm',
   },
 ];
 

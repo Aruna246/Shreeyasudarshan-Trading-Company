@@ -123,7 +123,7 @@ function ContactUs() {
                       Working hours
                     </span>
                     <p className="text-sm text-[#e2f0e8] mt-0.5">
-                      Monday to Saturday, 9:00 am to 6:00 pm
+                      Monday to Saturday, 9:00 am to 9:00 pm
                     </p>
                   </div>
                 </div>

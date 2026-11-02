@@ -41,7 +41,7 @@ import {
 } from '@/lib/db';
 import logo from '@/assets/company-logo.png.asset.json';
 
-const PRODUCTS_STORAGE_KEY = 'ss_boutique_products_v1';
+const PRODUCTS_STORAGE_KEY = 'ss_boutique_products_v2';
 const ORDERS_STORAGE_KEY = 'ss_boutique_orders_v1';
 
 type Store = {
