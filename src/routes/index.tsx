@@ -135,10 +135,7 @@ function Index() {
           fetchPriority="high"
         />
         <div className="hero-content page-width">
-          <div className="inline-flex items-center gap-2 bg-background/90 backdrop-blur-md px-3.5 py-1.5 rounded-full border border-primary/20 shadow-sm text-xs text-primary font-semibold tracking-wide mb-3">
-            <Sparkles size={13} className="text-[#c59b48]" />
-            <span>100% Eco-Friendly Handloom &amp; Textile Manufacturer · Bhavani</span>
-          </div>
+          <Eyebrow>Rooted in nature. Made for life.</Eyebrow>
 
           <h1>
             Rooted in heritage.<br />
