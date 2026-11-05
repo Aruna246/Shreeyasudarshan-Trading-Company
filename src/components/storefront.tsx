@@ -82,11 +82,21 @@ export function useStore() {
 
 export function Brand() {
   return (
-    <Link to="/" className="brand" aria-label="ShreeyaSudarshan home">
-      <img src={logo.url} alt="ShreeyaSudarshan tree logo" width={88} height={88} />
-      <div className="brand-name">
-        ShreeyaSudarshan
-        <span className="brand-sub">Trading Company · Bhavani</span>
+    <Link to="/" className="brand group select-none shrink-0 min-w-0" aria-label="ShreeyaSudarshan home">
+      <img
+        src={logo.url}
+        alt="ShreeyaSudarshan Trading Company"
+        className="w-10 h-10 sm:w-12 sm:h-12 rounded-full object-cover ring-2 ring-[#D15608]/50 shadow-xs transition-transform duration-300 group-hover:scale-105 shrink-0 bg-[#FAF7F2]"
+        width={48}
+        height={48}
+      />
+      <div className="flex flex-col min-w-0">
+        <span className="font-['Manrope'] text-sm sm:text-xl font-bold tracking-[0.16em] sm:tracking-[0.2em] text-[#0E0E0E] group-hover:text-[#D15608] transition-colors leading-none truncate uppercase">
+          ShreeyaSudarshan
+        </span>
+        <span className="text-[9px] sm:text-[10px] font-semibold uppercase tracking-[0.24em] text-[#D15608] block mt-1">
+          Trading Company · Bhavani
+        </span>
       </div>
     </Link>
   );
@@ -328,30 +338,25 @@ export function Storefront({ children }: { children: ReactNode }) {
         <img src={logo.url} alt="" width={1064} height={1042} />
       </div>
 
-      {/* Announcement Bar */}
-      <div className="announcement flex items-center justify-between px-6">
-        <div className="flex items-center gap-2 mx-auto md:mx-0">
-          <Sparkles size={13} className="text-[#c59b48] shrink-0" />
-          <span className="font-semibold tracking-wide">
-            Quality Bags &amp; Handloom Floor Mats · Direct Manufacturer in Bhavani, Tamil Nadu
+      {/* 1. THIN DEEP RED ANNOUNCEMENT BAR (Signature Padma-Fabrics layout) */}
+      <div className="bg-[#9F160A] text-white border-b border-black/10 text-[11px] font-medium uppercase tracking-[0.2em] py-2 px-4 select-none relative z-50">
+        <div className="max-w-7xl mx-auto flex items-center justify-between text-center">
+          <span className="hidden md:inline text-white/80">
+            Bhavani Weaving Hub · Erode
           </span>
-        </div>
-        <div className="hidden md:flex items-center gap-4 text-[11px] tracking-normal font-normal opacity-95">
-          <span className="inline-flex items-center gap-1.5 text-amber-200">
-            <Truck size={13} /> Pan-India Delivery
+          <span className="w-full md:w-auto text-white font-light">
+            Direct Mill Rates · Handloom Floor Mats &amp; Pure Cotton Bags · Desk:{' '}
+            <a href="tel:+919842270384" className="text-[#EDBC3D] hover:underline font-normal">
+              +91 98422 70384
+            </a>
           </span>
-          <span>·</span>
-          <a href="tel:+919842270384" className="hover:text-amber-200 flex items-center gap-1 transition-colors">
-            <Phone size={11} /> +91 98422 70384
-          </a>
-          <span>·</span>
-          <a href="mailto:shreeyasudarshantradingcompany@gmail.com" className="hover:text-amber-200 transition-colors">
-            Email Us
-          </a>
+          <span className="hidden md:inline text-[#EDBC3D]">
+            GST Invoicing Included
+          </span>
         </div>
       </div>
 
-      {/* Sticky Header */}
+      {/* 2. REFINED LIGHT STICKY HEADER */}
       <div className="header-wrapper">
         <header className="site-header page-width">
           <Brand />
@@ -365,34 +370,38 @@ export function Storefront({ children }: { children: ReactNode }) {
               title="Search collection"
               aria-label="Search collection"
               onClick={() => setSearchOpen(true)}
-              className="hover:text-primary"
+              className="hover:text-[#D15608] hover:bg-black/5"
             >
               <Search size={18} />
             </Button>
             <Button
               variant="ghost"
               size="icon"
-              className="header-wishlist relative hover:text-red-600"
+              className="header-wishlist relative hover:text-[#9F160A] hover:bg-black/5"
               title="Saved favourites"
               aria-label="Saved favourites"
               onClick={() => setSavedOpen(true)}
             >
-              <Heart size={18} fill={saved.length > 0 ? '#dc2626' : 'none'} color={saved.length > 0 ? '#dc2626' : 'currentColor'} />
+              <Heart
+                size={18}
+                fill={saved.length > 0 ? '#9F160A' : 'none'}
+                color={saved.length > 0 ? '#9F160A' : 'currentColor'}
+              />
               {saved.length > 0 && (
-                <span className="bag-counter absolute -top-1 -right-1 text-[9px] min-w-3.5 h-3.5 bg-red-600 text-white">
+                <span className="bag-counter absolute -top-1 -right-1 text-[9px] min-w-4 h-4 bg-[#9F160A] text-white">
                   {saved.length}
                 </span>
               )}
             </Button>
             <Button
               variant="ghost"
-              className="px-2.5 rounded-full hover:bg-primary/10 flex items-center gap-1.5"
+              className="px-2.5 rounded-full hover:bg-black/5 flex items-center gap-1.5"
               title="Open shopping bag"
               aria-label="Open shopping bag"
               onClick={() => setCartOpen(true)}
             >
-              <ShoppingBag size={18} className="text-primary" />
-              <span className="bag-counter">{totalCartCount}</span>
+              <ShoppingBag size={18} className="text-[#D15608]" />
+              <span className="bag-counter bg-[#D15608]">{totalCartCount}</span>
             </Button>
             <Button
               variant="ghost"
@@ -410,41 +419,88 @@ export function Storefront({ children }: { children: ReactNode }) {
       {/* Main Page Content */}
       <main className="relative z-10">{children}</main>
 
-      {/* Floating WhatsApp Quick Action Button */}
-      <a
-        href="https://wa.me/919842270384?text=Hello%20ShreeyaSudarshan%20Trading%20Company,%20I%20am%20interested%20in%20custom%20and%20bulk%20orders%20for%20bags%20and%20floor%20mats."
-        target="_blank"
-        rel="noopener noreferrer"
-        className="whatsapp-float group"
-        aria-label="Chat with manufacturer on WhatsApp"
-      >
-        <MessageCircle size={18} className="shrink-0 transition-transform group-hover:scale-110" />
-        <span>Enquire on WhatsApp</span>
-      </a>
+      {/* Floating WhatsApp Quick Action Button (Padma-Fabrics Signature) */}
+      <aside aria-label="WhatsApp Support" className="fixed bottom-6 right-4 sm:right-6 z-40">
+        <a
+          href="https://wa.me/919842270384?text=Hello%20ShreeyaSudarshan%20Trading%20Company,%20I%20am%20interested%20in%20custom%20and%20bulk%20orders%20for%20bags%20and%20floor%20mats."
+          target="_blank"
+          rel="noopener noreferrer"
+          className="group relative flex items-center justify-center size-13 md:size-14 rounded-full bg-[#25D366] text-white shadow-[0_4px_18px_rgba(37,211,102,0.45)] hover:shadow-[0_6px_24px_rgba(37,211,102,0.65)] hover:bg-[#20ba59] hover:scale-105 active:scale-95 transition-all duration-300"
+          aria-label="Chat with manufacturer on WhatsApp"
+        >
+          {/* Subtle pulsating animation ring */}
+          <span
+            className="absolute inset-0 rounded-full bg-[#25D366] opacity-35 animate-ping pointer-events-none group-hover:opacity-0"
+            aria-hidden="true"
+          />
 
-      {/* Footer */}
+          {/* Official WhatsApp Logo SVG */}
+          <svg
+            viewBox="0 0 24 24"
+            className="size-7 md:size-8 fill-current relative z-10"
+            aria-hidden="true"
+          >
+            <path d="M17.472 14.382c-.301-.15-1.78-.878-2.056-.979-.276-.1-.477-.15-.678.15-.2.301-.778.979-.954 1.18-.175.2-.351.226-.652.075-.3-.15-1.267-.467-2.414-1.488-.893-.796-1.496-1.78-1.672-2.08-.176-.301-.019-.464.132-.614.135-.135.301-.351.451-.527.151-.176.201-.301.301-.502.1-.2.05-.376-.025-.527-.075-.15-.678-1.633-.929-2.235-.245-.587-.494-.508-.678-.517-.176-.01-.376-.01-.577-.01s-.527.075-.803.376c-.276.301-1.054 1.03-1.054 2.511s1.079 2.912 1.23 3.113c.15.201 2.124 3.242 5.145 4.547.719.31 1.28.496 1.718.636.722.23 1.378.197 1.9.12.58-.087 1.78-.727 2.032-1.43.251-.703.251-1.305.176-1.43-.075-.125-.276-.2-.577-.35zM12 2C6.477 2 2 6.477 2 12c0 1.892.524 3.662 1.435 5.172L2 22l4.957-1.301A9.957 9.957 0 0 0 12 22c5.523 0 10-4.477 10-10S17.523 2 12 2zm0 18.174c-1.597 0-3.084-.46-4.348-1.258l-.312-.195-2.937.771.784-2.862-.213-.339A8.136 8.136 0 0 1 3.826 12c0-4.507 3.667-8.174 8.174-8.174 4.507 0 8.174 3.667 8.174 8.174 0 4.507-3.667 8.174-8.174 8.174z" />
+          </svg>
+
+          {/* Hover Tooltip (Desktop) */}
+          <span className="hidden md:group-hover:flex items-center absolute right-full mr-3.5 px-3 py-1.5 rounded-lg bg-[#111111] text-white text-xs font-medium tracking-wide whitespace-nowrap shadow-xl pointer-events-none transition-all">
+            Chat on WhatsApp
+            <span className="absolute -right-1 top-1/2 -translate-y-1/2 border-y-4 border-y-transparent border-l-4 border-l-[#111111]" />
+          </span>
+        </a>
+      </aside>
+
+      {/* Footer (Padma-Fabrics Luxury Aesthetic) */}
       <footer className="site-footer relative z-10">
         <div className="page-width">
           <div className="footer-grid">
             <div>
-              <div className="footer-brand">ShreeyaSudarshan</div>
+              <div className="flex items-center gap-3.5 mb-4">
+                <img
+                  src={logo.url}
+                  alt="ShreeyaSudarshan Trading Company"
+                  className="w-12 h-12 rounded-full object-cover ring-2 ring-[#D15608]/50 shadow-sm shrink-0 bg-[#FAF7F2] p-0.5"
+                  width={48}
+                  height={48}
+                />
+                <div>
+                  <div className="footer-brand leading-none">SHREEYASUDARSHAN</div>
+                  <span className="text-[10px] font-medium uppercase tracking-[0.3em] text-[#EDBC3D] block mt-1.5">
+                    TRADING COMPANY · BHAVANI
+                  </span>
+                </div>
+              </div>
               <p className="footer-tag">
                 Eco-Friendly Textile &amp; Bag Manufacturers.<br />
                 Master Handloom Floor Mats, Cotton Bags, Jute Bags &amp; Gada Cloth.
               </p>
               <div className="mt-5 text-[12px] opacity-85 space-y-2">
                 <p className="flex items-start gap-2">
-                  <MapPin size={15} className="text-[#c59b48] shrink-0 mt-0.5" />
+                  <MapPin size={15} className="text-[#EDBC3D] shrink-0 mt-0.5" />
                   <span># 56C, Anna Nagar 1st Street, Near IOB, Bhavani, Erode - 638301, Tamil Nadu.</span>
                 </p>
                 <p className="flex items-center gap-2">
-                  <Phone size={15} className="text-[#c59b48] shrink-0" />
-                  <a href="tel:+919842270384" className="hover:underline">+91 98422 70384</a>
+                  <Phone size={15} className="text-[#EDBC3D] shrink-0" />
+                  <a href="tel:+919842270384" className="hover:underline hover:text-[#EDBC3D] transition-colors">+91 98422 70384</a>
                 </p>
                 <p className="flex items-center gap-2">
-                  <Mail size={15} className="text-[#c59b48] shrink-0" />
-                  <a href="mailto:shreeyasudarshantradingcompany@gmail.com" className="hover:underline">shreeyasudarshantradingcompany@gmail.com</a>
+                  <Mail size={15} className="text-[#EDBC3D] shrink-0" />
+                  <a href="mailto:shreeyasudarshantradingcompany@gmail.com" className="hover:underline hover:text-[#EDBC3D] transition-colors">
+                    shreeyasudarshantradingcompany@gmail.com
+                  </a>
                 </p>
+                <div className="pt-2">
+                  <a
+                    href="https://maps.google.com/maps?q=Anna+Nagar+1st+Street,+Bhavani,+Erode+638301"
+                    target="_blank"
+                    rel="noreferrer"
+                    className="inline-flex items-center gap-1.5 text-xs text-[#D15608] hover:text-[#EDBC3D] hover:underline uppercase tracking-wider font-medium transition-colors"
+                  >
+                    <MapPin className="size-3" strokeWidth={1.5} />
+                    <span>View on Google Maps</span>
+                  </a>
+                </div>
               </div>
             </div>
             <div className="footer-links">
@@ -467,7 +523,7 @@ export function Storefront({ children }: { children: ReactNode }) {
           <div className="footer-bottom">
             <span>© {new Date().getFullYear()} ShreeyaSudarshan Trading Company. All Rights Reserved.</span>
             <span>Bhavani Handlooms · Eco-Friendly Manufacturing · Pan-India Dispatch</span>
-            <span>Trusted Partner for India&apos;s Leading Jewellery Houses</span>
+            <span className="text-[#EDBC3D]">Trusted Partner for Leading Jewellery Houses</span>
           </div>
         </div>
       </footer>
@@ -1006,72 +1062,121 @@ export function Eyebrow({ children, className }: { children: ReactNode; classNam
 export function ProductCard({ product }: { product: Product }) {
   const store = useStore();
   const saved = store.saved.includes(product.id);
+  const badge = product.badge?.trim();
   
   return (
-    <article className="group flex flex-col justify-between">
-      <div>
-        <div className="product-image">
-          <img src={product.image} alt={product.name} width={1024} height={1024} loading="lazy" />
-          <Button
-            variant="image"
-            className="product-open"
-            aria-label={`View ${product.name}`}
-            onClick={() => store.setProduct(product)}
-          />
-          {product.badge && <span className="product-badge">{product.badge}</span>}
-          
-          <Button
-            variant="ghost"
-            size="icon"
-            className="product-save"
-            aria-label={`${saved ? 'Unsave' : 'Save'} ${product.name}`}
-            title={saved ? 'Remove from favourites' : 'Save to favourites'}
-            aria-pressed={saved}
-            onClick={(e) => {
-              e.stopPropagation();
-              store.toggleSave(product.id);
-            }}
-          >
-            <Heart size={16} fill={saved ? '#dc2626' : 'none'} color={saved ? '#dc2626' : 'currentColor'} />
-          </Button>
+    <article
+      className="group relative flex flex-col rounded-2xl overflow-hidden transition-all duration-300 select-none shadow-[0_4px_20px_rgba(0,0,0,0.06)] hover:shadow-[0_14px_36px_rgba(0,0,0,0.12)] hover:-translate-y-1 bg-white border border-[rgba(14,14,14,0.08)] text-[#0E0E0E]"
+    >
+      {/* 3:4 Aspect Ratio Image Container */}
+      <div
+        className="relative aspect-3/4 w-full rounded-t-2xl overflow-hidden bg-[#EBE6DC] cursor-pointer"
+        onClick={() => store.setProduct(product)}
+      >
+        <img
+          src={product.image}
+          alt={product.name}
+          loading="lazy"
+          className="w-full h-full object-cover object-center transition-transform duration-700 ease-[cubic-bezier(0.2,0.7,0.2,1)] group-hover:scale-104"
+          width={1024}
+          height={1024}
+        />
 
-          {/* Quick Add Overlay on Hover */}
-          <div className="quick-add-btn">
-            <Button
-              variant="default"
-              size="sm"
-              className="w-full h-9 rounded-lg bg-background/95 text-foreground hover:bg-primary hover:text-primary-foreground border border-border shadow-md backdrop-blur-md text-xs font-semibold flex items-center justify-center gap-1.5 transition-all"
-              onClick={(e) => {
-                e.stopPropagation();
-                store.addToCart(product, 1);
-              }}
-            >
-              <Plus size={14} /> Quick Add to Bag
-            </Button>
-          </div>
-        </div>
-
-        <div className="product-info">
-          <h3
-            className="cursor-pointer hover:text-primary transition-colors"
-            onClick={() => store.setProduct(product)}
-          >
-            {product.name}
-          </h3>
-          <div className="product-meta items-baseline gap-2 mt-1">
-            <span className="text-xs text-muted-foreground line-clamp-1">{product.material}</span>
-            <span className="text-foreground font-semibold text-xs sm:text-sm text-right shrink-0">
-              {product.priceNote || `₹${product.price.toLocaleString('en-IN')}`}
+        {/* Tiny Pill Badge Bottom-Left */}
+        {badge ? (
+          <div className="absolute bottom-3 left-3 z-10 transition-opacity duration-200 group-hover:opacity-0 pointer-events-none">
+            <span className="inline-block px-2.5 py-0.5 rounded-full text-[10px] font-medium uppercase tracking-[0.15em] bg-[#9F160A] text-white shadow-xs">
+              {badge}
             </span>
           </div>
+        ) : null}
+
+        {/* Minimal Heart Top-Right */}
+        <button
+          type="button"
+          onClick={(e) => {
+            e.stopPropagation();
+            store.toggleSave(product.id);
+          }}
+          aria-label={saved ? "Remove from favourites" : "Add to favourites"}
+          className={`absolute top-3 right-3 z-10 size-8 rounded-full flex items-center justify-center transition-all ${
+            saved
+              ? "bg-[#9F160A] text-white"
+              : "bg-black/20 hover:bg-black/50 text-white backdrop-blur-xs"
+          }`}
+        >
+          <Heart className={`size-3.5 ${saved ? "fill-white" : ""}`} strokeWidth={1.5} />
+        </button>
+
+        {/* Hover Action Overlay on Desktop: Quick Add Pill Button */}
+        <div className="absolute inset-x-0 bottom-0 p-3 bg-gradient-to-t from-black/85 via-black/45 to-transparent z-10 hidden lg:flex flex-col gap-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+          <button
+            type="button"
+            onClick={(e) => {
+              e.stopPropagation();
+              store.addToCart(product, 1);
+            }}
+            className="w-full py-2 rounded-full bg-[#D15608] hover:bg-[#9F160A] text-white text-[11px] font-semibold uppercase tracking-[0.14em] transition-all flex items-center justify-center gap-1.5 cursor-pointer shadow-md active:scale-98 border border-[#EDBC3D]/40"
+          >
+            <ShoppingBag className="size-3 text-[#FAF6EE]" strokeWidth={1.5} />
+            <span>Add to Bag</span>
+          </button>
         </div>
       </div>
 
-      <div className="product-swatches" aria-label="Craft palette">
-        <span className="swatch natural" title="Natural Canvas" />
-        <span className="swatch green" title="Bhavani Forest Green" />
-        <span className="swatch" title="Antique Brass Gold" />
-        <span className="text-[10px] text-muted-foreground/80 ml-auto font-medium">{product.size}</span>
+      {/* Product Details Below Image */}
+      <div className="p-3 sm:p-3.5 flex flex-col flex-1 justify-between gap-1.5 sm:gap-2">
+        <div>
+          <h3
+            onClick={() => store.setProduct(product)}
+            className="font-['Manrope'] text-xs sm:text-sm font-medium tracking-tight line-clamp-2 min-h-[2.2rem] sm:min-h-[2.5rem] leading-snug cursor-pointer hover:text-[#9F160A] transition-colors"
+            title={product.name}
+          >
+            {product.name}
+          </h3>
+
+          <span className="text-[11px] text-muted-foreground line-clamp-1 mt-0.5">
+            {product.material} · {product.size}
+          </span>
+
+          {/* Price and Action Buttons */}
+          <div className="flex items-center justify-between gap-1 sm:gap-2 mt-2 pt-1.5 border-t border-[rgba(14,14,14,0.06)]">
+            <div className="flex items-baseline gap-0.5 sm:gap-1 shrink-0">
+              <span className="font-['Manrope'] text-[13px] sm:text-[15px] font-bold tabular-nums text-foreground whitespace-nowrap shrink-0">
+                {product.priceNote || `₹${product.price.toLocaleString('en-IN')}`}
+              </span>
+            </div>
+
+            <div className="flex items-center gap-1 sm:gap-1.5 shrink-0">
+              {/* Quick Add to Cart Button */}
+              <button
+                type="button"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  store.addToCart(product, 1);
+                }}
+                className="size-7 rounded-full bg-black/5 hover:bg-black/10 text-[#0E0E0E] flex items-center justify-center transition-all cursor-pointer active:scale-90 border border-[rgba(14,14,14,0.1)] shrink-0"
+                title="Add to Bag"
+                aria-label="Add to bag"
+              >
+                <ShoppingBag className="size-3 sm:size-3.5 text-[#9F160A]" strokeWidth={1.5} />
+              </button>
+
+              {/* View / Details Button */}
+              <button
+                type="button"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  store.setProduct(product);
+                }}
+                className="h-7 px-2.5 sm:px-3 rounded-[6px] bg-[#9F160A] hover:bg-[#7D1107] text-white text-[10px] sm:text-[11px] font-bold uppercase tracking-wider transition-all cursor-pointer shadow-xs active:scale-95 shrink-0 inline-flex items-center justify-center whitespace-nowrap"
+                title="View Details"
+              >
+                <span>VIEW</span>
+              </button>
+            </div>
+          </div>
+        </div>
       </div>
     </article>
   );
@@ -1100,19 +1205,22 @@ export function ProductCollection({ filter = 'All' }: { filter?: string }) {
 
   return (
     <>
-      <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-8 pb-4 border-b border-border/70">
-        <div className="filter-tabs mb-0" aria-label="Product categories">
+      <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-8 pb-4 border-b border-[rgba(14,14,14,0.08)]">
+        <div className="flex items-center gap-2 flex-wrap" aria-label="Product categories">
           {(['All', 'Bags', 'Floor mats'] as const).map(t => (
-            <Button
+            <button
               key={t}
-              variant="tab"
-              data-active={tab === t}
-              aria-pressed={tab === t}
+              type="button"
               onClick={() => setTab(t)}
-              className="text-xs font-medium pb-2 border-b-2"
+              className={cn(
+                "px-4 py-1.5 rounded-full text-xs font-semibold uppercase tracking-wider transition-all cursor-pointer",
+                tab === t
+                  ? "bg-[#D15608] text-white shadow-xs"
+                  : "bg-white border border-[rgba(14,14,14,0.1)] text-[#0E0E0E]/80 hover:bg-[#FAF7F2]"
+              )}
             >
               {t === 'All' ? 'All Essentials' : t} ({counts[t]})
-            </Button>
+            </button>
           ))}
         </div>
 
@@ -1124,7 +1232,7 @@ export function ProductCollection({ filter = 'All' }: { filter?: string }) {
               placeholder="Filter by name or fiber..."
               value={searchFilter}
               onChange={e => setSearchFilter(e.target.value)}
-              className="pl-8 pr-3 py-1.5 rounded-lg border border-border text-xs bg-background focus:outline-none focus:border-primary w-48 sm:w-60"
+              className="pl-8 pr-3 py-1.5 rounded-full border border-[rgba(14,14,14,0.12)] text-xs bg-white text-foreground focus:outline-none focus:ring-1 focus:ring-[#D15608] w-48 sm:w-60 shadow-xs"
             />
             {searchFilter && (
               <button
@@ -1140,7 +1248,7 @@ export function ProductCollection({ filter = 'All' }: { filter?: string }) {
           <select
             value={sortBy}
             onChange={e => setSortBy(e.target.value as any)}
-            className="py-1.5 px-3 rounded-lg border border-border text-xs bg-background text-foreground focus:outline-none"
+            className="py-1.5 px-3 rounded-full border border-[rgba(14,14,14,0.12)] text-xs bg-white text-foreground focus:outline-none focus:ring-1 focus:ring-[#D15608] shadow-xs cursor-pointer"
           >
             <option value="featured">Sort: Featured</option>
             <option value="price-asc">Price: Low to High</option>
@@ -1150,14 +1258,19 @@ export function ProductCollection({ filter = 'All' }: { filter?: string }) {
       </div>
 
       {filtered.length === 0 ? (
-        <div className="empty-state py-12">
-          <p>No products match your current filter.</p>
-          <Button variant="outline" size="sm" className="mt-3" onClick={() => { setTab('All'); setSearchFilter(''); }}>
+        <div className="empty-state py-12 text-center">
+          <p className="text-muted-foreground text-sm">No products match your current filter.</p>
+          <Button
+            variant="outline"
+            size="sm"
+            className="mt-3 rounded-full"
+            onClick={() => { setTab('All'); setSearchFilter(''); }}
+          >
             Reset Filters
           </Button>
         </div>
       ) : (
-        <div className="product-grid">
+        <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6">
           {filtered.map(p => (
             <ProductCard key={p.id} product={p} />
           ))}
@@ -1168,23 +1281,48 @@ export function ProductCollection({ filter = 'All' }: { filter?: string }) {
 }
 
 export function EverydayBand() {
+  const pillars = [
+    {
+      title: 'Direct Mill Value',
+      subtext: 'Direct factory rates from Bhavani looms with zero middlemen',
+      icon: <Factory className="size-5 text-[#D15608]" />,
+    },
+    {
+      title: '100% Eco-Friendly',
+      subtext: 'Pure natural cotton, biodegradable jute & durable handloom yarns',
+      icon: <Leaf className="size-5 text-[#D15608]" />,
+    },
+    {
+      title: 'Pan-India Dispatch',
+      subtext: 'Safe courier delivery for retail & bulk orders nationwide',
+      icon: <Truck className="size-5 text-[#D15608]" />,
+    },
+  ];
+
   return (
-    <div className="intro-band page-width">
-      <p>Master Handlooms. Eco-Friendly Precision. Bhavani Craft.</p>
-      <div className="intro-facts">
-        <span>
-          <Leaf size={16} />
-          100% Biodegradable Fibers
-        </span>
-        <span>
-          <Award size={16} />
-          Direct Factory Value
-        </span>
-        <span>
-          <Factory size={16} />
-          Bulk &amp; Custom Sizing
-        </span>
+    <section className="w-full bg-[#FAF7F2] border-y border-[rgba(14,14,14,0.08)] py-6 sm:py-8 select-none">
+      <div className="page-width">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
+          {pillars.map((p, idx) => (
+            <div
+              key={idx}
+              className="flex items-center justify-start md:justify-center gap-4 text-left"
+            >
+              <div className="shrink-0 size-11 rounded-full bg-[#D15608]/10 flex items-center justify-center">
+                {p.icon}
+              </div>
+              <div>
+                <h4 className="font-['Manrope'] font-bold text-sm sm:text-base text-[#0E0E0E] leading-tight">
+                  {p.title}
+                </h4>
+                <p className="font-['Poppins'] text-xs text-[#6B6760] mt-0.5 leading-relaxed">
+                  {p.subtext}
+                </p>
+              </div>
+            </div>
+          ))}
+        </div>
       </div>
-    </div>
+    </section>
   );
 }

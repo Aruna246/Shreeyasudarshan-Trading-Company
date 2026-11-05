@@ -116,16 +116,20 @@ function Index() {
             Discover handloom floor mats and eco-friendly bags crafted with precision.
           </p>
           <div className="hero-actions">
-            <Button variant="editorial" className="h-12 px-7 text-xs font-semibold shadow-md" asChild>
-              <Link to="/shop">
-                Explore the collection <ArrowRight size={15} />
-              </Link>
-            </Button>
-            <Button variant="outline" className="h-12 px-6 text-xs font-semibold rounded-none border-foreground hover:bg-foreground hover:text-background transition-all" asChild>
-              <Link to="/our-story">
-                The story behind us <MoveUpRight size={14} />
-              </Link>
-            </Button>
+            <Link
+              to="/shop"
+              className="inline-flex items-center gap-2 h-12 px-8 rounded-full bg-[#D15608] hover:bg-[#9F160A] text-white text-xs font-bold uppercase tracking-[0.14em] shadow-md transition-all active:scale-95"
+            >
+              <span>Explore the collection</span>
+              <ArrowRight size={15} />
+            </Link>
+            <Link
+              to="/our-story"
+              className="inline-flex items-center gap-2 h-12 px-7 rounded-full bg-transparent border-2 border-[#0E0E0E] text-[#0E0E0E] hover:bg-[#0E0E0E] hover:text-white text-xs font-bold uppercase tracking-[0.14em] transition-all"
+            >
+              <span>The story behind us</span>
+              <MoveUpRight size={14} />
+            </Link>
           </div>
         </div>
         <div className="hero-pagination">01 <span /> THE EVERYDAY EDIT</div>
@@ -182,11 +186,14 @@ function Index() {
               <h2>The Floor Mat Lookbook</h2>
               <p>Explore the tangible texture, hand-dyed yarns, and distinctive weaves of our workshop.</p>
             </div>
-            <Button variant="editorial" asChild>
-              <Link to="/shop" search={{ category: 'Floor mats' }}>
-                View in Catalog <ArrowRight size={14} />
-              </Link>
-            </Button>
+            <Link
+              to="/shop"
+              search={{ category: 'Floor mats' }}
+              className="inline-flex items-center gap-1.5 h-10 px-5 rounded-full bg-[#D15608] hover:bg-[#9F160A] text-white text-xs font-bold uppercase tracking-wider transition-all shadow-xs"
+            >
+              <span>View in Catalog</span>
+              <ArrowRight size={14} />
+            </Link>
           </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center mt-6">
@@ -199,10 +206,10 @@ function Index() {
                     key={mat.id}
                     type="button"
                     onClick={() => setActiveSpotlight(idx)}
-                    className={`text-left p-4 rounded-xl border transition-all flex items-center justify-between cursor-pointer ${
+                    className={`text-left p-4 rounded-2xl border transition-all flex items-center justify-between cursor-pointer ${
                       isActive
-                        ? 'bg-background border-primary/60 shadow-md ring-1 ring-primary/20 scale-[1.01]'
-                        : 'bg-card/70 border-border/70 hover:bg-background/90 hover:border-border'
+                        ? 'bg-white border-[#D15608] shadow-md ring-1 ring-[#D15608]/30 scale-[1.01]'
+                        : 'bg-white/80 border-[rgba(14,14,14,0.08)] hover:bg-white hover:border-[#D15608]/40'
                     }`}
                   >
                     <div className="flex items-center gap-3.5">
@@ -219,13 +226,13 @@ function Index() {
                       </div>
                     </div>
                     <div className="flex items-center gap-2">
-                      <span className="text-[9px] font-semibold tracking-wider uppercase bg-primary/10 text-primary px-2.5 py-0.5 rounded-full hidden sm:inline-block">
+                      <span className="text-[9px] font-semibold tracking-wider uppercase bg-[#D15608]/10 text-[#D15608] px-2.5 py-0.5 rounded-full hidden sm:inline-block">
                         {mat.accent}
                       </span>
                       <ChevronRight
                         size={16}
                         className={`transition-transform duration-300 ${
-                          isActive ? 'text-primary translate-x-1' : 'text-muted-foreground/50'
+                          isActive ? 'text-[#D15608] translate-x-1' : 'text-muted-foreground/50'
                         }`}
                       />
                     </div>
@@ -236,7 +243,7 @@ function Index() {
 
             {/* Stage Showcase Card */}
             <div className="lg:col-span-7">
-              <div className="relative rounded-2xl overflow-hidden border border-border shadow-lg bg-background group">
+              <div className="relative rounded-2xl overflow-hidden border border-[rgba(14,14,14,0.08)] shadow-[0_4px_20px_rgba(0,0,0,0.06)] bg-white group">
                 <div className="aspect-[4/3] sm:aspect-[16/10] overflow-hidden bg-radial from-background to-paper flex items-center justify-center p-3 sm:p-5">
                   <img
                     src={current.image}
@@ -245,26 +252,29 @@ function Index() {
                     className="w-full h-full object-cover rounded-xl shadow-inner transition-all duration-700 group-hover:scale-[1.02]"
                   />
                 </div>
-                <div className="p-6 sm:p-8 border-t border-border/70 bg-card/80 backdrop-blur-md flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                <div className="p-6 sm:p-8 border-t border-[rgba(14,14,14,0.08)] bg-white/95 backdrop-blur-md flex flex-col sm:flex-row sm:items-center justify-between gap-4">
                   <div>
                     <div className="flex items-center gap-2">
-                      <span className="text-[10px] font-semibold tracking-wider uppercase text-primary bg-primary/10 px-2.5 py-1 rounded">
+                      <span className="text-[10px] font-semibold tracking-wider uppercase text-[#D15608] bg-[#D15608]/10 px-2.5 py-1 rounded">
                         {current.accent}
                       </span>
                       <span className="text-xs text-muted-foreground">· {current.type}</span>
                     </div>
-                    <h3 className="font-serif text-2xl sm:text-3xl font-medium mt-2 text-foreground">
+                    <h3 className="font-['Manrope'] text-2xl sm:text-3xl font-bold uppercase mt-2 text-foreground">
                       {current.title}
                     </h3>
                     <p className="text-xs sm:text-sm text-muted-foreground mt-1.5 max-w-md leading-relaxed">
                       {current.desc}
                     </p>
                   </div>
-                  <Button variant="editorial" className="self-start sm:self-center shrink-0" asChild>
-                    <Link to="/shop" search={{ category: 'Floor mats' }}>
-                      Shop this style <ArrowRight size={14} />
-                    </Link>
-                  </Button>
+                  <Link
+                    to="/shop"
+                    search={{ category: 'Floor mats' }}
+                    className="self-start sm:self-center shrink-0 inline-flex items-center gap-2 h-10 px-6 rounded-full bg-[#D15608] hover:bg-[#9F160A] text-white text-xs font-bold uppercase tracking-wider transition-all shadow-xs active:scale-95"
+                  >
+                    <span>Shop this style</span>
+                    <ArrowRight size={14} />
+                  </Link>
                 </div>
               </div>
             </div>
@@ -337,16 +347,20 @@ function Index() {
             Some things just belong. The bag you reach for every morning. The mat that makes a doorway feel like home. We bring these everyday essentials together with a thoughtful eye for texture, form, and feeling.
           </p>
           <div className="flex flex-wrap gap-3">
-            <Button variant="outline" asChild>
-              <Link to="/our-story">
-                Get to know our story <ArrowRight size={14} />
-              </Link>
-            </Button>
-            <Button variant="editorial" asChild>
-              <Link to="/shop">
-                Explore Full Catalog <Sparkles size={14} />
-              </Link>
-            </Button>
+            <Link
+              to="/our-story"
+              className="inline-flex items-center gap-2 h-11 px-6 rounded-full bg-white border border-[rgba(14,14,14,0.15)] text-[#0E0E0E] hover:bg-[#FAF7F2] text-xs font-bold uppercase tracking-wider transition-all"
+            >
+              <span>Get to know our story</span>
+              <ArrowRight size={14} />
+            </Link>
+            <Link
+              to="/shop"
+              className="inline-flex items-center gap-2 h-11 px-6 rounded-full bg-[#D15608] hover:bg-[#9F160A] text-white text-xs font-bold uppercase tracking-wider transition-all shadow-sm active:scale-95"
+            >
+              <span>Explore Full Catalog</span>
+              <Sparkles size={14} />
+            </Link>
           </div>
         </div>
       </section>
@@ -356,11 +370,13 @@ function Index() {
         <Eyebrow>Make room for the everyday</Eyebrow>
         <h2 className="mt-4">A little more character. A little more you.</h2>
         <p>Find something for wherever life takes you.</p>
-        <Button variant="editorial" className="h-12 px-8 text-xs font-semibold" asChild>
-          <Link to="/shop">
-            Discover your favourites <ArrowRight size={14} />
-          </Link>
-        </Button>
+        <Link
+          to="/shop"
+          className="inline-flex items-center gap-2 h-12 px-8 rounded-full bg-[#D15608] hover:bg-[#9F160A] text-white text-xs font-bold uppercase tracking-[0.14em] shadow-md transition-all active:scale-95"
+        >
+          <span>Discover your favourites</span>
+          <ArrowRight size={14} />
+        </Link>
       </section>
     </>
   );

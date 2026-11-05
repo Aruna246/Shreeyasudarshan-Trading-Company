@@ -64,11 +64,13 @@ function Story() {
             From raw eco-conscious fabrics to intricately finished bags and handloom mats, we take pride in delivering dependable, sustainable, and tailored products across India.
           </p>
           <div className="flex flex-wrap gap-3 pt-2">
-            <Button variant="editorial" asChild>
-              <Link to="/shop">
-                Explore the collection <ArrowRight size={14} />
-              </Link>
-            </Button>
+            <Link
+              to="/shop"
+              className="inline-flex items-center gap-2 px-6 h-11 rounded-full bg-[#D15608] hover:bg-[#9F160A] text-white text-xs font-semibold uppercase tracking-[0.14em] transition-all shadow-sm active:scale-98"
+            >
+              <span>Explore the collection</span>
+              <ArrowRight size={14} />
+            </Link>
           </div>
         </div>
       </section>
@@ -87,29 +89,29 @@ function Story() {
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-8">
           {/* Floor Mats Card */}
-          <div className="p-8 rounded-2xl border border-border bg-card shadow-sm hover:border-primary/40 transition-colors">
-            <div className="w-12 h-12 rounded-xl bg-primary/10 text-primary flex items-center justify-center mb-5">
+          <div className="p-8 rounded-2xl border border-[rgba(14,14,14,0.08)] bg-white shadow-[0_4px_20px_rgba(0,0,0,0.05)] hover:border-[#D15608]/40 transition-colors">
+            <div className="w-12 h-12 rounded-full bg-[#D15608]/10 text-[#D15608] flex items-center justify-center mb-5">
               <Building2 size={22} />
             </div>
-            <h3 className="font-serif text-2xl font-semibold mb-3">Handloom Floor Mats &amp; Rugs</h3>
+            <h3 className="font-['Manrope'] text-xl font-bold uppercase tracking-tight mb-3">Handloom Floor Mats &amp; Rugs</h3>
             <p className="text-sm text-muted-foreground leading-relaxed mb-4">
               We manufacture all types of <strong>Handloom Floor Mats</strong> and <strong>Cotton Rugs</strong> with customized designs, patterns, and dimensions.
             </p>
-            <div className="flex items-center gap-2 text-xs text-primary font-semibold">
+            <div className="flex items-center gap-2 text-xs text-[#D15608] font-semibold">
               <CheckCircle2 size={15} /> Supplying to leading brand companies all over India.
             </div>
           </div>
 
           {/* Bags & Fabric Card */}
-          <div className="p-8 rounded-2xl border border-border bg-card shadow-sm hover:border-primary/40 transition-colors">
-            <div className="w-12 h-12 rounded-xl bg-primary/10 text-primary flex items-center justify-center mb-5">
+          <div className="p-8 rounded-2xl border border-[rgba(14,14,14,0.08)] bg-white shadow-[0_4px_20px_rgba(0,0,0,0.05)] hover:border-[#D15608]/40 transition-colors">
+            <div className="w-12 h-12 rounded-full bg-[#D15608]/10 text-[#D15608] flex items-center justify-center mb-5">
               <Sparkles size={22} />
             </div>
-            <h3 className="font-serif text-2xl font-semibold mb-3">Cotton, Jute &amp; Non-Woven Bags</h3>
+            <h3 className="font-['Manrope'] text-xl font-bold uppercase tracking-tight mb-3">Cotton, Jute &amp; Non-Woven Bags</h3>
             <p className="text-sm text-muted-foreground leading-relaxed mb-4">
               A premier manufacturing company supplying all types of <strong>Cotton Bags</strong>, <strong>Non-Woven Bags</strong>, and <strong>Jute Bags</strong> specially engineered for jewellery companies and upscale retail brands.
             </p>
-            <div className="flex items-center gap-2 text-xs text-primary font-semibold">
+            <div className="flex items-center gap-2 text-xs text-[#D15608] font-semibold">
               <CheckCircle2 size={15} /> Specialists in Gada Cloth (20&apos;s) &amp; tailored cloth fabrics.
             </div>
           </div>
@@ -117,11 +119,11 @@ function Story() {
       </section>
 
       {/* Prestigious Clients Section */}
-      <section className="section bg-secondary/50 border-y border-border">
+      <section className="section bg-[#FAF7F2] border-y border-[rgba(14,14,14,0.08)]">
         <div className="page-width">
           <div className="text-center max-w-xl mx-auto mb-10">
             <Eyebrow className="justify-center">Trusted Partnerships</Eyebrow>
-            <h2 className="font-serif text-3xl md:text-4xl font-medium mt-2">Our Esteemed Clients</h2>
+            <h2 className="font-['Manrope'] text-2xl md:text-3xl font-bold uppercase tracking-tight mt-2">Our Esteemed Clients</h2>
             <p className="text-sm text-muted-foreground mt-3">
               Trusted by leading jewellery houses across South India and nationwide for packaging excellence and reliability.
             </p>
@@ -131,18 +133,18 @@ function Story() {
             {clients.map((client, idx) => (
               <div
                 key={idx}
-                className="bg-card border border-border p-6 rounded-xl shadow-xs flex flex-col justify-between hover:shadow-md hover:border-primary/40 transition-all"
+                className="bg-white border border-[rgba(14,14,14,0.08)] p-6 rounded-2xl shadow-[0_4px_16px_rgba(0,0,0,0.04)] flex flex-col justify-between hover:shadow-[0_8px_24px_rgba(0,0,0,0.08)] hover:border-[#D15608]/40 transition-all"
               >
                 <div>
-                  <span className="text-[10px] font-semibold uppercase tracking-wider text-primary bg-primary/10 px-2.5 py-1 rounded">
+                  <span className="text-[10px] font-semibold uppercase tracking-wider text-[#D15608] bg-[#D15608]/10 px-2.5 py-1 rounded-full">
                     {client.tag}
                   </span>
-                  <h4 className="font-serif text-lg font-semibold text-foreground mt-4 leading-snug">
+                  <h4 className="font-['Manrope'] text-base font-bold text-foreground mt-4 leading-snug">
                     {client.name}
                   </h4>
                 </div>
-                <div className="flex items-center gap-1.5 text-[11px] text-muted-foreground mt-4 pt-3 border-t border-border/60">
-                  <ShieldCheck size={14} className="text-primary" /> Verified Partner
+                <div className="flex items-center gap-1.5 text-[11px] text-muted-foreground mt-4 pt-3 border-t border-[rgba(14,14,14,0.06)]">
+                  <ShieldCheck size={14} className="text-[#D15608]" /> Verified Partner
                 </div>
               </div>
             ))}

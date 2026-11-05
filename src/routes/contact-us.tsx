@@ -58,32 +58,32 @@ function ContactUs() {
       {/* Main Dual Cards Section */}
       <section className="section page-width !pt-10">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
-          {/* Left Dark Forest Green Contact Card */}
-          <div className="lg:col-span-5 bg-gradient-to-br from-[#123826] to-[#0c261a] text-white p-8 sm:p-10 rounded-2xl shadow-xl flex flex-col justify-between border border-[#c59b48]/30">
+          {/* Left Obsidian Black Contact Card (Padma-Fabrics Style) */}
+          <div className="lg:col-span-5 bg-[#0E0E0E] text-[#F4F0E8] p-8 sm:p-10 rounded-2xl shadow-xl flex flex-col justify-between border-t-2 border-[#EDBC3D] border-x border-b border-[rgba(244,240,232,0.1)]">
             <div>
-              <span className="text-[10px] font-semibold tracking-widest uppercase text-amber-200 bg-white/10 px-3 py-1 rounded-full inline-block mb-4">
+              <span className="text-[10px] font-semibold tracking-widest uppercase text-white bg-[#9F160A] px-3 py-1 rounded-full inline-block mb-4">
                 Headquarters
               </span>
-              <h2 className="font-serif text-3xl sm:text-4xl font-medium tracking-tight text-white mb-3">
+              <h2 className="font-['Manrope'] text-3xl sm:text-4xl font-bold tracking-tight text-[#F4F0E8] mb-3 uppercase">
                 Contact us
               </h2>
-              <p className="text-[#d0e5d8] text-sm leading-relaxed mb-8">
+              <p className="text-[#F4F0E8]/70 text-sm leading-relaxed mb-8">
                 Call, message or visit us. We reply to every enquiry within one working day.
               </p>
 
               <div className="space-y-6">
                 {/* Phone */}
                 <div className="flex items-start gap-4">
-                  <div className="w-11 h-11 rounded-full bg-white/10 flex items-center justify-center shrink-0 text-amber-200 border border-white/10">
+                  <div className="w-11 h-11 rounded-full bg-white/5 flex items-center justify-center shrink-0 text-[#EDBC3D] border border-white/10">
                     <Phone size={18} />
                   </div>
                   <div>
-                    <span className="text-[11px] uppercase tracking-wider text-[#a0cbb0] block font-medium">
+                    <span className="text-[11px] uppercase tracking-wider text-[#EDBC3D] block font-medium">
                       Phone
                     </span>
                     <a
                       href="tel:+919842270384"
-                      className="text-base sm:text-lg font-medium text-white hover:text-amber-200 transition-colors mt-0.5 block"
+                      className="text-base sm:text-lg font-medium text-white hover:text-[#EDBC3D] transition-colors mt-0.5 block"
                     >
                       +91 98422 70384
                     </a>
@@ -92,16 +92,16 @@ function ContactUs() {
 
                 {/* Email */}
                 <div className="flex items-start gap-4">
-                  <div className="w-11 h-11 rounded-full bg-white/10 flex items-center justify-center shrink-0 text-amber-200 border border-white/10">
+                  <div className="w-11 h-11 rounded-full bg-white/5 flex items-center justify-center shrink-0 text-[#EDBC3D] border border-white/10">
                     <Mail size={18} />
                   </div>
                   <div className="break-all">
-                    <span className="text-[11px] uppercase tracking-wider text-[#a0cbb0] block font-medium">
+                    <span className="text-[11px] uppercase tracking-wider text-[#EDBC3D] block font-medium">
                       Email
                     </span>
                     <a
                       href="mailto:shreeyasudarshantradingcompany@gmail.com"
-                      className="text-sm sm:text-base font-medium text-white hover:text-amber-200 transition-colors mt-0.5 block"
+                      className="text-sm sm:text-base font-medium text-white hover:text-[#EDBC3D] transition-colors mt-0.5 block"
                     >
                       shreeyasudarshantradingcompany@gmail.com
                     </a>
@@ -110,31 +110,42 @@ function ContactUs() {
 
                 {/* Address */}
                 <div className="flex items-start gap-4">
-                  <div className="w-11 h-11 rounded-full bg-white/10 flex items-center justify-center shrink-0 text-amber-200 border border-white/10">
+                  <div className="w-11 h-11 rounded-full bg-white/5 flex items-center justify-center shrink-0 text-[#EDBC3D] border border-white/10">
                     <MapPin size={18} />
                   </div>
                   <div>
-                    <span className="text-[11px] uppercase tracking-wider text-[#a0cbb0] block font-medium">
+                    <span className="text-[11px] uppercase tracking-wider text-[#EDBC3D] block font-medium">
                       Address
                     </span>
-                    <p className="text-sm text-[#e2f0e8] leading-relaxed mt-0.5">
+                    <p className="text-sm text-[#F4F0E8]/80 leading-relaxed mt-0.5">
                       # 56C, Anna Nagar 1st Street,<br />
                       Near Indian Overseas Bank,<br />
                       Bhavani, Erode - 638301, Tamil Nadu.
                     </p>
+                    <div className="mt-2">
+                      <a
+                        href="https://maps.google.com/maps?q=Anna+Nagar+1st+Street,+Bhavani,+Erode+638301"
+                        target="_blank"
+                        rel="noreferrer"
+                        className="inline-flex items-center gap-1.5 text-xs text-[#D15608] hover:text-[#EDBC3D] hover:underline uppercase tracking-wider font-semibold transition-colors"
+                      >
+                        <MapPin size={13} />
+                        <span>View on Google Maps</span>
+                      </a>
+                    </div>
                   </div>
                 </div>
 
                 {/* Working hours */}
                 <div className="flex items-start gap-4">
-                  <div className="w-11 h-11 rounded-full bg-white/10 flex items-center justify-center shrink-0 text-amber-200 border border-white/10">
+                  <div className="w-11 h-11 rounded-full bg-white/5 flex items-center justify-center shrink-0 text-[#EDBC3D] border border-white/10">
                     <Clock size={18} />
                   </div>
                   <div>
-                    <span className="text-[11px] uppercase tracking-wider text-[#a0cbb0] block font-medium">
+                    <span className="text-[11px] uppercase tracking-wider text-[#EDBC3D] block font-medium">
                       Working hours
                     </span>
-                    <p className="text-sm text-[#e2f0e8] mt-0.5">
+                    <p className="text-sm text-[#F4F0E8]/80 mt-0.5">
                       Monday to Saturday, 9:00 am to 9:00 pm
                     </p>
                   </div>
@@ -142,19 +153,19 @@ function ContactUs() {
               </div>
             </div>
 
-            <div className="mt-10 pt-6 border-t border-white/15 flex items-center justify-between text-xs text-[#a0cbb0]">
+            <div className="mt-10 pt-6 border-t border-white/10 flex items-center justify-between text-xs text-[#F4F0E8]/60">
               <span className="flex items-center gap-1.5">
-                <Factory size={15} /> Mill Facility
+                <Factory size={15} className="text-[#EDBC3D]" /> Mill Facility
               </span>
               <span className="flex items-center gap-1.5">
-                <ShieldCheck size={15} /> Verified Manufacturer
+                <ShieldCheck size={15} className="text-[#EDBC3D]" /> Verified Manufacturer
               </span>
             </div>
           </div>
 
           {/* Right Enquiry Form Card */}
-          <div className="lg:col-span-7 bg-card border border-border rounded-2xl p-8 sm:p-10 shadow-sm">
-            <h2 className="font-serif text-3xl font-medium tracking-tight text-foreground mb-2">
+          <div className="lg:col-span-7 bg-white border border-[rgba(14,14,14,0.08)] rounded-2xl p-8 sm:p-10 shadow-[0_4px_20px_rgba(0,0,0,0.06)]">
+            <h2 className="font-['Manrope'] text-3xl font-bold tracking-tight text-foreground mb-2 uppercase">
               Send us an enquiry
             </h2>
             <p className="text-xs sm:text-sm text-muted-foreground mb-6">
@@ -162,18 +173,18 @@ function ContactUs() {
             </p>
 
             {submitted ? (
-              <div className="py-12 px-6 text-center bg-primary/5 border border-primary/20 rounded-xl">
+              <div className="py-12 px-6 text-center bg-[#FAF7F2] border border-[rgba(14,14,14,0.08)] rounded-xl">
                 <div className="w-14 h-14 rounded-full bg-emerald-100 text-emerald-700 flex items-center justify-center mx-auto mb-4">
                   <CheckCircle2 size={32} />
                 </div>
-                <h3 className="font-serif text-2xl font-medium text-foreground">Enquiry Received!</h3>
+                <h3 className="font-['Manrope'] text-2xl font-bold text-foreground">Enquiry Received!</h3>
                 <p className="text-sm text-muted-foreground mt-2 max-w-md mx-auto">
                   Thank you for reaching out, <strong>{formState.name}</strong>. Our team will review your requirements for{' '}
                   <strong>{formState.product}</strong> and contact you via {formState.phone} within one working day.
                 </p>
                 <Button
-                  variant="understated"
-                  className="mt-6"
+                  variant="outline"
+                  className="mt-6 rounded-full"
                   onClick={() => {
                     setSubmitted(false);
                     setFormState({
@@ -202,7 +213,7 @@ function ContactUs() {
                       placeholder="Full name"
                       value={formState.name}
                       onChange={e => setFormState(s => ({ ...s, name: e.target.value }))}
-                      className="w-full rounded-lg border border-border bg-background px-3.5 py-2.5 text-sm text-foreground focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary"
+                      className="w-full rounded-lg border border-[rgba(14,14,14,0.12)] bg-background px-3.5 py-2.5 text-sm text-foreground focus:outline-none focus:ring-2 focus:ring-[#D15608]/20 focus:border-[#D15608]"
                     />
                   </div>
                   <div>
@@ -215,7 +226,7 @@ function ContactUs() {
                       placeholder="+91 98765 43210"
                       value={formState.phone}
                       onChange={e => setFormState(s => ({ ...s, phone: e.target.value }))}
-                      className="w-full rounded-lg border border-border bg-background px-3.5 py-2.5 text-sm text-foreground focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary"
+                      className="w-full rounded-lg border border-[rgba(14,14,14,0.12)] bg-background px-3.5 py-2.5 text-sm text-foreground focus:outline-none focus:ring-2 focus:ring-[#D15608]/20 focus:border-[#D15608]"
                     />
                   </div>
                 </div>
@@ -229,7 +240,7 @@ function ContactUs() {
                     placeholder="you@example.com"
                     value={formState.email}
                     onChange={e => setFormState(s => ({ ...s, email: e.target.value }))}
-                    className="w-full rounded-lg border border-border bg-background px-3.5 py-2.5 text-sm text-foreground focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary"
+                    className="w-full rounded-lg border border-[rgba(14,14,14,0.12)] bg-background px-3.5 py-2.5 text-sm text-foreground focus:outline-none focus:ring-2 focus:ring-[#D15608]/20 focus:border-[#D15608]"
                   />
                 </div>
 
@@ -241,7 +252,7 @@ function ContactUs() {
                     <select
                       value={formState.product}
                       onChange={e => setFormState(s => ({ ...s, product: e.target.value }))}
-                      className="w-full rounded-lg border border-border bg-background px-3 py-2.5 text-sm text-foreground focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary cursor-pointer"
+                      className="w-full rounded-lg border border-[rgba(14,14,14,0.12)] bg-background px-3 py-2.5 text-sm text-foreground focus:outline-none focus:ring-2 focus:ring-[#D15608]/20 focus:border-[#D15608] cursor-pointer"
                     >
                       <option value="Jute Fashion Bags">Jute Fashion Bags</option>
                       <option value="Cotton Bags">Cotton Bags</option>
@@ -262,7 +273,7 @@ function ContactUs() {
                       placeholder="e.g. 500"
                       value={formState.quantity}
                       onChange={e => setFormState(s => ({ ...s, quantity: e.target.value }))}
-                      className="w-full rounded-lg border border-border bg-background px-3.5 py-2.5 text-sm text-foreground focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary"
+                      className="w-full rounded-lg border border-[rgba(14,14,14,0.12)] bg-background px-3.5 py-2.5 text-sm text-foreground focus:outline-none focus:ring-2 focus:ring-[#D15608]/20 focus:border-[#D15608]"
                     />
                   </div>
                 </div>
@@ -276,17 +287,17 @@ function ContactUs() {
                     placeholder="Tell us about colours, sizes or logo printing"
                     value={formState.message}
                     onChange={e => setFormState(s => ({ ...s, message: e.target.value }))}
-                    className="w-full rounded-lg border border-border bg-background px-3.5 py-2.5 text-sm text-foreground focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary resize-y"
+                    className="w-full rounded-lg border border-[rgba(14,14,14,0.12)] bg-background px-3.5 py-2.5 text-sm text-foreground focus:outline-none focus:ring-2 focus:ring-[#D15608]/20 focus:border-[#D15608] resize-y"
                   />
                 </div>
 
-                <Button
+                <button
                   type="submit"
-                  variant="editorial"
-                  className="w-full h-12 text-xs font-semibold tracking-wider flex items-center justify-center gap-2"
+                  className="w-full h-12 rounded-full bg-[#D15608] hover:bg-[#9F160A] text-white text-xs font-bold uppercase tracking-[0.14em] transition-all flex items-center justify-center gap-2 cursor-pointer shadow-md active:scale-98"
                 >
-                  Send enquiry <Send size={15} />
-                </Button>
+                  <span>Send Enquiry</span>
+                  <Send size={15} />
+                </button>
               </form>
             )}
           </div>
