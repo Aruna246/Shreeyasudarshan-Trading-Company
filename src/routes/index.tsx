@@ -186,10 +186,6 @@ function Index() {
                 fetchPriority={idx === 0 ? 'high' : 'auto'}
               />
               <div className="hero-content page-width">
-                <div className="inline-flex items-center gap-2 bg-white/90 backdrop-blur-md px-3.5 py-1.5 rounded-full border border-[#EDBC3D]/50 shadow-xs text-xs text-[#164E33] font-semibold tracking-wide mb-3">
-                  <Sparkles size={13} className="text-[#EDBC3D]" />
-                  <span>100% Eco-Friendly Handloom &amp; Textile Manufacturer · Bhavani</span>
-                </div>
                 <Eyebrow>{slide.eyebrow}</Eyebrow>
                 <h1>{slide.title}</h1>
                 <p className="hero-copy">{slide.copy}</p>
