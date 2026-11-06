@@ -86,15 +86,15 @@ export function Brand() {
       <img
         src={logo.url}
         alt="ShreeyaSudarshan Trading Company"
-        className="w-10 h-10 sm:w-12 sm:h-12 rounded-full object-cover ring-2 ring-[#D15608]/50 shadow-xs transition-transform duration-300 group-hover:scale-105 shrink-0 bg-[#FAF7F2]"
+        className="w-10 h-10 sm:w-12 sm:h-12 rounded-full object-cover ring-2 ring-[#164E33]/40 shadow-xs transition-transform duration-300 group-hover:scale-105 shrink-0 bg-[#FAF7F2]"
         width={48}
         height={48}
       />
       <div className="flex flex-col min-w-0">
-        <span className="font-['Manrope'] text-sm sm:text-xl font-bold tracking-[0.16em] sm:tracking-[0.2em] text-[#0E0E0E] group-hover:text-[#D15608] transition-colors leading-none truncate uppercase">
+        <span className="font-['Manrope'] text-sm sm:text-xl font-bold tracking-[0.16em] sm:tracking-[0.2em] text-[#0E0E0E] group-hover:text-[#164E33] transition-colors leading-none truncate uppercase">
           ShreeyaSudarshan
         </span>
-        <span className="text-[9px] sm:text-[10px] font-semibold uppercase tracking-[0.24em] text-[#D15608] block mt-1">
+        <span className="text-[9px] sm:text-[10px] font-semibold uppercase tracking-[0.24em] text-[#164E33] block mt-1">
           Trading Company · Bhavani
         </span>
       </div>
@@ -338,8 +338,8 @@ export function Storefront({ children }: { children: ReactNode }) {
         <img src={logo.url} alt="" width={1064} height={1042} />
       </div>
 
-      {/* 1. THIN DEEP RED ANNOUNCEMENT BAR (Signature Padma-Fabrics layout) */}
-      <div className="bg-[#9F160A] text-white border-b border-black/10 text-[11px] font-medium uppercase tracking-[0.2em] py-2 px-4 select-none relative z-50">
+      {/* 1. THIN DEEP FOREST GREEN ANNOUNCEMENT BAR */}
+      <div className="bg-[#123826] text-white border-b border-black/10 text-[11px] font-medium uppercase tracking-[0.2em] py-2 px-4 select-none relative z-50">
         <div className="max-w-7xl mx-auto flex items-center justify-between text-center">
           <span className="hidden md:inline text-white/80">
             Bhavani Weaving Hub · Erode
@@ -370,25 +370,25 @@ export function Storefront({ children }: { children: ReactNode }) {
               title="Search collection"
               aria-label="Search collection"
               onClick={() => setSearchOpen(true)}
-              className="hover:text-[#D15608] hover:bg-black/5"
+              className="hover:text-[#164E33] hover:bg-black/5"
             >
               <Search size={18} />
             </Button>
             <Button
               variant="ghost"
               size="icon"
-              className="header-wishlist relative hover:text-[#9F160A] hover:bg-black/5"
+              className="header-wishlist relative hover:text-[#164E33] hover:bg-black/5"
               title="Saved favourites"
               aria-label="Saved favourites"
               onClick={() => setSavedOpen(true)}
             >
               <Heart
                 size={18}
-                fill={saved.length > 0 ? '#9F160A' : 'none'}
-                color={saved.length > 0 ? '#9F160A' : 'currentColor'}
+                fill={saved.length > 0 ? '#164E33' : 'none'}
+                color={saved.length > 0 ? '#164E33' : 'currentColor'}
               />
               {saved.length > 0 && (
-                <span className="bag-counter absolute -top-1 -right-1 text-[9px] min-w-4 h-4 bg-[#9F160A] text-white">
+                <span className="bag-counter absolute -top-1 -right-1 text-[9px] min-w-4 h-4 bg-[#123826] text-white">
                   {saved.length}
                 </span>
               )}
@@ -400,8 +400,8 @@ export function Storefront({ children }: { children: ReactNode }) {
               aria-label="Open shopping bag"
               onClick={() => setCartOpen(true)}
             >
-              <ShoppingBag size={18} className="text-[#D15608]" />
-              <span className="bag-counter bg-[#D15608]">{totalCartCount}</span>
+              <ShoppingBag size={18} className="text-[#164E33]" />
+              <span className="bag-counter bg-[#164E33]">{totalCartCount}</span>
             </Button>
             <Button
               variant="ghost"
@@ -460,7 +460,7 @@ export function Storefront({ children }: { children: ReactNode }) {
                 <img
                   src={logo.url}
                   alt="ShreeyaSudarshan Trading Company"
-                  className="w-12 h-12 rounded-full object-cover ring-2 ring-[#D15608]/50 shadow-sm shrink-0 bg-[#FAF7F2] p-0.5"
+                  className="w-12 h-12 rounded-full object-cover ring-2 ring-[#164E33]/40 shadow-sm shrink-0 bg-[#FAF7F2] p-0.5"
                   width={48}
                   height={48}
                 />
@@ -495,7 +495,7 @@ export function Storefront({ children }: { children: ReactNode }) {
                     href="https://maps.google.com/maps?q=Anna+Nagar+1st+Street,+Bhavani,+Erode+638301"
                     target="_blank"
                     rel="noreferrer"
-                    className="inline-flex items-center gap-1.5 text-xs text-[#D15608] hover:text-[#EDBC3D] hover:underline uppercase tracking-wider font-medium transition-colors"
+                    className="inline-flex items-center gap-1.5 text-xs text-[#164E33] hover:text-[#EDBC3D] hover:underline uppercase tracking-wider font-semibold transition-colors"
                   >
                     <MapPin className="size-3" strokeWidth={1.5} />
                     <span>View on Google Maps</span>
@@ -1089,7 +1089,7 @@ export function ProductCard({ product }: { product: Product }) {
             <span
               className={`inline-block px-2.5 py-0.5 rounded-full text-[10px] font-bold uppercase tracking-[0.14em] shadow-xs ${
                 badgeLower.includes('hand') || badgeLower.includes('artisan') || badgeLower.includes('eco')
-                  ? 'bg-[#9F160A] text-white'
+                  ? 'bg-[#123826] text-white'
                   : 'bg-[#EDBC3D] text-[#0E0E0E]'
               }`}
             >
@@ -1108,7 +1108,7 @@ export function ProductCard({ product }: { product: Product }) {
           aria-label={saved ? "Remove from favourites" : "Add to favourites"}
           className={`absolute top-3 right-3 z-10 size-8 rounded-full flex items-center justify-center transition-all ${
             saved
-              ? "bg-[#9F160A] text-white shadow-sm"
+              ? "bg-[#123826] text-white shadow-sm"
               : "bg-black/25 hover:bg-black/60 text-white backdrop-blur-xs"
           }`}
         >
@@ -1123,7 +1123,7 @@ export function ProductCard({ product }: { product: Product }) {
               e.stopPropagation();
               store.addToCart(product, 1);
             }}
-            className="w-full py-2.5 rounded-full bg-[#D15608] hover:bg-[#9F160A] text-white text-[11px] font-bold uppercase tracking-[0.14em] transition-all flex items-center justify-center gap-2 cursor-pointer shadow-md active:scale-98 border border-[#EDBC3D]/50"
+            className="w-full py-2.5 rounded-full bg-[#164E33] hover:bg-[#103A26] text-white text-[11px] font-bold uppercase tracking-[0.14em] transition-all flex items-center justify-center gap-2 cursor-pointer shadow-md active:scale-98 border border-[#EDBC3D]/50"
           >
             <ShoppingBag className="size-3.5 text-[#FAF6EE]" strokeWidth={1.5} />
             <span>Quick Add to Bag</span>
@@ -1144,7 +1144,7 @@ export function ProductCard({ product }: { product: Product }) {
 
           <h3
             onClick={() => store.setProduct(product)}
-            className="font-['Manrope'] text-xs sm:text-sm font-semibold tracking-tight line-clamp-2 min-h-[2.2rem] sm:min-h-[2.5rem] leading-snug cursor-pointer hover:text-[#9F160A] transition-colors"
+            className="font-['Manrope'] text-xs sm:text-sm font-semibold tracking-tight line-clamp-2 min-h-[2.2rem] sm:min-h-[2.5rem] leading-snug cursor-pointer hover:text-[#164E33] transition-colors"
             title={product.name}
           >
             {product.name}
@@ -1180,7 +1180,7 @@ export function ProductCard({ product }: { product: Product }) {
                   e.stopPropagation();
                   store.addToCart(product, 1);
                 }}
-                className="size-7 rounded-full bg-black/5 hover:bg-[#D15608] hover:text-white text-[#0E0E0E] flex items-center justify-center transition-all cursor-pointer active:scale-90 border border-[rgba(14,14,14,0.1)] shrink-0"
+                className="size-7 rounded-full bg-black/5 hover:bg-[#164E33] hover:text-white text-[#0E0E0E] flex items-center justify-center transition-all cursor-pointer active:scale-90 border border-[rgba(14,14,14,0.1)] shrink-0"
                 title="Add to Bag"
                 aria-label="Add to bag"
               >
@@ -1194,7 +1194,7 @@ export function ProductCard({ product }: { product: Product }) {
                   e.stopPropagation();
                   store.setProduct(product);
                 }}
-                className="h-7 px-2.5 sm:px-3 rounded-[6px] bg-[#9F160A] hover:bg-[#D15608] text-white text-[10px] sm:text-[11px] font-bold uppercase tracking-wider transition-all cursor-pointer shadow-xs active:scale-95 shrink-0 inline-flex items-center justify-center whitespace-nowrap"
+                className="h-7 px-2.5 sm:px-3 rounded-[6px] bg-[#123826] hover:bg-[#164E33] text-white text-[10px] sm:text-[11px] font-bold uppercase tracking-wider transition-all cursor-pointer shadow-xs active:scale-95 shrink-0 inline-flex items-center justify-center whitespace-nowrap"
                 title="View Details"
               >
                 <span>VIEW</span>
@@ -1240,7 +1240,7 @@ export function ProductCollection({ filter = 'All' }: { filter?: string }) {
               className={cn(
                 "px-4 py-1.5 rounded-full text-xs font-semibold uppercase tracking-wider transition-all cursor-pointer",
                 tab === t
-                  ? "bg-[#D15608] text-white shadow-xs"
+                  ? "bg-[#164E33] text-white shadow-xs"
                   : "bg-white border border-[rgba(14,14,14,0.1)] text-[#0E0E0E]/80 hover:bg-[#FAF7F2]"
               )}
             >
@@ -1257,7 +1257,7 @@ export function ProductCollection({ filter = 'All' }: { filter?: string }) {
               placeholder="Filter by name or fiber..."
               value={searchFilter}
               onChange={e => setSearchFilter(e.target.value)}
-              className="pl-8 pr-3 py-1.5 rounded-full border border-[rgba(14,14,14,0.12)] text-xs bg-white text-foreground focus:outline-none focus:ring-1 focus:ring-[#D15608] w-48 sm:w-60 shadow-xs"
+              className="pl-8 pr-3 py-1.5 rounded-full border border-[rgba(14,14,14,0.12)] text-xs bg-white text-foreground focus:outline-none focus:ring-1 focus:ring-[#164E33] w-48 sm:w-60 shadow-xs"
             />
             {searchFilter && (
               <button
@@ -1273,7 +1273,7 @@ export function ProductCollection({ filter = 'All' }: { filter?: string }) {
           <select
             value={sortBy}
             onChange={e => setSortBy(e.target.value as any)}
-            className="py-1.5 px-3 rounded-full border border-[rgba(14,14,14,0.12)] text-xs bg-white text-foreground focus:outline-none focus:ring-1 focus:ring-[#D15608] shadow-xs cursor-pointer"
+            className="py-1.5 px-3 rounded-full border border-[rgba(14,14,14,0.12)] text-xs bg-white text-foreground focus:outline-none focus:ring-1 focus:ring-[#164E33] shadow-xs cursor-pointer"
           >
             <option value="featured">Sort: Featured</option>
             <option value="price-asc">Price: Low to High</option>
@@ -1310,17 +1310,17 @@ export function EverydayBand() {
     {
       title: 'Direct Mill Value',
       subtext: 'Direct factory rates from Bhavani looms with zero middlemen',
-      icon: <Factory className="size-5 text-[#D15608]" />,
+      icon: <Factory className="size-5 text-[#164E33]" />,
     },
     {
       title: '100% Eco-Friendly',
       subtext: 'Pure natural cotton, biodegradable jute & durable handloom yarns',
-      icon: <Leaf className="size-5 text-[#D15608]" />,
+      icon: <Leaf className="size-5 text-[#164E33]" />,
     },
     {
       title: 'Pan-India Dispatch',
       subtext: 'Safe courier delivery for retail & bulk orders nationwide',
-      icon: <Truck className="size-5 text-[#D15608]" />,
+      icon: <Truck className="size-5 text-[#164E33]" />,
     },
   ];
 
@@ -1333,7 +1333,7 @@ export function EverydayBand() {
               key={idx}
               className="flex items-center justify-start md:justify-center gap-4 text-left"
             >
-              <div className="shrink-0 size-11 rounded-full bg-[#D15608]/10 flex items-center justify-center">
+              <div className="shrink-0 size-11 rounded-full bg-[#164E33]/10 flex items-center justify-center">
                 {p.icon}
               </div>
               <div>

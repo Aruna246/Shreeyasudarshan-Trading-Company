@@ -61,7 +61,7 @@ function ContactUs() {
           {/* Left Obsidian Black Contact Card (Padma-Fabrics Style) */}
           <div className="lg:col-span-5 bg-[#0E0E0E] text-[#F4F0E8] p-8 sm:p-10 rounded-2xl shadow-xl flex flex-col justify-between border-t-2 border-[#EDBC3D] border-x border-b border-[rgba(244,240,232,0.1)]">
             <div>
-              <span className="text-[10px] font-semibold tracking-widest uppercase text-white bg-[#9F160A] px-3 py-1 rounded-full inline-block mb-4">
+              <span className="text-[10px] font-semibold tracking-widest uppercase text-white bg-[#123826] px-3 py-1 rounded-full inline-block mb-4">
                 Headquarters
               </span>
               <h2 className="font-['Manrope'] text-3xl sm:text-4xl font-bold tracking-tight text-[#F4F0E8] mb-3 uppercase">
@@ -127,7 +127,7 @@ function ContactUs() {
                         href="https://maps.google.com/maps?q=Anna+Nagar+1st+Street,+Bhavani,+Erode+638301"
                         target="_blank"
                         rel="noreferrer"
-                        className="inline-flex items-center gap-1.5 text-xs text-[#D15608] hover:text-[#EDBC3D] hover:underline uppercase tracking-wider font-semibold transition-colors"
+                        className="inline-flex items-center gap-1.5 text-xs text-[#164E33] hover:text-[#EDBC3D] hover:underline uppercase tracking-wider font-semibold transition-colors"
                       >
                         <MapPin size={13} />
                         <span>View on Google Maps</span>
@@ -213,7 +213,7 @@ function ContactUs() {
                       placeholder="Full name"
                       value={formState.name}
                       onChange={e => setFormState(s => ({ ...s, name: e.target.value }))}
-                      className="w-full rounded-lg border border-[rgba(14,14,14,0.12)] bg-background px-3.5 py-2.5 text-sm text-foreground focus:outline-none focus:ring-2 focus:ring-[#D15608]/20 focus:border-[#D15608]"
+                      className="w-full rounded-lg border border-[rgba(14,14,14,0.12)] bg-background px-3.5 py-2.5 text-sm text-foreground focus:outline-none focus:ring-2 focus:ring-[#164E33]/20 focus:border-[#164E33]"
                     />
                   </div>
                   <div>
@@ -226,7 +226,7 @@ function ContactUs() {
                       placeholder="+91 98765 43210"
                       value={formState.phone}
                       onChange={e => setFormState(s => ({ ...s, phone: e.target.value }))}
-                      className="w-full rounded-lg border border-[rgba(14,14,14,0.12)] bg-background px-3.5 py-2.5 text-sm text-foreground focus:outline-none focus:ring-2 focus:ring-[#D15608]/20 focus:border-[#D15608]"
+                      className="w-full rounded-lg border border-[rgba(14,14,14,0.12)] bg-background px-3.5 py-2.5 text-sm text-foreground focus:outline-none focus:ring-2 focus:ring-[#164E33]/20 focus:border-[#164E33]"
                     />
                   </div>
                 </div>
@@ -240,7 +240,7 @@ function ContactUs() {
                     placeholder="you@example.com"
                     value={formState.email}
                     onChange={e => setFormState(s => ({ ...s, email: e.target.value }))}
-                    className="w-full rounded-lg border border-[rgba(14,14,14,0.12)] bg-background px-3.5 py-2.5 text-sm text-foreground focus:outline-none focus:ring-2 focus:ring-[#D15608]/20 focus:border-[#D15608]"
+                    className="w-full rounded-lg border border-[rgba(14,14,14,0.12)] bg-background px-3.5 py-2.5 text-sm text-foreground focus:outline-none focus:ring-2 focus:ring-[#164E33]/20 focus:border-[#164E33]"
                   />
                 </div>
 
@@ -252,7 +252,7 @@ function ContactUs() {
                     <select
                       value={formState.product}
                       onChange={e => setFormState(s => ({ ...s, product: e.target.value }))}
-                      className="w-full rounded-lg border border-[rgba(14,14,14,0.12)] bg-background px-3 py-2.5 text-sm text-foreground focus:outline-none focus:ring-2 focus:ring-[#D15608]/20 focus:border-[#D15608] cursor-pointer"
+                      className="w-full rounded-lg border border-[rgba(14,14,14,0.12)] bg-background px-3 py-2.5 text-sm text-foreground focus:outline-none focus:ring-2 focus:ring-[#164E33]/20 focus:border-[#164E33] cursor-pointer"
                     >
                       <option value="Jute Fashion Bags">Jute Fashion Bags</option>
                       <option value="Cotton Bags">Cotton Bags</option>
@@ -273,7 +273,7 @@ function ContactUs() {
                       placeholder="e.g. 500"
                       value={formState.quantity}
                       onChange={e => setFormState(s => ({ ...s, quantity: e.target.value }))}
-                      className="w-full rounded-lg border border-[rgba(14,14,14,0.12)] bg-background px-3.5 py-2.5 text-sm text-foreground focus:outline-none focus:ring-2 focus:ring-[#D15608]/20 focus:border-[#D15608]"
+                      className="w-full rounded-lg border border-[rgba(14,14,14,0.12)] bg-background px-3.5 py-2.5 text-sm text-foreground focus:outline-none focus:ring-2 focus:ring-[#164E33]/20 focus:border-[#164E33]"
                     />
                   </div>
                 </div>
@@ -287,13 +287,13 @@ function ContactUs() {
                     placeholder="Tell us about colours, sizes or logo printing"
                     value={formState.message}
                     onChange={e => setFormState(s => ({ ...s, message: e.target.value }))}
-                    className="w-full rounded-lg border border-[rgba(14,14,14,0.12)] bg-background px-3.5 py-2.5 text-sm text-foreground focus:outline-none focus:ring-2 focus:ring-[#D15608]/20 focus:border-[#D15608] resize-y"
+                    className="w-full rounded-lg border border-[rgba(14,14,14,0.12)] bg-background px-3.5 py-2.5 text-sm text-foreground focus:outline-none focus:ring-2 focus:ring-[#164E33]/20 focus:border-[#164E33] resize-y"
                   />
                 </div>
 
                 <button
                   type="submit"
-                  className="w-full h-12 rounded-full bg-[#D15608] hover:bg-[#9F160A] text-white text-xs font-bold uppercase tracking-[0.14em] transition-all flex items-center justify-center gap-2 cursor-pointer shadow-md active:scale-98"
+                  className="w-full h-12 rounded-full bg-[#164E33] hover:bg-[#103A26] text-white text-xs font-bold uppercase tracking-[0.14em] transition-all flex items-center justify-center gap-2 cursor-pointer shadow-md active:scale-98"
                 >
                   <span>Send Enquiry</span>
                   <Send size={15} />

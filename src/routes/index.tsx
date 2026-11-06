@@ -44,7 +44,7 @@ function Index() {
         <>
           Thoughtful bags.<br />
           Beautiful spaces.<br />
-          <em className="text-[#D15608] italic">Everyday, elevated.</em>
+          <em className="text-[#164E33] italic">Everyday, elevated.</em>
         </>
       ),
       copy: 'Carry a little character. Bring a little warmth home. Discover handloom floor mats and eco-friendly bags crafted with precision in Bhavani, Tamil Nadu.',
@@ -80,7 +80,7 @@ function Index() {
         <>
           Golden jute &amp; khadi.<br />
           Pure cotton totes.<br />
-          <em className="text-[#D15608] italic">Your everyday, well carried.</em>
+          <em className="text-[#164E33] italic">Your everyday, well carried.</em>
         </>
       ),
       copy: 'Durable, sustainable, and tailored cloth bags trusted by premiere jewellery houses, lifestyle retail brands, and eco-conscious shoppers across India.',
@@ -193,7 +193,7 @@ function Index() {
                   <Link
                     to={slide.primaryBtn.to}
                     search={slide.primaryBtn.search as any}
-                    className="inline-flex items-center gap-2 h-12 px-8 rounded-full bg-[#D15608] hover:bg-[#9F160A] text-white text-xs font-bold uppercase tracking-[0.14em] shadow-md transition-all active:scale-95"
+                    className="inline-flex items-center gap-2 h-12 px-8 rounded-full bg-[#164E33] hover:bg-[#103A26] text-white text-xs font-bold uppercase tracking-[0.14em] shadow-md transition-all active:scale-95"
                   >
                     <span>{slide.primaryBtn.text}</span>
                     <ArrowRight size={15} />
@@ -223,12 +223,12 @@ function Index() {
                   aria-label={`Go to slide ${i + 1}`}
                   className={`h-2 rounded-full transition-all duration-300 cursor-pointer ${
                     i === currentHeroSlide
-                      ? 'w-8 bg-[#D15608] shadow-xs'
+                      ? 'w-8 bg-[#164E33] shadow-xs'
                       : 'w-2 bg-[#0E0E0E]/30 hover:bg-[#0E0E0E]/60'
                   }`}
                 />
               ))}
-              <span className="text-[11px] font-bold text-[#D15608] tracking-widest ml-3">
+              <span className="text-[11px] font-bold text-[#164E33] tracking-widest ml-3">
                 {heroSlides[currentHeroSlide].tag}
               </span>
             </div>
@@ -324,7 +324,7 @@ function Index() {
             <Link
               to="/shop"
               search={{ category: 'Floor mats' }}
-              className="inline-flex items-center gap-2 h-11 px-6 rounded-full bg-[#D15608] hover:bg-[#9F160A] text-white text-xs font-bold uppercase tracking-wider transition-all shadow-md active:scale-95"
+              className="inline-flex items-center gap-2 h-11 px-6 rounded-full bg-[#164E33] hover:bg-[#103A26] text-white text-xs font-bold uppercase tracking-wider transition-all shadow-md active:scale-95"
             >
               <span>View in Catalog</span>
               <ArrowRight size={14} />
@@ -343,8 +343,8 @@ function Index() {
                     onClick={() => setActiveSpotlight(idx)}
                     className={`text-left p-4 rounded-2xl border transition-all flex items-center justify-between cursor-pointer ${
                       isActive
-                        ? 'bg-white border-[#D15608] shadow-[0_6px_20px_rgba(209,86,8,0.15)] ring-2 ring-[#D15608]/20 scale-[1.01]'
-                        : 'bg-[#FAF7F2]/80 border-[rgba(14,14,14,0.08)] hover:bg-white hover:border-[#D15608]/40'
+                        ? 'bg-white border-[#164E33] shadow-[0_6px_20px_rgba(22,78,51,0.15)] ring-2 ring-[#164E33]/20 scale-[1.01]'
+                        : 'bg-[#FAF7F2]/80 border-[rgba(14,14,14,0.08)] hover:bg-white hover:border-[#164E33]/40'
                     }`}
                   >
                     <div className="flex items-center gap-3.5">
@@ -364,8 +364,8 @@ function Index() {
                       <span
                         className={`text-[9px] font-bold tracking-wider uppercase px-2.5 py-0.5 rounded-full hidden sm:inline-block ${
                           isActive
-                            ? 'bg-[#9F160A] text-white shadow-xs'
-                            : 'bg-[#D15608]/10 text-[#D15608]'
+                            ? 'bg-[#123826] text-white shadow-xs'
+                            : 'bg-[#164E33]/10 text-[#164E33]'
                         }`}
                       >
                         {mat.accent}
@@ -373,7 +373,7 @@ function Index() {
                       <ChevronRight
                         size={16}
                         className={`transition-transform duration-300 ${
-                          isActive ? 'text-[#D15608] translate-x-1' : 'text-muted-foreground/50'
+                          isActive ? 'text-[#164E33] translate-x-1' : 'text-muted-foreground/50'
                         }`}
                       />
                     </div>
@@ -393,14 +393,14 @@ function Index() {
                     className="w-full h-full object-cover rounded-2xl shadow-sm transition-all duration-700 group-hover:scale-[1.03]"
                   />
                   <div className="absolute top-6 left-6 z-10">
-                    <span className="px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider bg-[#9F160A] text-white shadow-md">
+                    <span className="px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider bg-[#123826] text-white shadow-md">
                       {current.accent}
                     </span>
                   </div>
                 </div>
                 <div className="p-6 sm:p-8 border-t border-[rgba(14,14,14,0.08)] bg-white/95 backdrop-blur-md flex flex-col sm:flex-row sm:items-center justify-between gap-4">
                   <div>
-                    <span className="text-xs font-semibold text-[#D15608] uppercase tracking-wider block">
+                    <span className="text-xs font-semibold text-[#164E33] uppercase tracking-wider block">
                       {current.type} · Master Handloom
                     </span>
                     <h3 className="font-['Manrope'] text-2xl sm:text-3xl font-bold uppercase mt-1.5 text-foreground">
@@ -413,7 +413,7 @@ function Index() {
                   <Link
                     to="/shop"
                     search={{ category: 'Floor mats' }}
-                    className="self-start sm:self-center shrink-0 inline-flex items-center gap-2 h-11 px-6 rounded-full bg-[#D15608] hover:bg-[#9F160A] text-white text-xs font-bold uppercase tracking-wider transition-all shadow-md active:scale-95"
+                    className="self-start sm:self-center shrink-0 inline-flex items-center gap-2 h-11 px-6 rounded-full bg-[#164E33] hover:bg-[#103A26] text-white text-xs font-bold uppercase tracking-wider transition-all shadow-md active:scale-95"
                   >
                     <span>Shop this style</span>
                     <ArrowRight size={14} />
@@ -426,7 +426,7 @@ function Index() {
           {/* Craft Pillars Highlight */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-12 pt-8 border-t border-[rgba(14,14,14,0.08)]">
             <div className="flex items-start gap-4">
-              <div className="w-12 h-12 rounded-full bg-[#D15608]/10 text-[#D15608] flex items-center justify-center shrink-0">
+              <div className="w-12 h-12 rounded-full bg-[#164E33]/10 text-[#164E33] flex items-center justify-center shrink-0">
                 <Factory size={22} />
               </div>
               <div>
@@ -437,7 +437,7 @@ function Index() {
               </div>
             </div>
             <div className="flex items-start gap-4">
-              <div className="w-12 h-12 rounded-full bg-[#D15608]/10 text-[#D15608] flex items-center justify-center shrink-0">
+              <div className="w-12 h-12 rounded-full bg-[#164E33]/10 text-[#164E33] flex items-center justify-center shrink-0">
                 <Layers size={22} />
               </div>
               <div>
@@ -448,7 +448,7 @@ function Index() {
               </div>
             </div>
             <div className="flex items-start gap-4">
-              <div className="w-12 h-12 rounded-full bg-[#D15608]/10 text-[#D15608] flex items-center justify-center shrink-0">
+              <div className="w-12 h-12 rounded-full bg-[#164E33]/10 text-[#164E33] flex items-center justify-center shrink-0">
                 <Award size={22} />
               </div>
               <div>
@@ -475,9 +475,9 @@ function Index() {
           />
           <div className="absolute bottom-4 left-4 right-4 bg-white/95 backdrop-blur-md px-4 py-3 rounded-xl border border-[rgba(14,14,14,0.08)] text-xs flex items-center justify-between shadow-sm">
             <span className="flex items-center gap-2 font-semibold text-[#0E0E0E]">
-              <CheckCircle2 size={16} className="text-[#D15608]" /> Eco-Friendly Textile &amp; Bag Manufacturers
+              <CheckCircle2 size={16} className="text-[#164E33]" /> Eco-Friendly Textile &amp; Bag Manufacturers
             </span>
-            <span className="text-[10px] uppercase font-bold text-[#9F160A] tracking-wider">Bhavani Facility</span>
+            <span className="text-[10px] uppercase font-bold text-[#123826] tracking-wider">Bhavani Facility</span>
           </div>
         </div>
 
@@ -500,7 +500,7 @@ function Index() {
             </Link>
             <Link
               to="/shop"
-              className="inline-flex items-center gap-2 h-11 px-6 rounded-full bg-[#D15608] hover:bg-[#9F160A] text-white text-xs font-bold uppercase tracking-wider transition-all shadow-sm active:scale-95"
+              className="inline-flex items-center gap-2 h-11 px-6 rounded-full bg-[#164E33] hover:bg-[#103A26] text-white text-xs font-bold uppercase tracking-wider transition-all shadow-sm active:scale-95"
             >
               <span>Explore Full Catalog</span>
               <Sparkles size={14} />
@@ -520,7 +520,7 @@ function Index() {
         </p>
         <Link
           to="/shop"
-          className="inline-flex items-center gap-2 h-12 px-8 rounded-full bg-[#D15608] hover:bg-[#9F160A] text-white text-xs font-bold uppercase tracking-[0.14em] shadow-[0_4px_20px_rgba(209,86,8,0.4)] transition-all active:scale-95"
+          className="inline-flex items-center gap-2 h-12 px-8 rounded-full bg-[#164E33] hover:bg-[#103A26] text-white text-xs font-bold uppercase tracking-[0.14em] shadow-[0_4px_20px_rgba(22,78,51,0.4)] transition-all active:scale-95"
         >
           <span>Discover your favourites</span>
           <ArrowRight size={14} />
