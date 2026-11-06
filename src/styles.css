@@ -313,40 +313,71 @@ button, a, input, select, textarea {
   box-shadow: 0 2px 6px rgba(159, 22, 10, 0.35);
 }
 
-/* 3. HERO SECTION */
+/* 3. HERO SECTION & DYNAMIC SLIDER */
 .hero {
   position: relative;
-  height: min(670px, 70vw);
-  min-height: 540px;
+  height: min(720px, 75vw);
+  min-height: 560px;
   overflow: hidden;
   background: #FAF7F2;
   border-bottom: 1px solid rgba(14, 14, 14, 0.08);
 }
 
-.hero-image {
+.hero-slide {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 900ms cubic-bezier(0.16, 1, 0.3, 1);
+  z-index: 1;
+}
+
+.hero-slide.active {
+  opacity: 1;
+  pointer-events: auto;
+  z-index: 2;
+}
+
+.hero-slide-bg {
+  position: absolute;
+  inset: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;
   object-position: center 36%;
   filter: saturate(1.05) brightness(0.98);
-  transition: transform 6s cubic-bezier(0.25, 1, 0.5, 1);
+  transition: transform 8s cubic-bezier(0.2, 0.8, 0.2, 1);
+  transform: scale(1.01);
 }
 
-.hero:hover .hero-image {
-  transform: scale(1.03);
+.hero-slide.active .hero-slide-bg {
+  transform: scale(1.05);
 }
 
-.hero::after {
+.hero-slide::after {
   content: '';
   position: absolute;
   inset: 0;
   background: linear-gradient(
     90deg,
-    rgba(250, 247, 242, 0.94) 0%,
-    rgba(250, 247, 242, 0.72) 48%,
-    rgba(250, 247, 242, 0.08) 100%
+    rgba(250, 247, 242, 0.96) 0%,
+    rgba(250, 247, 242, 0.82) 48%,
+    rgba(250, 247, 242, 0.2) 100%
   );
   pointer-events: none;
+}
+
+@media (max-width: 768px) {
+  .hero-slide::after {
+    background: linear-gradient(
+      to top,
+      rgba(250, 247, 242, 0.98) 0%,
+      rgba(250, 247, 242, 0.86) 65%,
+      rgba(250, 247, 242, 0.5) 100%
+    );
+  }
 }
 
 .hero-content {
@@ -413,7 +444,7 @@ button, a, input, select, textarea {
   color: #6B6760;
   font-size: 14px;
   line-height: 1.8;
-  max-width: 440px;
+  max-width: 460px;
   margin-bottom: 28px;
 }
 
@@ -424,36 +455,20 @@ button, a, input, select, textarea {
   flex-wrap: wrap;
 }
 
-.hero-pagination {
+.hero-controls {
   position: absolute;
   bottom: 24px;
-  left: 56px;
+  left: 0;
+  right: 0;
+  z-index: 10;
+  pointer-events: none;
+}
+
+.hero-controls-inner {
   display: flex;
   align-items: center;
-  gap: 12px;
-  font-size: 11px;
-  letter-spacing: 0.18em;
-  font-weight: 700;
-  color: #D15608;
-  z-index: 5;
-}
-
-.hero-pagination span {
-  width: 48px;
-  height: 2px;
-  background: #EDBC3D;
-}
-
-.hero-caption {
-  position: absolute;
-  bottom: 24px;
-  right: 56px;
-  font-size: 10px;
-  text-transform: uppercase;
-  letter-spacing: 0.22em;
-  color: #6B6760;
-  font-weight: 600;
-  z-index: 5;
+  justify-content: space-between;
+  pointer-events: auto;
 }
 
 /* 4. VALUE STRIP (Like Padma-Fabrics TrustStrip) */
@@ -528,24 +543,32 @@ button, a, input, select, textarea {
 .category-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 24px;
+  gap: 28px;
+}
+
+@media (max-width: 768px) {
+  .category-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
 }
 
 .category {
   position: relative;
   overflow: hidden;
-  height: 380px;
+  height: 420px;
   background: #EBE6DC;
-  border-radius: 16px;
-  box-shadow: 0 4px 20px rgba(14, 14, 14, 0.06);
+  border-radius: 20px;
+  box-shadow: 0 6px 24px rgba(14, 14, 14, 0.07);
   border: 1px solid rgba(14, 14, 14, 0.08);
   text-decoration: none;
-  transition: transform 300ms ease, box-shadow 300ms ease;
+  transition: all 400ms cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .category:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 12px 32px rgba(14, 14, 14, 0.12);
+  transform: translateY(-4px);
+  box-shadow: 0 16px 38px rgba(209, 86, 8, 0.16);
+  border-color: rgba(209, 86, 8, 0.35);
 }
 
 .category::after {
@@ -554,9 +577,9 @@ button, a, input, select, textarea {
   inset: 0;
   background: linear-gradient(
     to top,
-    rgba(14, 14, 14, 0.82) 0%,
-    rgba(14, 14, 14, 0.35) 45%,
-    rgba(14, 14, 14, 0.04) 100%
+    rgba(14, 14, 14, 0.88) 0%,
+    rgba(14, 14, 14, 0.4) 48%,
+    rgba(14, 14, 14, 0.05) 100%
   );
   pointer-events: none;
 }
@@ -565,16 +588,16 @@ button, a, input, select, textarea {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: transform 650ms cubic-bezier(0.16, 1, 0.3, 1);
+  transition: transform 800ms cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .category:hover img {
-  transform: scale(1.05);
+  transform: scale(1.06);
 }
 
 .category-copy {
   position: absolute;
-  inset: auto 28px 26px;
+  inset: auto 32px 30px;
   z-index: 2;
   display: flex;
   justify-content: space-between;
@@ -582,27 +605,42 @@ button, a, input, select, textarea {
   color: #FFFFFF;
 }
 
+.category-badge-pill {
+  display: inline-block;
+  padding: 3px 10px;
+  border-radius: 999px;
+  background: rgba(237, 188, 61, 0.25);
+  border: 1px solid rgba(237, 188, 61, 0.6);
+  color: #EDBC3D;
+  font-size: 9.5px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+  backdrop-filter: blur(8px);
+}
+
 .category-copy h3 {
   font-family: 'Manrope', sans-serif;
-  font-size: 34px;
+  font-size: clamp(28px, 3.2vw, 38px);
   text-transform: uppercase;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.06em;
   color: #FFFFFF;
-  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+  text-shadow: 0 2px 12px rgba(0, 0, 0, 0.6);
   font-weight: 800;
-  line-height: 1;
+  line-height: 1.05;
 }
 
 .category-copy p {
-  font-size: 12px;
-  margin-top: 5px;
-  color: rgba(255, 255, 255, 0.9);
-  letter-spacing: 0.04em;
+  font-size: 13px;
+  margin-top: 6px;
+  color: rgba(255, 255, 255, 0.92);
+  letter-spacing: 0.02em;
 }
 
 .category-arrow {
-  width: 44px;
-  height: 44px;
+  width: 48px;
+  height: 48px;
   border-radius: 50%;
   border: 1px solid rgba(255, 255, 255, 0.4);
   background: rgba(255, 255, 255, 0.15);
@@ -611,6 +649,15 @@ button, a, input, select, textarea {
   place-items: center;
   color: #FFFFFF;
   transition: all 300ms ease;
+  flex-shrink: 0;
+}
+
+.category:hover .category-arrow {
+  background: #D15608;
+  color: #FFFFFF;
+  border-color: #D15608;
+  transform: scale(1.1) rotate(45deg);
+  box-shadow: 0 4px 16px rgba(209, 86, 8, 0.4);
 }
 
 .category:hover .category-arrow {

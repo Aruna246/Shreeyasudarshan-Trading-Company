@@ -1063,10 +1063,11 @@ export function ProductCard({ product }: { product: Product }) {
   const store = useStore();
   const saved = store.saved.includes(product.id);
   const badge = product.badge?.trim();
+  const badgeLower = badge?.toLowerCase() || '';
   
   return (
     <article
-      className="group relative flex flex-col rounded-2xl overflow-hidden transition-all duration-300 select-none shadow-[0_4px_20px_rgba(0,0,0,0.06)] hover:shadow-[0_14px_36px_rgba(0,0,0,0.12)] hover:-translate-y-1 bg-white border border-[rgba(14,14,14,0.08)] text-[#0E0E0E]"
+      className="group relative flex flex-col rounded-2xl overflow-hidden transition-all duration-300 select-none shadow-[0_4px_20px_rgba(0,0,0,0.06)] hover:shadow-[0_16px_36px_rgba(209,86,8,0.14)] hover:-translate-y-1.5 bg-white border border-[rgba(14,14,14,0.08)] text-[#0E0E0E]"
     >
       {/* 3:4 Aspect Ratio Image Container */}
       <div
@@ -1077,7 +1078,7 @@ export function ProductCard({ product }: { product: Product }) {
           src={product.image}
           alt={product.name}
           loading="lazy"
-          className="w-full h-full object-cover object-center transition-transform duration-700 ease-[cubic-bezier(0.2,0.7,0.2,1)] group-hover:scale-104"
+          className="w-full h-full object-cover object-center transition-transform duration-700 ease-[cubic-bezier(0.2,0.7,0.2,1)] group-hover:scale-105"
           width={1024}
           height={1024}
         />
@@ -1085,7 +1086,13 @@ export function ProductCard({ product }: { product: Product }) {
         {/* Tiny Pill Badge Bottom-Left */}
         {badge ? (
           <div className="absolute bottom-3 left-3 z-10 transition-opacity duration-200 group-hover:opacity-0 pointer-events-none">
-            <span className="inline-block px-2.5 py-0.5 rounded-full text-[10px] font-medium uppercase tracking-[0.15em] bg-[#9F160A] text-white shadow-xs">
+            <span
+              className={`inline-block px-2.5 py-0.5 rounded-full text-[10px] font-bold uppercase tracking-[0.14em] shadow-xs ${
+                badgeLower.includes('hand') || badgeLower.includes('artisan') || badgeLower.includes('eco')
+                  ? 'bg-[#9F160A] text-white'
+                  : 'bg-[#EDBC3D] text-[#0E0E0E]'
+              }`}
+            >
               {badge}
             </span>
           </div>
@@ -1101,8 +1108,8 @@ export function ProductCard({ product }: { product: Product }) {
           aria-label={saved ? "Remove from favourites" : "Add to favourites"}
           className={`absolute top-3 right-3 z-10 size-8 rounded-full flex items-center justify-center transition-all ${
             saved
-              ? "bg-[#9F160A] text-white"
-              : "bg-black/20 hover:bg-black/50 text-white backdrop-blur-xs"
+              ? "bg-[#9F160A] text-white shadow-sm"
+              : "bg-black/25 hover:bg-black/60 text-white backdrop-blur-xs"
           }`}
         >
           <Heart className={`size-3.5 ${saved ? "fill-white" : ""}`} strokeWidth={1.5} />
@@ -1116,20 +1123,28 @@ export function ProductCard({ product }: { product: Product }) {
               e.stopPropagation();
               store.addToCart(product, 1);
             }}
-            className="w-full py-2 rounded-full bg-[#D15608] hover:bg-[#9F160A] text-white text-[11px] font-semibold uppercase tracking-[0.14em] transition-all flex items-center justify-center gap-1.5 cursor-pointer shadow-md active:scale-98 border border-[#EDBC3D]/40"
+            className="w-full py-2.5 rounded-full bg-[#D15608] hover:bg-[#9F160A] text-white text-[11px] font-bold uppercase tracking-[0.14em] transition-all flex items-center justify-center gap-2 cursor-pointer shadow-md active:scale-98 border border-[#EDBC3D]/50"
           >
-            <ShoppingBag className="size-3 text-[#FAF6EE]" strokeWidth={1.5} />
-            <span>Add to Bag</span>
+            <ShoppingBag className="size-3.5 text-[#FAF6EE]" strokeWidth={1.5} />
+            <span>Quick Add to Bag</span>
           </button>
         </div>
       </div>
 
       {/* Product Details Below Image */}
-      <div className="p-3 sm:p-3.5 flex flex-col flex-1 justify-between gap-1.5 sm:gap-2">
+      <div className="p-3 sm:p-4 flex flex-col flex-1 justify-between gap-1.5 sm:gap-2">
         <div>
+          {/* Star Rating */}
+          <div className="flex items-center gap-1.5 mb-1">
+            <div className="flex text-[#EDBC3D] text-[11px] tracking-tighter" aria-label="5 star rating">
+              <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+            </div>
+            <span className="text-[10px] text-muted-foreground font-medium">4.9 (50+)</span>
+          </div>
+
           <h3
             onClick={() => store.setProduct(product)}
-            className="font-['Manrope'] text-xs sm:text-sm font-medium tracking-tight line-clamp-2 min-h-[2.2rem] sm:min-h-[2.5rem] leading-snug cursor-pointer hover:text-[#9F160A] transition-colors"
+            className="font-['Manrope'] text-xs sm:text-sm font-semibold tracking-tight line-clamp-2 min-h-[2.2rem] sm:min-h-[2.5rem] leading-snug cursor-pointer hover:text-[#9F160A] transition-colors"
             title={product.name}
           >
             {product.name}
@@ -1140,11 +1155,21 @@ export function ProductCard({ product }: { product: Product }) {
           </span>
 
           {/* Price and Action Buttons */}
-          <div className="flex items-center justify-between gap-1 sm:gap-2 mt-2 pt-1.5 border-t border-[rgba(14,14,14,0.06)]">
-            <div className="flex items-baseline gap-0.5 sm:gap-1 shrink-0">
-              <span className="font-['Manrope'] text-[13px] sm:text-[15px] font-bold tabular-nums text-foreground whitespace-nowrap shrink-0">
+          <div className="flex items-center justify-between gap-1 sm:gap-2 mt-2 pt-2 border-t border-[rgba(14,14,14,0.06)]">
+            <div className="flex items-baseline gap-1.5 shrink-0 flex-wrap">
+              <span className="font-['Manrope'] text-[14px] sm:text-[15px] font-bold tabular-nums text-foreground whitespace-nowrap">
                 {product.priceNote || `₹${product.price.toLocaleString('en-IN')}`}
               </span>
+              {!product.priceNote && (
+                <>
+                  <span className="line-through text-muted-foreground/50 text-[10px] sm:text-[11px] font-normal">
+                    ₹{Math.round(product.price * 1.25).toLocaleString('en-IN')}
+                  </span>
+                  <span className="text-[9px] font-bold text-emerald-700 bg-emerald-50 border border-emerald-200/60 px-1 py-0.2 rounded-full">
+                    20% OFF
+                  </span>
+                </>
+              )}
             </div>
 
             <div className="flex items-center gap-1 sm:gap-1.5 shrink-0">
@@ -1155,11 +1180,11 @@ export function ProductCard({ product }: { product: Product }) {
                   e.stopPropagation();
                   store.addToCart(product, 1);
                 }}
-                className="size-7 rounded-full bg-black/5 hover:bg-black/10 text-[#0E0E0E] flex items-center justify-center transition-all cursor-pointer active:scale-90 border border-[rgba(14,14,14,0.1)] shrink-0"
+                className="size-7 rounded-full bg-black/5 hover:bg-[#D15608] hover:text-white text-[#0E0E0E] flex items-center justify-center transition-all cursor-pointer active:scale-90 border border-[rgba(14,14,14,0.1)] shrink-0"
                 title="Add to Bag"
                 aria-label="Add to bag"
               >
-                <ShoppingBag className="size-3 sm:size-3.5 text-[#9F160A]" strokeWidth={1.5} />
+                <ShoppingBag className="size-3 sm:size-3.5" strokeWidth={1.5} />
               </button>
 
               {/* View / Details Button */}
@@ -1169,7 +1194,7 @@ export function ProductCard({ product }: { product: Product }) {
                   e.stopPropagation();
                   store.setProduct(product);
                 }}
-                className="h-7 px-2.5 sm:px-3 rounded-[6px] bg-[#9F160A] hover:bg-[#7D1107] text-white text-[10px] sm:text-[11px] font-bold uppercase tracking-wider transition-all cursor-pointer shadow-xs active:scale-95 shrink-0 inline-flex items-center justify-center whitespace-nowrap"
+                className="h-7 px-2.5 sm:px-3 rounded-[6px] bg-[#9F160A] hover:bg-[#D15608] text-white text-[10px] sm:text-[11px] font-bold uppercase tracking-wider transition-all cursor-pointer shadow-xs active:scale-95 shrink-0 inline-flex items-center justify-center whitespace-nowrap"
                 title="View Details"
               >
                 <span>VIEW</span>

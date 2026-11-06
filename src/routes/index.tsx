@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { createFileRoute, Link } from '@tanstack/react-router';
 import {
   ArrowRight,
@@ -10,6 +10,7 @@ import {
   Award,
   CheckCircle2,
   ChevronRight,
+  ChevronLeft,
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Eyebrow, EverydayBand } from '@/components/storefront';
@@ -35,6 +36,63 @@ export const Route = createFileRoute('/')({
 });
 
 function Index() {
+  const heroSlides = [
+    {
+      id: 'slide-1',
+      eyebrow: 'Rooted in nature. Made for life.',
+      title: (
+        <>
+          Thoughtful bags.<br />
+          Beautiful spaces.<br />
+          <em className="text-[#D15608] italic">Everyday, elevated.</em>
+        </>
+      ),
+      copy: 'Carry a little character. Bring a little warmth home. Discover handloom floor mats and eco-friendly bags crafted with precision in Bhavani, Tamil Nadu.',
+      image: hero,
+      alt: 'Natural canvas bag and floor mat in a sunlit living space',
+      primaryBtn: { text: 'Explore the collection', to: '/shop', search: undefined },
+      secondaryBtn: { text: 'The story behind us', to: '/our-story' },
+      tag: '01 / 03 · THE EVERYDAY EDIT',
+      caption: 'From your doorstep to your next adventure',
+    },
+    {
+      id: 'slide-2',
+      eyebrow: 'Master Handlooms · 100% Eco-Friendly',
+      title: (
+        <>
+          Raised lattice knots.<br />
+          Pure cotton soles.<br />
+          <em className="text-[#EDBC3D] italic">A warm welcome starts here.</em>
+        </>
+      ),
+      copy: 'Plush crimson, turquoise and gold geometric knots designed for long-lasting doorstep comfort, dirt trapping, and effortless washing on pure handlooms.',
+      image: matDiamond,
+      alt: 'Artisan handloom floor mat with vibrant jewel-tone diamond weave',
+      primaryBtn: { text: 'Shop Handloom Mats', to: '/shop', search: { category: 'Floor mats' } },
+      secondaryBtn: { text: 'Custom Sizing Enquiry', to: '/contact-us' },
+      tag: '02 / 03 · MASTER WEAVES',
+      caption: 'Direct mill dispatch from Bhavani weavers',
+    },
+    {
+      id: 'slide-3',
+      eyebrow: 'Direct Factory Value · Zero Plastic',
+      title: (
+        <>
+          Golden jute &amp; khadi.<br />
+          Pure cotton totes.<br />
+          <em className="text-[#D15608] italic">Your everyday, well carried.</em>
+        </>
+      ),
+      copy: 'Durable, sustainable, and tailored cloth bags trusted by premiere jewellery houses, lifestyle retail brands, and eco-conscious shoppers across India.',
+      image: woven,
+      alt: 'Artisan woven cotton and jute tote bags',
+      primaryBtn: { text: 'Shop Bag Collection', to: '/shop', search: { category: 'Bags' } },
+      secondaryBtn: { text: 'Bulk Orders & Branding', to: '/contact-us' },
+      tag: '03 / 03 · SUSTAINABLE BAGS',
+      caption: 'Trusted by leading South Indian brands',
+    },
+  ];
+
   const spotlightMats = [
     {
       id: 'heritage-lattice',
@@ -78,8 +136,18 @@ function Index() {
     },
   ];
 
+  const [currentHeroSlide, setCurrentHeroSlide] = useState(0);
+  const [isHeroHovered, setIsHeroHovered] = useState(false);
   const [activeSpotlight, setActiveSpotlight] = useState(0);
   const current = spotlightMats[activeSpotlight];
+
+  useEffect(() => {
+    if (isHeroHovered) return;
+    const timer = setInterval(() => {
+      setCurrentHeroSlide(prev => (prev + 1) % heroSlides.length);
+    }, 5500);
+    return () => clearInterval(timer);
+  }, [isHeroHovered, heroSlides.length]);
 
   return (
     <>
@@ -94,46 +162,101 @@ function Index() {
         </div>
       </div>
 
-      {/* Hero Section */}
-      <section className="hero">
-        <img
-          className="hero-image"
-          src={hero}
-          alt="Natural canvas bag and floor mat in a sunlit living space"
-          width={1920}
-          height={1088}
-          fetchPriority="high"
-        />
-        <div className="hero-content page-width">
-          <Eyebrow>Rooted in nature. Made for life.</Eyebrow>
-          <h1>
-            Thoughtful bags.<br />
-            Beautiful spaces.<br />
-            <em>Everyday, elevated.</em>
-          </h1>
-          <p className="hero-copy">
-            Carry a little character. Bring a little warmth home.<br />
-            Discover handloom floor mats and eco-friendly bags crafted with precision.
-          </p>
-          <div className="hero-actions">
-            <Link
-              to="/shop"
-              className="inline-flex items-center gap-2 h-12 px-8 rounded-full bg-[#D15608] hover:bg-[#9F160A] text-white text-xs font-bold uppercase tracking-[0.14em] shadow-md transition-all active:scale-95"
+      {/* Dynamic Luxury Hero Slider */}
+      <section
+        className="hero"
+        aria-label="Hero Showcase"
+        onMouseEnter={() => setIsHeroHovered(true)}
+        onMouseLeave={() => setIsHeroHovered(false)}
+      >
+        {heroSlides.map((slide, idx) => {
+          const isActive = idx === currentHeroSlide;
+          return (
+            <div
+              key={slide.id}
+              className={`hero-slide ${isActive ? 'active' : ''}`}
+              aria-hidden={!isActive}
             >
-              <span>Explore the collection</span>
-              <ArrowRight size={15} />
-            </Link>
-            <Link
-              to="/our-story"
-              className="inline-flex items-center gap-2 h-12 px-7 rounded-full bg-transparent border-2 border-[#0E0E0E] text-[#0E0E0E] hover:bg-[#0E0E0E] hover:text-white text-xs font-bold uppercase tracking-[0.14em] transition-all"
-            >
-              <span>The story behind us</span>
-              <MoveUpRight size={14} />
-            </Link>
+              <img
+                className="hero-slide-bg"
+                src={slide.image}
+                alt={slide.alt}
+                width={1920}
+                height={1088}
+                fetchPriority={idx === 0 ? 'high' : 'auto'}
+              />
+              <div className="hero-content page-width">
+                <Eyebrow>{slide.eyebrow}</Eyebrow>
+                <h1>{slide.title}</h1>
+                <p className="hero-copy">{slide.copy}</p>
+                <div className="hero-actions">
+                  <Link
+                    to={slide.primaryBtn.to}
+                    search={slide.primaryBtn.search as any}
+                    className="inline-flex items-center gap-2 h-12 px-8 rounded-full bg-[#D15608] hover:bg-[#9F160A] text-white text-xs font-bold uppercase tracking-[0.14em] shadow-md transition-all active:scale-95"
+                  >
+                    <span>{slide.primaryBtn.text}</span>
+                    <ArrowRight size={15} />
+                  </Link>
+                  <Link
+                    to={slide.secondaryBtn.to}
+                    className="inline-flex items-center gap-2 h-12 px-7 rounded-full bg-white/70 hover:bg-white border-2 border-[#0E0E0E] text-[#0E0E0E] text-xs font-bold uppercase tracking-[0.14em] transition-all backdrop-blur-xs"
+                  >
+                    <span>{slide.secondaryBtn.text}</span>
+                    <MoveUpRight size={14} />
+                  </Link>
+                </div>
+              </div>
+            </div>
+          );
+        })}
+
+        {/* Hero Interactive Controls */}
+        <div className="hero-controls">
+          <div className="page-width hero-controls-inner">
+            <div className="flex items-center gap-2.5">
+              {heroSlides.map((_, i) => (
+                <button
+                  key={i}
+                  type="button"
+                  onClick={() => setCurrentHeroSlide(i)}
+                  aria-label={`Go to slide ${i + 1}`}
+                  className={`h-2 rounded-full transition-all duration-300 cursor-pointer ${
+                    i === currentHeroSlide
+                      ? 'w-8 bg-[#D15608] shadow-xs'
+                      : 'w-2 bg-[#0E0E0E]/30 hover:bg-[#0E0E0E]/60'
+                  }`}
+                />
+              ))}
+              <span className="text-[11px] font-bold text-[#D15608] tracking-widest ml-3">
+                {heroSlides[currentHeroSlide].tag}
+              </span>
+            </div>
+
+            <div className="hidden sm:flex items-center gap-2">
+              <button
+                type="button"
+                onClick={() =>
+                  setCurrentHeroSlide(prev => (prev - 1 + heroSlides.length) % heroSlides.length)
+                }
+                aria-label="Previous slide"
+                className="size-9 rounded-full bg-white/80 hover:bg-white text-[#0E0E0E] flex items-center justify-center transition-all shadow-sm border border-[rgba(14,14,14,0.1)] active:scale-95 cursor-pointer"
+              >
+                <ChevronLeft size={16} />
+              </button>
+              <button
+                type="button"
+                onClick={() =>
+                  setCurrentHeroSlide(prev => (prev + 1) % heroSlides.length)
+                }
+                aria-label="Next slide"
+                className="size-9 rounded-full bg-white/80 hover:bg-white text-[#0E0E0E] flex items-center justify-center transition-all shadow-sm border border-[rgba(14,14,14,0.1)] active:scale-95 cursor-pointer"
+              >
+                <ChevronRight size={16} />
+              </button>
+            </div>
           </div>
         </div>
-        <div className="hero-pagination">01 <span /> THE EVERYDAY EDIT</div>
-        <div className="hero-caption">From your doorstep to your next adventure</div>
       </section>
 
       <EverydayBand />
@@ -145,32 +268,44 @@ function Index() {
             <Eyebrow>Two worlds. One thoughtful touch.</Eyebrow>
             <h2>For you. For your home.</h2>
           </div>
-          <span className="text-xs text-muted-foreground hidden sm:block max-w-xs text-right">
-            Find beauty in the things you use most.
+          <span className="text-xs text-muted-foreground hidden sm:block max-w-xs text-right leading-relaxed">
+            Find beauty in the things you use most. 100% biodegradable &amp; handloom crafted.
           </span>
         </div>
         <div className="category-grid">
-          <Link to="/shop" search={{ category: 'Bags' }} className="category bag-category" aria-label="Explore bags">
+          <Link
+            to="/shop"
+            search={{ category: 'Bags' }}
+            className="category bag-category group"
+            aria-label="Explore bags"
+          >
             <img src={tote} alt="Forest green and natural canvas bag" loading="lazy" width={1024} height={1024} />
             <div className="category-copy">
               <div>
+                <span className="category-badge-pill">Collection 01</span>
                 <h3>Bags</h3>
-                <p>Your everyday, well carried.</p>
+                <p>Pure cotton, golden jute &amp; tailored shoppers.</p>
               </div>
               <span className="category-arrow">
-                <MoveUpRight size={20} />
+                <MoveUpRight size={22} />
               </span>
             </div>
           </Link>
-          <Link to="/shop" search={{ category: 'Floor mats' }} className="category mat-category" aria-label="Explore floor mats">
+          <Link
+            to="/shop"
+            search={{ category: 'Floor mats' }}
+            className="category mat-category group"
+            aria-label="Explore floor mats"
+          >
             <img src={matIkat} alt="Handloom raised floor mat" loading="lazy" width={1024} height={1024} />
             <div className="category-copy">
               <div>
+                <span className="category-badge-pill">Collection 02</span>
                 <h3>Floor mats</h3>
-                <p>A warm welcome starts here.</p>
+                <p>Handloom raised lattice &amp; vibrant doorstep soles.</p>
               </div>
               <span className="category-arrow">
-                <MoveUpRight size={20} />
+                <MoveUpRight size={22} />
               </span>
             </div>
           </Link>
@@ -178,18 +313,18 @@ function Index() {
       </section>
 
       {/* Interactive Textile & Weave Studio Spotlight */}
-      <section className="section collection-band border-y border-border/70">
+      <section className="section collection-band border-y border-[rgba(14,14,14,0.08)] bg-white">
         <div className="page-width">
           <div className="section-title items-start">
             <div>
               <Eyebrow>Textile Craft &amp; Weaving</Eyebrow>
               <h2>The Floor Mat Lookbook</h2>
-              <p>Explore the tangible texture, hand-dyed yarns, and distinctive weaves of our workshop.</p>
+              <p>Explore the tangible texture, hand-dyed yarns, and distinctive weaves of our Bhavani workshop.</p>
             </div>
             <Link
               to="/shop"
               search={{ category: 'Floor mats' }}
-              className="inline-flex items-center gap-1.5 h-10 px-5 rounded-full bg-[#D15608] hover:bg-[#9F160A] text-white text-xs font-bold uppercase tracking-wider transition-all shadow-xs"
+              className="inline-flex items-center gap-2 h-11 px-6 rounded-full bg-[#D15608] hover:bg-[#9F160A] text-white text-xs font-bold uppercase tracking-wider transition-all shadow-md active:scale-95"
             >
               <span>View in Catalog</span>
               <ArrowRight size={14} />
@@ -208,16 +343,16 @@ function Index() {
                     onClick={() => setActiveSpotlight(idx)}
                     className={`text-left p-4 rounded-2xl border transition-all flex items-center justify-between cursor-pointer ${
                       isActive
-                        ? 'bg-white border-[#D15608] shadow-md ring-1 ring-[#D15608]/30 scale-[1.01]'
-                        : 'bg-white/80 border-[rgba(14,14,14,0.08)] hover:bg-white hover:border-[#D15608]/40'
+                        ? 'bg-white border-[#D15608] shadow-[0_6px_20px_rgba(209,86,8,0.15)] ring-2 ring-[#D15608]/20 scale-[1.01]'
+                        : 'bg-[#FAF7F2]/80 border-[rgba(14,14,14,0.08)] hover:bg-white hover:border-[#D15608]/40'
                     }`}
                   >
                     <div className="flex items-center gap-3.5">
-                      <div className="w-12 h-12 rounded-lg overflow-hidden border border-border/80 flex-shrink-0 bg-paper">
+                      <div className="w-12 h-12 rounded-xl overflow-hidden border border-[rgba(14,14,14,0.1)] flex-shrink-0 bg-paper shadow-xs">
                         <img src={mat.image} alt={mat.title} className="w-full h-full object-cover" />
                       </div>
                       <div>
-                        <h4 className="font-serif text-base font-semibold leading-tight text-foreground">
+                        <h4 className="font-['Manrope'] text-sm sm:text-base font-bold leading-tight text-foreground">
                           {mat.title}
                         </h4>
                         <span className="text-[11px] text-muted-foreground block mt-0.5">
@@ -226,7 +361,13 @@ function Index() {
                       </div>
                     </div>
                     <div className="flex items-center gap-2">
-                      <span className="text-[9px] font-semibold tracking-wider uppercase bg-[#D15608]/10 text-[#D15608] px-2.5 py-0.5 rounded-full hidden sm:inline-block">
+                      <span
+                        className={`text-[9px] font-bold tracking-wider uppercase px-2.5 py-0.5 rounded-full hidden sm:inline-block ${
+                          isActive
+                            ? 'bg-[#9F160A] text-white shadow-xs'
+                            : 'bg-[#D15608]/10 text-[#D15608]'
+                        }`}
+                      >
                         {mat.accent}
                       </span>
                       <ChevronRight
@@ -243,34 +384,36 @@ function Index() {
 
             {/* Stage Showcase Card */}
             <div className="lg:col-span-7">
-              <div className="relative rounded-2xl overflow-hidden border border-[rgba(14,14,14,0.08)] shadow-[0_4px_20px_rgba(0,0,0,0.06)] bg-white group">
-                <div className="aspect-[4/3] sm:aspect-[16/10] overflow-hidden bg-radial from-background to-paper flex items-center justify-center p-3 sm:p-5">
+              <div className="relative rounded-3xl overflow-hidden border border-[rgba(14,14,14,0.08)] shadow-[0_8px_30px_rgba(0,0,0,0.08)] bg-white group">
+                <div className="aspect-[4/3] sm:aspect-[16/10] overflow-hidden bg-radial from-background to-paper flex items-center justify-center p-3 sm:p-5 relative">
                   <img
                     src={current.image}
                     alt={current.title}
                     key={current.id}
-                    className="w-full h-full object-cover rounded-xl shadow-inner transition-all duration-700 group-hover:scale-[1.02]"
+                    className="w-full h-full object-cover rounded-2xl shadow-sm transition-all duration-700 group-hover:scale-[1.03]"
                   />
+                  <div className="absolute top-6 left-6 z-10">
+                    <span className="px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider bg-[#9F160A] text-white shadow-md">
+                      {current.accent}
+                    </span>
+                  </div>
                 </div>
                 <div className="p-6 sm:p-8 border-t border-[rgba(14,14,14,0.08)] bg-white/95 backdrop-blur-md flex flex-col sm:flex-row sm:items-center justify-between gap-4">
                   <div>
-                    <div className="flex items-center gap-2">
-                      <span className="text-[10px] font-semibold tracking-wider uppercase text-[#D15608] bg-[#D15608]/10 px-2.5 py-1 rounded">
-                        {current.accent}
-                      </span>
-                      <span className="text-xs text-muted-foreground">· {current.type}</span>
-                    </div>
-                    <h3 className="font-['Manrope'] text-2xl sm:text-3xl font-bold uppercase mt-2 text-foreground">
+                    <span className="text-xs font-semibold text-[#D15608] uppercase tracking-wider block">
+                      {current.type} · Master Handloom
+                    </span>
+                    <h3 className="font-['Manrope'] text-2xl sm:text-3xl font-bold uppercase mt-1.5 text-foreground">
                       {current.title}
                     </h3>
-                    <p className="text-xs sm:text-sm text-muted-foreground mt-1.5 max-w-md leading-relaxed">
+                    <p className="text-xs sm:text-sm text-muted-foreground mt-2 max-w-md leading-relaxed">
                       {current.desc}
                     </p>
                   </div>
                   <Link
                     to="/shop"
                     search={{ category: 'Floor mats' }}
-                    className="self-start sm:self-center shrink-0 inline-flex items-center gap-2 h-10 px-6 rounded-full bg-[#D15608] hover:bg-[#9F160A] text-white text-xs font-bold uppercase tracking-wider transition-all shadow-xs active:scale-95"
+                    className="self-start sm:self-center shrink-0 inline-flex items-center gap-2 h-11 px-6 rounded-full bg-[#D15608] hover:bg-[#9F160A] text-white text-xs font-bold uppercase tracking-wider transition-all shadow-md active:scale-95"
                   >
                     <span>Shop this style</span>
                     <ArrowRight size={14} />
@@ -281,35 +424,35 @@ function Index() {
           </div>
 
           {/* Craft Pillars Highlight */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-12 pt-8 border-t border-border/60">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-12 pt-8 border-t border-[rgba(14,14,14,0.08)]">
             <div className="flex items-start gap-4">
-              <div className="w-11 h-11 rounded-full bg-primary/10 text-primary flex items-center justify-center shrink-0">
-                <Factory size={20} />
+              <div className="w-12 h-12 rounded-full bg-[#D15608]/10 text-[#D15608] flex items-center justify-center shrink-0">
+                <Factory size={22} />
               </div>
               <div>
-                <h4 className="font-semibold text-sm text-foreground">Direct Mill Manufacturing</h4>
+                <h4 className="font-['Manrope'] font-bold text-sm text-foreground uppercase tracking-wide">Direct Mill Manufacturing</h4>
                 <p className="text-xs text-muted-foreground mt-1 leading-relaxed">
                   Crafted in-house from high-grade cotton and gada cloth threads with zero third-party markups.
                 </p>
               </div>
             </div>
             <div className="flex items-start gap-4">
-              <div className="w-11 h-11 rounded-full bg-primary/10 text-primary flex items-center justify-center shrink-0">
-                <Layers size={20} />
+              <div className="w-12 h-12 rounded-full bg-[#D15608]/10 text-[#D15608] flex items-center justify-center shrink-0">
+                <Layers size={22} />
               </div>
               <div>
-                <h4 className="font-semibold text-sm text-foreground">Custom Sizing &amp; Patterns</h4>
+                <h4 className="font-['Manrope'] font-bold text-sm text-foreground uppercase tracking-wide">Custom Sizing &amp; Patterns</h4>
                 <p className="text-xs text-muted-foreground mt-1 leading-relaxed">
                   From residential doorways to large retail runners, customized woven solutions are available.
                 </p>
               </div>
             </div>
             <div className="flex items-start gap-4">
-              <div className="w-11 h-11 rounded-full bg-primary/10 text-primary flex items-center justify-center shrink-0">
-                <Award size={20} />
+              <div className="w-12 h-12 rounded-full bg-[#D15608]/10 text-[#D15608] flex items-center justify-center shrink-0">
+                <Award size={22} />
               </div>
               <div>
-                <h4 className="font-semibold text-sm text-foreground">Trusted by Leading Brands</h4>
+                <h4 className="font-['Manrope'] font-bold text-sm text-foreground uppercase tracking-wide">Trusted by Leading Brands</h4>
                 <p className="text-xs text-muted-foreground mt-1 leading-relaxed">
                   Supplying premiere jewellery and lifestyle houses across India with consistent woven quality.
                 </p>
@@ -321,19 +464,20 @@ function Index() {
 
       {/* Brand & Purpose Section */}
       <section className="section page-width brand-story">
-        <div className="relative group overflow-hidden rounded-2xl border border-border shadow-md">
+        <div className="relative group overflow-hidden rounded-2xl border border-[rgba(14,14,14,0.08)] shadow-[0_6px_24px_rgba(0,0,0,0.06)]">
           <img
-            className="story-photo rounded-2xl transition-transform duration-700 group-hover:scale-[1.02]"
+            className="story-photo rounded-2xl transition-transform duration-700 group-hover:scale-[1.03]"
             src={facilityImg}
             alt="ShreeyaSudarshan Trading Company facility"
             loading="lazy"
             width={1024}
             height={768}
           />
-          <div className="absolute bottom-4 left-4 right-4 bg-background/90 backdrop-blur-md px-4 py-3 rounded-xl border border-border text-xs flex items-center justify-between">
-            <span className="flex items-center gap-2 font-medium">
-              <CheckCircle2 size={16} className="text-primary" /> Eco-Friendly Textile &amp; Bag Manufacturers
+          <div className="absolute bottom-4 left-4 right-4 bg-white/95 backdrop-blur-md px-4 py-3 rounded-xl border border-[rgba(14,14,14,0.08)] text-xs flex items-center justify-between shadow-sm">
+            <span className="flex items-center gap-2 font-semibold text-[#0E0E0E]">
+              <CheckCircle2 size={16} className="text-[#D15608]" /> Eco-Friendly Textile &amp; Bag Manufacturers
             </span>
+            <span className="text-[10px] uppercase font-bold text-[#9F160A] tracking-wider">Bhavani Facility</span>
           </div>
         </div>
 
@@ -366,13 +510,17 @@ function Index() {
       </section>
 
       {/* Closing Banner */}
-      <section className="closing-band">
-        <Eyebrow>Make room for the everyday</Eyebrow>
-        <h2 className="mt-4">A little more character. A little more you.</h2>
-        <p>Find something for wherever life takes you.</p>
+      <section className="bg-[#0E0E0E] text-[#F4F0E8] text-center py-16 px-6 border-t-2 border-[#EDBC3D]">
+        <Eyebrow className="justify-center text-[#EDBC3D]">Make room for the everyday</Eyebrow>
+        <h2 className="font-['Cormorant_Garamond',serif] text-3xl sm:text-4xl lg:text-5xl font-medium mt-4 mb-3 text-white">
+          A little more character. <em className="text-[#EDBC3D] italic">A little more you.</em>
+        </h2>
+        <p className="text-xs sm:text-sm text-[#F4F0E8]/70 max-w-md mx-auto mb-6 leading-relaxed">
+          Direct manufacturer pricing from Bhavani sheds with dependable handloom quality.
+        </p>
         <Link
           to="/shop"
-          className="inline-flex items-center gap-2 h-12 px-8 rounded-full bg-[#D15608] hover:bg-[#9F160A] text-white text-xs font-bold uppercase tracking-[0.14em] shadow-md transition-all active:scale-95"
+          className="inline-flex items-center gap-2 h-12 px-8 rounded-full bg-[#D15608] hover:bg-[#9F160A] text-white text-xs font-bold uppercase tracking-[0.14em] shadow-[0_4px_20px_rgba(209,86,8,0.4)] transition-all active:scale-95"
         >
           <span>Discover your favourites</span>
           <ArrowRight size={14} />
