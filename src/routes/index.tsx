@@ -186,6 +186,10 @@ function Index() {
                 fetchPriority={idx === 0 ? 'high' : 'auto'}
               />
               <div className="hero-content page-width">
+                <div className="inline-flex items-center gap-2 bg-white/90 backdrop-blur-md px-3.5 py-1.5 rounded-full border border-[#EDBC3D]/50 shadow-xs text-xs text-[#164E33] font-semibold tracking-wide mb-3">
+                  <Sparkles size={13} className="text-[#EDBC3D]" />
+                  <span>100% Eco-Friendly Handloom &amp; Textile Manufacturer · Bhavani</span>
+                </div>
                 <Eyebrow>{slide.eyebrow}</Eyebrow>
                 <h1>{slide.title}</h1>
                 <p className="hero-copy">{slide.copy}</p>
@@ -193,7 +197,7 @@ function Index() {
                   <Link
                     to={slide.primaryBtn.to}
                     search={slide.primaryBtn.search as any}
-                    className="inline-flex items-center gap-2 h-12 px-8 rounded-full bg-[#164E33] hover:bg-[#103A26] text-white text-xs font-bold uppercase tracking-[0.14em] shadow-md transition-all active:scale-95"
+                    className="inline-flex items-center gap-2 h-12 px-8 rounded-full bg-[#164E33] hover:bg-[#0D2E1F] text-white text-xs font-bold uppercase tracking-[0.14em] shadow-md transition-all active:scale-95 border border-[#EDBC3D]/40"
                   >
                     <span>{slide.primaryBtn.text}</span>
                     <ArrowRight size={15} />
@@ -324,7 +328,7 @@ function Index() {
             <Link
               to="/shop"
               search={{ category: 'Floor mats' }}
-              className="inline-flex items-center gap-2 h-11 px-6 rounded-full bg-[#164E33] hover:bg-[#103A26] text-white text-xs font-bold uppercase tracking-wider transition-all shadow-md active:scale-95"
+              className="inline-flex items-center gap-2 h-11 px-6 rounded-full bg-[#164E33] hover:bg-[#0D2E1F] text-white text-xs font-bold uppercase tracking-wider transition-all shadow-md active:scale-95 border border-[#EDBC3D]/40"
             >
               <span>View in Catalog</span>
               <ArrowRight size={14} />
@@ -413,7 +417,7 @@ function Index() {
                   <Link
                     to="/shop"
                     search={{ category: 'Floor mats' }}
-                    className="self-start sm:self-center shrink-0 inline-flex items-center gap-2 h-11 px-6 rounded-full bg-[#164E33] hover:bg-[#103A26] text-white text-xs font-bold uppercase tracking-wider transition-all shadow-md active:scale-95"
+                    className="self-start sm:self-center shrink-0 inline-flex items-center gap-2 h-11 px-6 rounded-full bg-[#164E33] hover:bg-[#0D2E1F] text-white text-xs font-bold uppercase tracking-wider transition-all shadow-md active:scale-95 border border-[#EDBC3D]/40"
                   >
                     <span>Shop this style</span>
                     <ArrowRight size={14} />
@@ -500,7 +504,7 @@ function Index() {
             </Link>
             <Link
               to="/shop"
-              className="inline-flex items-center gap-2 h-11 px-6 rounded-full bg-[#164E33] hover:bg-[#103A26] text-white text-xs font-bold uppercase tracking-wider transition-all shadow-sm active:scale-95"
+              className="inline-flex items-center gap-2 h-11 px-6 rounded-full bg-[#164E33] hover:bg-[#0D2E1F] text-white text-xs font-bold uppercase tracking-wider transition-all shadow-sm active:scale-95 border border-[#EDBC3D]/40"
             >
               <span>Explore Full Catalog</span>
               <Sparkles size={14} />
@@ -510,17 +514,17 @@ function Index() {
       </section>
 
       {/* Closing Banner */}
-      <section className="bg-[#0E0E0E] text-[#F4F0E8] text-center py-16 px-6 border-t-2 border-[#EDBC3D]">
+      <section className="bg-gradient-to-b from-[#123826] to-[#0A2016] text-[#F4F0E8] text-center py-16 px-6 border-t-2 border-[#EDBC3D]">
         <Eyebrow className="justify-center text-[#EDBC3D]">Make room for the everyday</Eyebrow>
         <h2 className="font-['Cormorant_Garamond',serif] text-3xl sm:text-4xl lg:text-5xl font-medium mt-4 mb-3 text-white">
           A little more character. <em className="text-[#EDBC3D] italic">A little more you.</em>
         </h2>
-        <p className="text-xs sm:text-sm text-[#F4F0E8]/70 max-w-md mx-auto mb-6 leading-relaxed">
+        <p className="text-xs sm:text-sm text-[#F4F0E8]/80 max-w-md mx-auto mb-6 leading-relaxed">
           Direct manufacturer pricing from Bhavani sheds with dependable handloom quality.
         </p>
         <Link
           to="/shop"
-          className="inline-flex items-center gap-2 h-12 px-8 rounded-full bg-[#164E33] hover:bg-[#103A26] text-white text-xs font-bold uppercase tracking-[0.14em] shadow-[0_4px_20px_rgba(22,78,51,0.4)] transition-all active:scale-95"
+          className="inline-flex items-center gap-2 h-12 px-8 rounded-full bg-[#164E33] hover:bg-[#0D2E1F] text-white border border-[#EDBC3D]/50 text-xs font-bold uppercase tracking-[0.14em] shadow-[0_4px_20px_rgba(22,78,51,0.4)] transition-all active:scale-95"
         >
           <span>Discover your favourites</span>
           <ArrowRight size={14} />

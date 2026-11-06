@@ -77,7 +77,7 @@
   --muted-foreground: #6B6760;
   --accent: #164E33;
   --accent-foreground: #FFFFFF;
-  --destructive: #8B0000;
+  --destructive: #164E33;
   --destructive-foreground: #FFFFFF;
   --border: rgba(14, 14, 14, 0.08);
   --input: rgba(14, 14, 14, 0.12);
@@ -110,7 +110,7 @@
   --muted-foreground: #9E9A92;
   --accent: #164E33;
   --accent-foreground: #FFFFFF;
-  --destructive: #8B0000;
+  --destructive: #164E33;
   --destructive-foreground: #FFFFFF;
   --border: rgba(244, 240, 232, 0.1);
   --input: rgba(244, 240, 232, 0.15);
@@ -159,17 +159,17 @@ button, a, input, select, textarea {
   margin-inline: auto;
 }
 
-/* 1. THIN DEEP FOREST GREEN ANNOUNCEMENT BAR */
+/* 1. ROYAL FOREST GREEN ANNOUNCEMENT BAR */
 .announcement {
-  background: #123826;
-  color: #FFFFFF;
+  background: linear-gradient(90deg, #123826 0%, #1a4d35 50%, #123826 100%);
+  color: #F7EEDB;
   text-align: center;
   font-size: 11px;
   font-weight: 500;
-  padding: 8px 16px;
-  letter-spacing: 0.2em;
+  padding: 9px 24px;
+  letter-spacing: 0.18em;
   text-transform: uppercase;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+  border-bottom: 1px solid rgba(237, 188, 61, 0.35);
   position: relative;
   z-index: 50;
   user-select: none;
@@ -579,9 +579,9 @@ button, a, input, select, textarea {
   inset: 0;
   background: linear-gradient(
     to top,
-    rgba(14, 14, 14, 0.88) 0%,
-    rgba(14, 14, 14, 0.4) 48%,
-    rgba(14, 14, 14, 0.05) 100%
+    rgba(14, 38, 25, 0.88) 0%,
+    rgba(14, 38, 25, 0.40) 45%,
+    rgba(14, 38, 25, 0.05) 100%
   );
   pointer-events: none;
 }
@@ -724,16 +724,18 @@ button, a, input, select, textarea {
   position: absolute;
   top: 10px;
   left: 10px;
-  background: #123826;
-  color: #FFFFFF;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(8px);
+  color: #164E33;
+  border: 1px solid rgba(237, 188, 61, 0.55);
   font-family: 'Poppins', sans-serif;
   font-size: 8.5px;
   text-transform: uppercase;
-  letter-spacing: 0.12em;
+  letter-spacing: 0.14em;
   font-weight: 700;
-  padding: 4px 9px;
+  padding: 4px 10px;
   border-radius: 999px;
-  box-shadow: 0 2px 6px rgba(18, 56, 38, 0.3);
+  box-shadow: 0 2px 8px rgba(18, 56, 38, 0.12);
   z-index: 2;
 }
 
@@ -930,10 +932,10 @@ button, a, input, select, textarea {
   margin-bottom: 24px;
 }
 
-/* 11. LUXURY FOOTER (Signature Padma-Fabrics dark obsidian footer) */
+/* 11. LUXURY ROYAL FOREST FOOTER */
 .site-footer {
-  background: #0E0E0E;
-  color: #F4F0E8;
+  background: linear-gradient(180deg, #123826 0%, #0d271b 100%);
+  color: #F7EEDB;
   padding-block: 64px 24px;
   border-top: 2px solid #EDBC3D;
   position: relative;

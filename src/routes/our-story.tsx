@@ -66,7 +66,7 @@ function Story() {
           <div className="flex flex-wrap gap-3 pt-2">
             <Link
               to="/shop"
-              className="inline-flex items-center gap-2 px-6 h-11 rounded-full bg-[#164E33] hover:bg-[#103A26] text-white text-xs font-semibold uppercase tracking-[0.14em] transition-all shadow-sm active:scale-98"
+              className="inline-flex items-center gap-2 px-6 h-11 rounded-full bg-[#164E33] hover:bg-[#0D2E1F] text-white text-xs font-semibold uppercase tracking-[0.14em] transition-all shadow-sm active:scale-98 border border-[#EDBC3D]/40"
             >
               <span>Explore the collection</span>
               <ArrowRight size={14} />

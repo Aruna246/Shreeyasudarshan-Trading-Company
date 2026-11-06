@@ -338,13 +338,13 @@ export function Storefront({ children }: { children: ReactNode }) {
         <img src={logo.url} alt="" width={1064} height={1042} />
       </div>
 
-      {/* 1. THIN DEEP FOREST GREEN ANNOUNCEMENT BAR */}
-      <div className="bg-[#123826] text-white border-b border-black/10 text-[11px] font-medium uppercase tracking-[0.2em] py-2 px-4 select-none relative z-50">
+      {/* 1. ROYAL FOREST GREEN ANNOUNCEMENT BAR */}
+      <div className="announcement">
         <div className="max-w-7xl mx-auto flex items-center justify-between text-center">
           <span className="hidden md:inline text-white/80">
             Bhavani Weaving Hub · Erode
           </span>
-          <span className="w-full md:w-auto text-white font-light">
+          <span className="w-full md:w-auto text-[#F7EEDB] font-light">
             Direct Mill Rates · Handloom Floor Mats &amp; Pure Cotton Bags · Desk:{' '}
             <a href="tel:+919842270384" className="text-[#EDBC3D] hover:underline font-normal">
               +91 98422 70384
@@ -550,7 +550,7 @@ export function Storefront({ children }: { children: ReactNode }) {
                 }}
               >
                 <span className="flex items-center gap-2">
-                  <Heart size={16} fill={saved.length > 0 ? '#dc2626' : 'none'} color={saved.length > 0 ? '#dc2626' : 'currentColor'} /> Saved Favourites
+                  <Heart size={16} fill={saved.length > 0 ? '#164E33' : 'none'} color={saved.length > 0 ? '#164E33' : 'currentColor'} /> Saved Favourites
                 </span>
                 <span className="text-xs font-semibold px-2 py-0.5 rounded-full bg-secondary text-primary">
                   {saved.length}
@@ -645,7 +645,7 @@ export function Storefront({ children }: { children: ReactNode }) {
                         <Button
                           variant="ghost"
                           size="icon"
-                          className="h-7 w-7 text-muted-foreground hover:text-red-600"
+                          className="h-7 w-7 text-muted-foreground hover:text-[#164E33]"
                           aria-label={`Remove ${p.name}`}
                           onClick={() => {
                             setCart(prev => prev.filter(l => l.id !== p.id));
@@ -1033,9 +1033,9 @@ export function Storefront({ children }: { children: ReactNode }) {
                     <button
                       type="button"
                       onClick={() => toggleSave(product.id)}
-                      className="text-xs font-medium text-muted-foreground hover:text-red-600 flex items-center gap-1 cursor-pointer"
+                      className="text-xs font-medium text-muted-foreground hover:text-[#164E33] flex items-center gap-1 cursor-pointer"
                     >
-                      <Heart size={14} fill={saved.includes(product.id) ? '#dc2626' : 'none'} color={saved.includes(product.id) ? '#dc2626' : 'currentColor'} />
+                      <Heart size={14} fill={saved.includes(product.id) ? '#164E33' : 'none'} color={saved.includes(product.id) ? '#164E33' : 'currentColor'} />
                       <span>{saved.includes(product.id) ? 'Saved' : 'Save'}</span>
                     </button>
                   </div>
@@ -1087,11 +1087,7 @@ export function ProductCard({ product }: { product: Product }) {
         {badge ? (
           <div className="absolute bottom-3 left-3 z-10 transition-opacity duration-200 group-hover:opacity-0 pointer-events-none">
             <span
-              className={`inline-block px-2.5 py-0.5 rounded-full text-[10px] font-bold uppercase tracking-[0.14em] shadow-xs ${
-                badgeLower.includes('hand') || badgeLower.includes('artisan') || badgeLower.includes('eco')
-                  ? 'bg-[#123826] text-white'
-                  : 'bg-[#EDBC3D] text-[#0E0E0E]'
-              }`}
+              className="inline-block px-2.5 py-0.5 rounded-full text-[10px] font-bold uppercase tracking-[0.14em] shadow-xs bg-white/95 text-[#164E33] border border-[#EDBC3D]/60"
             >
               {badge}
             </span>
@@ -1108,7 +1104,7 @@ export function ProductCard({ product }: { product: Product }) {
           aria-label={saved ? "Remove from favourites" : "Add to favourites"}
           className={`absolute top-3 right-3 z-10 size-8 rounded-full flex items-center justify-center transition-all ${
             saved
-              ? "bg-[#123826] text-white shadow-sm"
+              ? "bg-[#164E33] text-white shadow-sm"
               : "bg-black/25 hover:bg-black/60 text-white backdrop-blur-xs"
           }`}
         >
@@ -1123,7 +1119,7 @@ export function ProductCard({ product }: { product: Product }) {
               e.stopPropagation();
               store.addToCart(product, 1);
             }}
-            className="w-full py-2.5 rounded-full bg-[#164E33] hover:bg-[#103A26] text-white text-[11px] font-bold uppercase tracking-[0.14em] transition-all flex items-center justify-center gap-2 cursor-pointer shadow-md active:scale-98 border border-[#EDBC3D]/50"
+            className="w-full py-2.5 rounded-full bg-[#164E33] hover:bg-[#0D2E1F] text-white text-[11px] font-bold uppercase tracking-[0.14em] transition-all flex items-center justify-center gap-2 cursor-pointer shadow-md active:scale-98 border border-[#EDBC3D]/50"
           >
             <ShoppingBag className="size-3.5 text-[#FAF6EE]" strokeWidth={1.5} />
             <span>Quick Add to Bag</span>
@@ -1194,7 +1190,7 @@ export function ProductCard({ product }: { product: Product }) {
                   e.stopPropagation();
                   store.setProduct(product);
                 }}
-                className="h-7 px-2.5 sm:px-3 rounded-[6px] bg-[#123826] hover:bg-[#164E33] text-white text-[10px] sm:text-[11px] font-bold uppercase tracking-wider transition-all cursor-pointer shadow-xs active:scale-95 shrink-0 inline-flex items-center justify-center whitespace-nowrap"
+                className="h-7 px-2.5 sm:px-3 rounded-[6px] bg-[#164E33] hover:bg-[#0D2E1F] text-white text-[10px] sm:text-[11px] font-bold uppercase tracking-wider transition-all cursor-pointer shadow-xs active:scale-95 shrink-0 inline-flex items-center justify-center whitespace-nowrap"
                 title="View Details"
               >
                 <span>VIEW</span>

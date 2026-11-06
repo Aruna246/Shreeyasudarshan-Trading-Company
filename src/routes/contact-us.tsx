@@ -58,10 +58,10 @@ function ContactUs() {
       {/* Main Dual Cards Section */}
       <section className="section page-width !pt-10">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
-          {/* Left Obsidian Black Contact Card (Padma-Fabrics Style) */}
-          <div className="lg:col-span-5 bg-[#0E0E0E] text-[#F4F0E8] p-8 sm:p-10 rounded-2xl shadow-xl flex flex-col justify-between border-t-2 border-[#EDBC3D] border-x border-b border-[rgba(244,240,232,0.1)]">
+          {/* Left Royal Forest Green Contact Card */}
+          <div className="lg:col-span-5 bg-gradient-to-br from-[#123826] to-[#0c261a] text-white p-8 sm:p-10 rounded-2xl shadow-xl flex flex-col justify-between border-t-2 border-[#EDBC3D] border-x border-b border-[#EDBC3D]/25">
             <div>
-              <span className="text-[10px] font-semibold tracking-widest uppercase text-white bg-[#123826] px-3 py-1 rounded-full inline-block mb-4">
+              <span className="text-[10px] font-semibold tracking-widest uppercase text-[#EDBC3D] bg-white/15 border border-white/20 px-3 py-1 rounded-full inline-block mb-4">
                 Headquarters
               </span>
               <h2 className="font-['Manrope'] text-3xl sm:text-4xl font-bold tracking-tight text-[#F4F0E8] mb-3 uppercase">
@@ -293,7 +293,7 @@ function ContactUs() {
 
                 <button
                   type="submit"
-                  className="w-full h-12 rounded-full bg-[#164E33] hover:bg-[#103A26] text-white text-xs font-bold uppercase tracking-[0.14em] transition-all flex items-center justify-center gap-2 cursor-pointer shadow-md active:scale-98"
+                  className="w-full h-12 rounded-full bg-[#164E33] hover:bg-[#0D2E1F] text-white text-xs font-bold uppercase tracking-[0.14em] transition-all flex items-center justify-center gap-2 cursor-pointer shadow-md active:scale-98 border border-[#EDBC3D]/40"
                 >
                   <span>Send Enquiry</span>
                   <Send size={15} />
