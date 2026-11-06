@@ -1,19 +1,40 @@
-import { neon } from '@neondatabase/serverless';
+import { neon, neonConfig } from '@neondatabase/serverless';
 import type { Product, Order } from './catalog';
+
+export const DEFAULT_DATABASE_URL = 'postgresql://neondb_owner:npg_Zk1rF3GlXPxI@ep-old-haze-b3ckv4oe-pooler.c-4.ap-southeast-1.aws.neon.tech/shreeyasudarshan-trading-company?sslmode=require&channel_binding=require';
 
 const NEON_DB_URL_KEY = 'ss_neon_database_url';
 
+// Fix endpoint resolution for regional sub-clusters (e.g. c-4.ap-southeast-1.aws.neon.tech)
+if (typeof neonConfig !== 'undefined' && neonConfig) {
+  const origFetchEndpoint = neonConfig.fetchEndpoint;
+  neonConfig.fetchEndpoint = (host: string, port?: number) => {
+    if (host && (host.includes('.c-') || host.includes('-pooler'))) {
+      return `https://${host}/sql`;
+    }
+    return origFetchEndpoint ? origFetchEndpoint(host, port) : `https://${host}/sql`;
+  };
+}
+
 export function getSavedDatabaseUrl(): string {
   try {
-    return localStorage.getItem(NEON_DB_URL_KEY) || '';
+    const stored = typeof localStorage !== 'undefined' ? localStorage.getItem(NEON_DB_URL_KEY) : null;
+    if (stored && stored.trim()) return stored.trim();
+    return (
+      (typeof process !== 'undefined' && process.env?.DATABASE_URL) ||
+      (typeof import.meta !== 'undefined' && (import.meta as any).env?.VITE_DATABASE_URL) ||
+      DEFAULT_DATABASE_URL
+    );
   } catch {
-    return '';
+    return DEFAULT_DATABASE_URL;
   }
 }
 
 export function saveDatabaseUrl(url: string): void {
   try {
-    localStorage.setItem(NEON_DB_URL_KEY, url.trim());
+    if (typeof localStorage !== 'undefined') {
+      localStorage.setItem(NEON_DB_URL_KEY, url.trim());
+    }
   } catch {}
 }
 

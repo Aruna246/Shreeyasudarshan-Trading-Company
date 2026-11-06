@@ -150,6 +150,32 @@ export function Storefront({ children }: { children: ReactNode }) {
     } catch {
       // fallback to initial state on restricted browsers
     }
+
+    // Background sync with Neon PostgreSQL
+    (async () => {
+      try {
+        const dbProducts = await fetchProductsFromDb();
+        if (dbProducts && dbProducts.length > 0) {
+          const validDb = dbProducts.filter(p => p.id !== 'mat-blue-stripe' && p.id !== 'sage-mat');
+          const existingIds = new Set(validDb.map(p => p.id));
+          const missingDefaults = defaultProducts.filter(p => !existingIds.has(p.id));
+          const merged = [...validDb, ...missingDefaults];
+          setProductList(merged);
+          try {
+            localStorage.setItem(PRODUCTS_STORAGE_KEY, JSON.stringify(merged));
+          } catch {}
+        }
+        const dbOrders = await fetchOrdersFromDb();
+        if (dbOrders && dbOrders.length > 0) {
+          setOrderList(dbOrders);
+          try {
+            localStorage.setItem(ORDERS_STORAGE_KEY, JSON.stringify(dbOrders));
+          } catch {}
+        }
+      } catch (err) {
+        console.warn('Neon DB background pull silent error:', err);
+      }
+    })();
   }, []);
 
   const saveProducts = (prods: Product[]) => {
@@ -172,6 +198,7 @@ export function Storefront({ children }: { children: ReactNode }) {
     const newProduct: Product = { ...newProdData, id };
     const updated = [newProduct, ...productList];
     saveProducts(updated);
+    syncProductToDb(newProduct).catch(err => console.warn('Neon DB sync error:', err));
     toast.success('Product added successfully!');
     return newProduct;
   };
@@ -179,6 +206,7 @@ export function Storefront({ children }: { children: ReactNode }) {
   const updateProduct = (updated: Product) => {
     const prods = productList.map(p => (p.id === updated.id ? updated : p));
     saveProducts(prods);
+    syncProductToDb(updated).catch(err => console.warn('Neon DB sync error:', err));
     toast.success('Product updated!');
   };
 
@@ -186,12 +214,17 @@ export function Storefront({ children }: { children: ReactNode }) {
     const prods = productList.filter(p => p.id !== id);
     saveProducts(prods);
     setCart(prev => prev.filter(c => c.id !== id));
+    deleteProductFromDb(id).catch(err => console.warn('Neon DB sync error:', err));
     toast.success('Product removed!');
   };
 
   const updateOrderStatus = (orderId: string, status: OrderStatus) => {
     const ords = orderList.map(o => (o.id === orderId ? { ...o, status } : o));
     saveOrders(ords);
+    const target = ords.find(o => o.id === orderId);
+    if (target) {
+      syncOrderToDb(target).catch(err => console.warn('Neon DB sync error:', err));
+    }
     toast.success(`Order status changed to ${status}`);
   };
 
@@ -228,6 +261,7 @@ export function Storefront({ children }: { children: ReactNode }) {
 
     const updated = [newOrder, ...orderList];
     saveOrders(updated);
+    syncOrderToDb(newOrder).catch(err => console.warn('Neon DB sync error:', err));
     setCart([]);
     toast.success('Order placed successfully!', {
       description: `Order ID: ${newOrder.id}`,
