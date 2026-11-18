@@ -98,8 +98,8 @@ export function Brand() {
         <span className="font-['Manrope'] text-[14px] sm:text-[17px] font-extrabold tracking-[0.12em] text-[#121212] group-hover:text-[#164E33] transition-colors leading-none truncate uppercase">
           ShreeyaSudarshan
         </span>
-        <span className="text-[9px] sm:text-[9.5px] font-semibold uppercase tracking-[0.2em] text-[#164E33] block mt-1">
-          Proudly Indian · Bhavani
+        <span className="text-[9px] sm:text-[9.5px] font-semibold uppercase tracking-[0.18em] text-[#164E33] block mt-1">
+          Trading Company · Bhavani
         </span>
       </div>
     </Link>
@@ -107,9 +107,9 @@ export function Brand() {
 }
 
 const ANNOUNCEMENTS = [
-  { text: 'Free Pan-India Shipping on Direct Orders · Cash on Delivery & UPI Available', link: '/shop' },
-  { text: 'Proudly Indian · Handcrafted Cotton Bags, Jute Totes & Bhavani Handloom Floor Mats', link: '/shop' },
-  { text: 'Bulk & Custom Branding Available for Jewellery & Retail Brands · Call +91 98422 70384', link: '/contact-us' },
+  { text: 'Direct Factory Rates from Bhavani · Handloom Floor Mats, Cotton, Jute & Non-Woven Bags', link: '/shop' },
+  { text: 'Bulk & Custom Orders for Jewellery & Retail Brands · Call +91 98422 70384', link: '/contact-us' },
+  { text: 'Handloom Floor Mats Starting ₹50 · Pure Cotton, Vasthu & Designer Weaves', link: '/shop' },
 ];
 
 export function Storefront({ children }: { children: ReactNode }) {
@@ -126,7 +126,6 @@ export function Storefront({ children }: { children: ReactNode }) {
   const [query, setQuery] = useState('');
   const [activeCategoryFilter, setActiveCategoryFilter] = useState<'All' | 'Bags' | 'Floor mats'>('All');
   const [announcementIdx, setAnnouncementIdx] = useState(0);
-  const [newsletterEmail, setNewsletterEmail] = useState('');
 
   useEffect(() => {
     const id = setInterval(() => {
@@ -348,32 +347,58 @@ export function Storefront({ children }: { children: ReactNode }) {
   const totalCartCount = cart.reduce((n, l) => n + l.quantity, 0);
   const totalCartAmount = cartTotal(cart, productList);
 
-  const currentSearch = (location.search as { category?: string } | undefined)?.category;
+  const currentSearch = location.search as { category?: string; q?: string } | undefined;
+  const currentCat = currentSearch?.category;
+  const currentQ = currentSearch?.q?.toLowerCase();
 
   const nav = (
     <>
       <Link
         to="/shop"
-        search={{ category: 'Bags' }}
-        className={location.pathname === '/shop' && currentSearch === 'Bags' ? 'active' : ''}
+        className={location.pathname === '/shop' && !currentCat && !currentQ ? 'active' : ''}
         onClick={() => setMenuOpen(false)}
       >
-        Bags
+        Shop All
+      </Link>
+      <Link
+        to="/shop"
+        search={{ category: 'Bags', q: 'cotton' }}
+        className={location.pathname === '/shop' && currentQ === 'cotton' ? 'active' : ''}
+        onClick={() => setMenuOpen(false)}
+      >
+        Cotton &amp; Khadi Bags
+      </Link>
+      <Link
+        to="/shop"
+        search={{ category: 'Bags', q: 'jute' }}
+        className={location.pathname === '/shop' && currentQ === 'jute' ? 'active' : ''}
+        onClick={() => setMenuOpen(false)}
+      >
+        Jute Bags
+      </Link>
+      <Link
+        to="/shop"
+        search={{ category: 'Bags', q: 'non-woven' }}
+        className={location.pathname === '/shop' && currentQ === 'non-woven' ? 'active' : ''}
+        onClick={() => setMenuOpen(false)}
+      >
+        Non-Woven Bags
       </Link>
       <Link
         to="/shop"
         search={{ category: 'Floor mats' }}
-        className={location.pathname === '/shop' && currentSearch === 'Floor mats' ? 'active' : ''}
+        className={location.pathname === '/shop' && currentCat === 'Floor mats' && !currentQ ? 'active' : ''}
         onClick={() => setMenuOpen(false)}
       >
         Floor Mats
       </Link>
       <Link
         to="/shop"
-        className={location.pathname === '/shop' && !currentSearch ? 'active' : ''}
+        search={{ category: 'Floor mats', q: 'vasthu' }}
+        className={location.pathname === '/shop' && currentQ === 'vasthu' ? 'active' : ''}
         onClick={() => setMenuOpen(false)}
       >
-        Shop All
+        Vasthu Mats
       </Link>
       <Link
         to="/our-story"
@@ -391,15 +416,6 @@ export function Storefront({ children }: { children: ReactNode }) {
       </Link>
     </>
   );
-
-  const handleNewsletterSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!newsletterEmail.trim()) return;
-    toast.success('Welcome to the ShreeyaSudarshan community!', {
-      description: 'You will receive updates on new handloom launches and factory deals.',
-    });
-    setNewsletterEmail('');
-  };
 
   return (
     <StoreContext.Provider
@@ -427,7 +443,7 @@ export function Storefront({ children }: { children: ReactNode }) {
         <img src={logo.url} alt="" width={1064} height={1042} />
       </div>
 
-      {/* 1. ZOUK-STYLE ROTATING ANNOUNCEMENT BAR */}
+      {/* 1. ZOUK-STYLE SLIM ROTATING TOP BAR */}
       <div className="announcement">
         <div className="page-width flex items-center justify-between gap-3">
           <button
@@ -455,14 +471,15 @@ export function Storefront({ children }: { children: ReactNode }) {
         </div>
       </div>
 
-      {/* 2. CRISP ZOUK-STYLE WHITE STICKY HEADER */}
+      {/* 2. ZOUK-STYLE TWO-TIER PURE WHITE STICKY HEADER */}
       <div className="header-wrapper">
+        {/* Row 1: Brand + Centered Search Bar + Wishlist & Bag */}
         <header className="site-header page-width">
-          <div className="flex items-center gap-2 sm:gap-4 min-w-0">
+          <div className="flex items-center gap-2 sm:gap-3 min-w-0">
             <Button
               variant="ghost"
               size="icon"
-              className="mobile-menu -ml-2 hover:bg-black/5 text-[#121212]"
+              className="mobile-menu -ml-2 hover:bg-black/5 text-[#141414]"
               aria-label="Open menu"
               onClick={() => setMenuOpen(true)}
             >
@@ -471,29 +488,25 @@ export function Storefront({ children }: { children: ReactNode }) {
             <Brand />
           </div>
 
-          <nav className="desktop-nav" aria-label="Main navigation">
-            {nav}
-          </nav>
+          {/* Prominent Centered Zouk Search Bar */}
+          <button
+            type="button"
+            onClick={() => setSearchOpen(true)}
+            aria-label="Search products"
+            className="hidden md:flex items-center gap-3 flex-1 max-w-md h-10 px-4 rounded-full bg-[#F6F3EC] hover:bg-[#EFECE3] border border-[#E5E0D5] text-xs sm:text-[13px] text-[#66635C] transition-colors cursor-pointer"
+          >
+            <Search size={15} className="text-[#164E33] shrink-0" />
+            <span className="truncate">Search Cotton Totes, Jute Bags, Vasthu Mats, Floor Mats...</span>
+          </button>
 
           <div className="header-tools">
-            {/* Zouk-style inline desktop search pill */}
-            <button
-              type="button"
-              onClick={() => setSearchOpen(true)}
-              aria-label="Search collection"
-              className="hidden xl:flex items-center gap-2.5 h-9 w-52 px-3.5 rounded-full bg-[#F7F5F0] hover:bg-[#EFECE4] border border-[#E5E1D8] text-xs text-[#66645E] transition-colors cursor-pointer mr-1"
-            >
-              <Search size={14} className="text-[#164E33] shrink-0" />
-              <span className="truncate">Search bags, mats...</span>
-            </button>
-
             <Button
               variant="ghost"
               size="icon"
               title="Search collection"
               aria-label="Search collection"
               onClick={() => setSearchOpen(true)}
-              className="xl:hidden rounded-full size-9 hover:text-[#164E33] hover:bg-[#F7F5F0] text-[#121212]"
+              className="md:hidden rounded-full size-9 hover:text-[#164E33] hover:bg-[#F6F3EC] text-[#141414]"
             >
               <Search size={19} />
             </Button>
@@ -501,7 +514,7 @@ export function Storefront({ children }: { children: ReactNode }) {
             <Button
               variant="ghost"
               size="icon"
-              className="relative rounded-full size-9 hover:text-[#164E33] hover:bg-[#F7F5F0] text-[#121212]"
+              className="relative rounded-full size-9 hover:text-[#164E33] hover:bg-[#F6F3EC] text-[#141414]"
               title="Saved favourites"
               aria-label="Saved favourites"
               onClick={() => setSavedOpen(true)}
@@ -520,17 +533,26 @@ export function Storefront({ children }: { children: ReactNode }) {
 
             <Button
               variant="ghost"
-              className="h-9 px-2.5 sm:px-3 rounded-full bg-[#F7F5F0] hover:bg-[#EAE6DC] border border-[#E5E1D8] flex items-center gap-1.5 text-[#121212]"
+              className="h-9 px-3 rounded-full bg-[#164E33] hover:bg-[#0F3925] text-white flex items-center gap-1.5 shadow-xs"
               title="Open shopping bag"
               aria-label="Open shopping bag"
               onClick={() => setCartOpen(true)}
             >
-              <ShoppingBag size={17} className="text-[#164E33]" />
-              <span className="hidden sm:inline text-xs font-semibold">Bag</span>
-              <span className="bag-counter">{totalCartCount}</span>
+              <ShoppingBag size={16} className="text-white" />
+              <span className="hidden sm:inline text-xs font-bold">Bag</span>
+              <span className="min-w-4.5 h-4.5 px-1 rounded-full bg-white text-[#164E33] text-[10px] font-extrabold inline-grid place-items-center">
+                {totalCartCount}
+              </span>
             </Button>
           </div>
         </header>
+
+        {/* Row 2: Zouk-Style Category Sub-Navigation Bar */}
+        <div className="zouk-subnav">
+          <nav className="desktop-nav page-width" aria-label="Product categories navigation">
+            {nav}
+          </nav>
+        </div>
       </div>
 
       {/* Main Page Content */}
@@ -563,17 +585,17 @@ export function Storefront({ children }: { children: ReactNode }) {
         </a>
       </aside>
 
-      {/* 3. ZOUK-STYLE 4-COLUMN FOOTER */}
+      {/* 3. CLEAN 3-COLUMN FOOTER (100% REAL COMPANY DETAILS) */}
       <footer className="site-footer relative z-10">
         <div className="page-width">
           <div className="footer-grid">
-            {/* Col 1: Brand & Factory Details */}
+            {/* Col 1: Brand & Bhavani Factory Details */}
             <div>
               <div className="flex items-center gap-3 mb-4">
                 <img
                   src={logo.url}
                   alt="ShreeyaSudarshan Trading Company"
-                  className="w-11 h-11 rounded-full object-cover ring-2 ring-[#F4D178]/40 shadow-sm shrink-0 bg-[#F7F5F0] p-0.5"
+                  className="w-11 h-11 rounded-full object-cover ring-2 ring-[#F4D178]/40 shadow-sm shrink-0 bg-[#F6F3EC] p-0.5"
                   width={44}
                   height={44}
                 />
@@ -585,7 +607,7 @@ export function Storefront({ children }: { children: ReactNode }) {
                 </div>
               </div>
               <p className="footer-tag">
-                Proudly Indian &amp; 100% Eco-Friendly Textile &amp; Bag Manufacturers. Master Handloom Floor Mats, Pure Cotton Totes, Golden Jute Bags &amp; Gada Cloth.
+                Eco-Friendly Textile &amp; Bag Manufacturers specializing in Handloom Floor Mats, Cotton Bags, Jute Bags, Non-Woven Bags &amp; Gada Cloth (20&apos;s).
               </p>
               <div className="mt-4 text-[12.5px] text-white/80 space-y-2">
                 <p className="flex items-start gap-2">
@@ -605,78 +627,38 @@ export function Storefront({ children }: { children: ReactNode }) {
               </div>
             </div>
 
-            {/* Col 2: Shop Categories */}
+            {/* Col 2: Our Real Product Categories */}
             <div className="footer-links">
-              <h3>Shop By Category</h3>
-              <Link to="/shop" search={{ category: 'Bags' }}>Cotton &amp; Canvas Totes</Link>
-              <Link to="/shop" search={{ category: 'Bags' }}>Biodegradable Jute Bags</Link>
-              <Link to="/shop" search={{ category: 'Bags' }}>Eco Non-Woven Carry Bags</Link>
-              <Link to="/shop" search={{ category: 'Floor mats' }}>Handloom Floor Mats</Link>
-              <Link to="/shop" search={{ category: 'Floor mats' }}>Raised Lattice &amp; Chenille Rugs</Link>
-              <Link to="/shop">View All Products</Link>
+              <h3>Our Collections</h3>
+              <Link to="/shop" search={{ category: 'Bags', q: 'cotton' }}>Handloom Cotton &amp; Khadi Bags</Link>
+              <Link to="/shop" search={{ category: 'Bags', q: 'jute' }}>Golden Jute &amp; Market Bags</Link>
+              <Link to="/shop" search={{ category: 'Bags', q: 'non-woven' }}>Eco Non-Woven Carry Bags</Link>
+              <Link to="/shop" search={{ category: 'Floor mats' }}>Designer Handloom Floor Mats</Link>
+              <Link to="/shop" search={{ category: 'Floor mats', q: 'vasthu' }}>Vasthu &amp; Traditional Floor Mats</Link>
+              <Link to="/shop">Shop All Products</Link>
             </div>
 
-            {/* Col 3: Useful Links */}
+            {/* Col 3: Company Links */}
             <div className="footer-links">
-              <h3>Useful Links</h3>
+              <h3>Company</h3>
               <Link to="/">Home</Link>
-              <Link to="/our-story">Our Story &amp; Craft</Link>
-              <Link to="/contact-us">Bulk &amp; Corporate Orders</Link>
-              <Link to="/contact-us">Jewellery Packaging</Link>
+              <Link to="/our-story">Our Story &amp; Clients</Link>
+              <Link to="/contact-us">Bulk &amp; Custom Orders</Link>
               <a
                 href="https://maps.google.com/maps?q=Anna+Nagar+1st+Street,+Bhavani,+Erode+638301"
                 target="_blank"
                 rel="noreferrer"
               >
-                Factory Location (Maps)
+                View Factory on Google Maps
               </a>
               <Link to="/admin" className="opacity-65 hover:opacity-100">Admin Portal</Link>
-            </div>
-
-            {/* Col 4: Zouk-style Community / Newsletter Box */}
-            <div>
-              <h3 className="font-['Manrope'] text-[11.5px] uppercase tracking-[0.14em] text-[#F4D178] font-bold mb-3">
-                Join Our Community
-              </h3>
-              <p className="text-xs text-white/75 leading-relaxed mb-4">
-                Get exclusive updates on new Bhavani handloom weaves, festive collections &amp; direct factory bulk offers.
-              </p>
-              <form onSubmit={handleNewsletterSubmit} className="flex gap-2">
-                <input
-                  type="email"
-                  required
-                  value={newsletterEmail}
-                  onChange={e => setNewsletterEmail(e.target.value)}
-                  placeholder="Enter your email"
-                  aria-label="Email address for updates"
-                  className="flex-1 min-w-0 h-10 px-3.5 rounded-lg bg-white/10 border border-white/20 text-xs text-white placeholder:text-white/50 focus:outline-none focus:border-[#F4D178]"
-                />
-                <button
-                  type="submit"
-                  className="h-10 px-4 rounded-lg bg-[#D9A438] hover:bg-[#c8942c] text-[#112F21] text-xs font-bold uppercase tracking-wider transition-colors cursor-pointer shrink-0 flex items-center gap-1.5"
-                >
-                  <span>Join</span>
-                  <Send size={12} />
-                </button>
-              </form>
-              <div className="flex flex-wrap gap-2 mt-5">
-                <span className="inline-flex items-center gap-1 text-[10px] font-semibold bg-white/10 border border-white/15 px-2.5 py-1 rounded-md text-white/90">
-                  <Leaf size={11} className="text-[#F4D178]" /> 100% Eco-Friendly
-                </span>
-                <span className="inline-flex items-center gap-1 text-[10px] font-semibold bg-white/10 border border-white/15 px-2.5 py-1 rounded-md text-white/90">
-                  <ShieldCheck size={11} className="text-[#F4D178]" /> GST Billing
-                </span>
-                <span className="inline-flex items-center gap-1 text-[10px] font-semibold bg-white/10 border border-white/15 px-2.5 py-1 rounded-md text-white/90">
-                  <Truck size={11} className="text-[#F4D178]" /> Pan-India
-                </span>
-              </div>
             </div>
           </div>
 
           <div className="footer-bottom">
             <span>© {new Date().getFullYear()} ShreeyaSudarshan Trading Company. All Rights Reserved.</span>
-            <span>Proudly Handcrafted in Bhavani, Tamil Nadu</span>
-            <span className="text-[#F4D178] font-medium">Trusted Partner for Leading Jewellery &amp; Retail Houses</span>
+            <span>Bhavani Handlooms · Eco-Friendly Manufacturing · Pan-India Dispatch</span>
+            <span className="text-[#F4D178] font-medium">Trusted Partner for Leading Jewellery Houses</span>
           </div>
         </div>
       </footer>
@@ -1219,10 +1201,10 @@ export function ProductCard({ product }: { product: Product }) {
   const badge = product.badge?.trim();
 
   return (
-    <article className="group relative flex flex-col rounded-xl overflow-hidden bg-white border border-[#EAE7E0] hover:border-[#164E33]/35 hover:shadow-[0_12px_32px_rgba(17,47,33,0.10)] transition-all duration-300 select-none text-[#121212]">
-      {/* Zouk-Style 4:5 Portrait Product Image Container */}
+    <article className="group relative flex flex-col rounded-xl overflow-hidden bg-white border border-[#EAE6DE] hover:border-[#164E33]/40 hover:shadow-[0_12px_28px_rgba(17,47,33,0.09)] transition-all duration-300 select-none text-[#141414]">
+      {/* Zouk-Style Clean Studio Image Container */}
       <div
-        className="relative aspect-[4/5] w-full overflow-hidden bg-[#F5F3EE] cursor-pointer"
+        className="relative aspect-[4/5] w-full overflow-hidden bg-[#F6F3EC] cursor-pointer"
         onClick={() => store.setProduct(product)}
       >
         <img
@@ -1234,9 +1216,9 @@ export function ProductCard({ product }: { product: Product }) {
           height={1024}
         />
 
-        {/* Top-Left Crisp Zouk Tag */}
+        {/* Top-Left Real Product Tag */}
         {badge ? (
-          <span className="absolute top-2.5 left-2.5 z-10 px-2.5 py-0.5 rounded-md text-[9.5px] font-bold uppercase tracking-wider bg-[#112F21]/90 text-white backdrop-blur-xs shadow-xs pointer-events-none">
+          <span className="absolute top-2.5 left-2.5 z-10 px-2.5 py-0.5 rounded-md text-[9.5px] font-bold uppercase tracking-wider bg-white/95 text-[#164E33] border border-[#164E33]/15 shadow-xs pointer-events-none">
             {badge}
           </span>
         ) : null}
@@ -1252,19 +1234,18 @@ export function ProductCard({ product }: { product: Product }) {
           className={`absolute top-2.5 right-2.5 z-10 size-8 rounded-full flex items-center justify-center transition-all cursor-pointer shadow-xs ${
             saved
               ? "bg-[#164E33] text-white"
-              : "bg-white/90 hover:bg-white text-[#121212] backdrop-blur-xs"
+              : "bg-white/90 hover:bg-white text-[#141414]"
           }`}
         >
           <Heart className={`size-3.5 ${saved ? "fill-white" : ""}`} strokeWidth={1.75} />
         </button>
 
-        {/* Bottom-Left Floating Rating Pill (Signature Zouk / Indian D2C Trust Element) */}
-        <div className="absolute bottom-2.5 left-2.5 z-10 inline-flex items-center gap-1 px-2 py-0.5 rounded-md bg-white/95 backdrop-blur-xs shadow-xs text-[10.5px] font-semibold text-[#121212] pointer-events-none">
-          <span>4.9</span>
-          <Star size={10} className="fill-[#D9A438] text-[#D9A438]" />
-          <span className="text-[#9E9B94] font-normal">|</span>
-          <span className="text-[#66645E] font-medium">50+</span>
-        </div>
+        {/* Bottom-Left Real Dimension Pill */}
+        {product.size ? (
+          <span className="absolute bottom-2.5 left-2.5 z-10 px-2 py-0.5 rounded-md bg-white/92 backdrop-blur-xs text-[10px] font-semibold text-[#3A3834] shadow-xs pointer-events-none">
+            {product.size}
+          </span>
+        ) : null}
       </div>
 
       {/* Zouk-Style Clean Product Info & Full-Width Add to Bag CTA */}
@@ -1272,7 +1253,7 @@ export function ProductCard({ product }: { product: Product }) {
         <div>
           <h3
             onClick={() => store.setProduct(product)}
-            className="font-['Manrope'] text-[13px] sm:text-[14px] font-bold text-[#121212] line-clamp-2 min-h-[2.3rem] sm:min-h-[2.5rem] leading-snug cursor-pointer hover:text-[#164E33] transition-colors"
+            className="font-['Manrope'] text-[13px] sm:text-[14px] font-bold text-[#141414] line-clamp-2 min-h-[2.3rem] sm:min-h-[2.5rem] leading-snug cursor-pointer hover:text-[#164E33] transition-colors"
             title={product.name}
           >
             {product.name}
@@ -1282,32 +1263,24 @@ export function ProductCard({ product }: { product: Product }) {
             {product.material}
           </p>
 
-          {/* Price Display */}
+          {/* Honest Direct Price Display */}
           <div className="mt-2">
             {product.priceNote ? (
               <div className="flex flex-col">
-                <div className="flex items-baseline gap-1.5 flex-wrap">
-                  <span className="font-['Manrope'] text-[14px] sm:text-[15px] font-extrabold text-[#121212]">
-                    From ₹{product.price.toLocaleString('en-IN')}
-                  </span>
-                  <span className="text-[10px] font-semibold text-[#164E33] bg-[#164E33]/8 px-1.5 py-0.5 rounded">
-                    Factory Rate
-                  </span>
-                </div>
-                <span className="text-[10px] text-[#737069] mt-0.5 line-clamp-1">
+                <span className="font-['Manrope'] text-[14px] sm:text-[15px] font-extrabold text-[#141414]">
+                  From ₹{product.price.toLocaleString('en-IN')}
+                </span>
+                <span className="text-[10px] text-[#164E33] font-medium mt-0.5 line-clamp-1">
                   {product.priceNote}
                 </span>
               </div>
             ) : (
-              <div className="flex items-baseline gap-1.5 flex-wrap">
-                <span className="font-['Manrope'] text-[15px] sm:text-[16px] font-extrabold tabular-nums text-[#121212]">
+              <div className="flex items-baseline gap-2 flex-wrap">
+                <span className="font-['Manrope'] text-[15px] sm:text-[16px] font-extrabold tabular-nums text-[#141414]">
                   ₹{product.price.toLocaleString('en-IN')}
                 </span>
-                <span className="line-through text-[#9A978F] text-[11px] sm:text-[12px] font-medium">
-                  ₹{Math.round(product.price * 1.25).toLocaleString('en-IN')}
-                </span>
-                <span className="text-[10.5px] font-bold text-[#164E33]">
-                  20% OFF
+                <span className="text-[10px] font-semibold text-[#164E33] bg-[#164E33]/8 px-1.5 py-0.5 rounded">
+                  Direct Mill Price
                 </span>
               </div>
             )}
@@ -1322,7 +1295,7 @@ export function ProductCard({ product }: { product: Product }) {
               e.stopPropagation();
               store.addToCart(product, 1);
             }}
-            className="flex-1 h-9 sm:h-10 rounded-lg bg-[#164E33] hover:bg-[#0E3824] text-white text-[11px] sm:text-xs font-bold uppercase tracking-[0.08em] transition-all flex items-center justify-center gap-1.5 cursor-pointer active:scale-[0.98] shadow-xs"
+            className="flex-1 h-9 sm:h-10 rounded-lg bg-[#164E33] hover:bg-[#0E3824] text-white text-[11px] sm:text-xs font-bold uppercase tracking-[0.07em] transition-all flex items-center justify-center gap-1.5 cursor-pointer active:scale-[0.98]"
           >
             <ShoppingBag className="size-3.5" strokeWidth={1.75} />
             <span>Add to Bag</span>
@@ -1333,9 +1306,9 @@ export function ProductCard({ product }: { product: Product }) {
               e.stopPropagation();
               store.setProduct(product);
             }}
-            aria-label={`Quick view ${product.name}`}
-            title="Quick View"
-            className="h-9 sm:h-10 px-2.5 rounded-lg border border-[#E2DFD7] hover:border-[#164E33] hover:text-[#164E33] text-[#45433E] text-[11px] font-semibold transition-colors cursor-pointer bg-[#FAF9F6] hover:bg-white shrink-0"
+            aria-label={`View details for ${product.name}`}
+            title="View Details"
+            className="h-9 sm:h-10 px-2.5 rounded-lg border border-[#E2DFD7] hover:border-[#164E33] hover:text-[#164E33] text-[#45433E] text-[11px] font-semibold transition-colors cursor-pointer bg-[#F6F3EC] hover:bg-white shrink-0"
           >
             View
           </button>
@@ -1357,6 +1330,15 @@ export function ProductCollection({
   const [searchFilter, setSearchFilter] = useState(initialQuery);
   const [sortBy, setSortBy] = useState<'featured' | 'price-asc' | 'price-desc'>('featured');
 
+  const quickChips = [
+    { label: 'Cotton', value: 'cotton' },
+    { label: 'Jute', value: 'jute' },
+    { label: 'Non-Woven', value: 'non-woven' },
+    { label: 'Vasthu Mats', value: 'vasthu' },
+    { label: 'Lattice & Fringe', value: 'fringe' },
+    { label: 'Reversible', value: 'reversible' },
+  ];
+
   const filtered = products
     .filter(p => tab === 'All' || p.category === tab)
     .filter(p => `${p.name} ${p.material} ${p.badge} ${p.description}`.toLowerCase().includes(searchFilter.toLowerCase()))
@@ -1374,63 +1356,90 @@ export function ProductCollection({
 
   return (
     <>
-      <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-7 pb-4 border-b border-[#EAE7E0]">
-        <div className="flex items-center gap-2 flex-wrap" aria-label="Product categories">
-          {(['All', 'Bags', 'Floor mats'] as const).map(t => (
-            <button
-              key={t}
-              type="button"
-              onClick={() => setTab(t)}
-              className={cn(
-                "px-4 py-2 rounded-full text-xs font-bold tracking-wide transition-all cursor-pointer",
-                tab === t
-                  ? "bg-[#164E33] text-white shadow-xs"
-                  : "bg-[#F7F5F0] border border-[#E5E1D8] text-[#2A2A2A] hover:border-[#164E33]/50"
-              )}
-            >
-              {t === 'All' ? 'All Products' : t} ({counts[t]})
-            </button>
-          ))}
-        </div>
-
-        <div className="flex items-center gap-2.5 flex-wrap">
-          <div className="relative flex-1 sm:flex-initial">
-            <Search size={14} className="absolute left-3 top-1/2 -translate-y-1/2 text-[#737069]" />
-            <input
-              type="text"
-              placeholder="Search tote, jute, lattice..."
-              value={searchFilter}
-              onChange={e => setSearchFilter(e.target.value)}
-              className="pl-8 pr-8 h-9 rounded-lg border border-[#E2DFD7] text-xs bg-[#F7F5F0] focus:bg-white text-[#121212] focus:outline-none focus:ring-2 focus:ring-[#164E33]/20 focus:border-[#164E33] w-full sm:w-56 transition-all"
-            />
-            {searchFilter && (
+      <div className="flex flex-col gap-4 mb-7 pb-4 border-b border-[#EAE6DE]">
+        <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
+          <div className="flex items-center gap-2 flex-wrap" aria-label="Product categories">
+            {(['All', 'Bags', 'Floor mats'] as const).map(t => (
               <button
+                key={t}
                 type="button"
-                onClick={() => setSearchFilter('')}
-                className="absolute right-2.5 top-1/2 -translate-y-1/2 text-[#737069] hover:text-[#121212] cursor-pointer"
-                aria-label="Clear search filter"
+                onClick={() => {
+                  setTab(t);
+                  setSearchFilter('');
+                }}
+                className={cn(
+                  "px-4 py-2 rounded-full text-xs font-bold tracking-wide transition-all cursor-pointer",
+                  tab === t && !searchFilter
+                    ? "bg-[#164E33] text-white shadow-xs"
+                    : "bg-[#F6F3EC] border border-[#E5E0D5] text-[#2A2A2A] hover:border-[#164E33]/50"
+                )}
               >
-                <X size={13} />
+                {t === 'All' ? 'All Products' : t} ({counts[t]})
               </button>
-            )}
+            ))}
           </div>
 
-          <select
-            value={sortBy}
-            onChange={e => setSortBy(e.target.value as any)}
-            aria-label="Sort products"
-            className="h-9 px-3 rounded-lg border border-[#E2DFD7] text-xs font-medium bg-white text-[#121212] focus:outline-none focus:border-[#164E33] cursor-pointer"
-          >
-            <option value="featured">Sort: Bestselling</option>
-            <option value="price-asc">Price: Low to High</option>
-            <option value="price-desc">Price: High to Low</option>
-          </select>
+          <div className="flex items-center gap-2.5 flex-wrap">
+            <div className="relative flex-1 sm:flex-initial">
+              <Search size={14} className="absolute left-3 top-1/2 -translate-y-1/2 text-[#737069]" />
+              <input
+                type="text"
+                placeholder="Filter by product or material..."
+                value={searchFilter}
+                onChange={e => setSearchFilter(e.target.value)}
+                className="pl-8 pr-8 h-9 rounded-lg border border-[#E2DFD7] text-xs bg-[#F6F3EC] focus:bg-white text-[#141414] focus:outline-none focus:ring-2 focus:ring-[#164E33]/20 focus:border-[#164E33] w-full sm:w-56 transition-all"
+              />
+              {searchFilter && (
+                <button
+                  type="button"
+                  onClick={() => setSearchFilter('')}
+                  className="absolute right-2.5 top-1/2 -translate-y-1/2 text-[#737069] hover:text-[#141414] cursor-pointer"
+                  aria-label="Clear search filter"
+                >
+                  <X size={13} />
+                </button>
+              )}
+            </div>
+
+            <select
+              value={sortBy}
+              onChange={e => setSortBy(e.target.value as any)}
+              aria-label="Sort products"
+              className="h-9 px-3 rounded-lg border border-[#E2DFD7] text-xs font-medium bg-white text-[#141414] focus:outline-none focus:border-[#164E33] cursor-pointer"
+            >
+              <option value="featured">Sort: Featured</option>
+              <option value="price-asc">Price: Low to High</option>
+              <option value="price-desc">Price: High to Low</option>
+            </select>
+          </div>
+        </div>
+
+        {/* Zouk-Style Quick Material & Weave Filter Chips */}
+        <div className="flex items-center gap-2 overflow-x-auto no-scrollbar">
+          <span className="text-[11px] font-semibold text-[#737069] shrink-0">Quick filter:</span>
+          {quickChips.map(chip => {
+            const active = searchFilter.toLowerCase() === chip.value;
+            return (
+              <button
+                key={chip.value}
+                type="button"
+                onClick={() => setSearchFilter(active ? '' : chip.value)}
+                className={`px-3 py-1 rounded-md text-[11px] font-semibold transition-colors cursor-pointer shrink-0 border ${
+                  active
+                    ? 'bg-[#164E33] text-white border-[#164E33]'
+                    : 'bg-white text-[#3F3D39] border-[#E5E0D5] hover:border-[#164E33]'
+                }`}
+              >
+                {chip.label}
+              </button>
+            );
+          })}
         </div>
       </div>
 
       {filtered.length === 0 ? (
-        <div className="empty-state py-14 text-center bg-[#F7F5F0] rounded-2xl border border-[#EAE7E0]">
-          <p className="text-[#5C5A54] text-sm font-medium">No products match your current filter.</p>
+        <div className="empty-state py-14 text-center bg-[#F6F3EC] rounded-2xl border border-[#EAE6DE]">
+          <p className="text-[#5C5952] text-sm font-medium">No products match your current filter.</p>
           <Button
             variant="outline"
             size="sm"

@@ -2,36 +2,33 @@ import { useState, useEffect } from 'react';
 import { createFileRoute, Link } from '@tanstack/react-router';
 import {
   ArrowRight,
-  MoveUpRight,
-  ChevronRight,
   ChevronLeft,
-  Star,
+  ChevronRight,
   CheckCircle2,
   ShieldCheck,
-  Sparkles,
+  Factory,
+  ShoppingBag,
+  Layers,
 } from 'lucide-react';
 import { Eyebrow, EverydayBand, ProductCard, useStore } from '@/components/storefront';
 import { pageHead } from '@/lib/catalog';
 import hero from '@/assets/living-hero.jpg';
-import tote from '@/assets/green-tote.jpg';
 import woven from '@/assets/woven-bag.jpg';
 import bagCottonTote from '@/assets/bag-cotton-tote.jpg';
 import bagGoldenJute from '@/assets/bag-golden-jute.jpg';
-import bagBlockprintFloral from '@/assets/bag-blockprint-floral.jpg';
-import bagSageNonwoven from '@/assets/bag-sage-nonwoven.jpg';
-import matIkat from '@/assets/mat-ikat-crossstitch.jpg';
-import matShag from '@/assets/mat-shaggy-palette.jpg';
+import bagRoyalNonwoven from '@/assets/bag-royal-nonwoven.jpg';
 import matDiamond from '@/assets/mat-fringe-diamond-weave.jpg';
-import matGrid from '@/assets/mat-grid-geometric-fan.jpg';
-import matRibbon from '@/assets/mat-solid-ribbon-fan.jpg';
+import matIkat from '@/assets/mat-ikat-crossstitch.jpg';
+import matRoyalVasthu from '@/assets/mat-royal-vasthu.jpg';
+import matVasthuOval from '@/assets/mat-vasthu-round-oval.jpg';
+import matRainbow from '@/assets/mat-rainbow.jpg';
 import facilityImg from '@/assets/company-facility.jpg';
-import logo from '@/assets/company-logo.png.asset.json';
 
 export const Route = createFileRoute('/')({
   head: () =>
     pageHead(
-      'Proudly Indian Handcrafted Bags & Handloom Floor Mats',
-      'Discover ShreeyaSudarshan Trading Company — Bhavani manufacturers of eco-friendly cotton totes, golden jute bags, non-woven carry bags, and handloom floor mats.'
+      'Handcrafted Bags & Bhavani Handloom Floor Mats',
+      'Shop direct from ShreeyaSudarshan Trading Company, Bhavani — eco-friendly cotton totes, golden jute bags, non-woven bags, designer floor mats, and Vasthu mats.'
     ),
   component: Index,
 });
@@ -39,450 +36,325 @@ export const Route = createFileRoute('/')({
 function Index() {
   const { products } = useStore();
 
-  // Zouk-style horizontal category story bubbles
-  const storyCategories = [
-    { label: 'All Essentials', image: tote, to: '/shop', search: {} },
-    { label: 'Cotton Totes', image: bagCottonTote, to: '/shop', search: { category: 'Bags', q: 'cotton' } },
-    { label: 'Jute Bags', image: bagGoldenJute, to: '/shop', search: { category: 'Bags', q: 'jute' } },
-    { label: 'Block Print', image: bagBlockprintFloral, to: '/shop', search: { category: 'Bags', q: 'floral' } },
-    { label: 'Eco Carry', image: bagSageNonwoven, to: '/shop', search: { category: 'Bags', q: 'non-woven' } },
-    { label: 'Floor Mats', image: matDiamond, to: '/shop', search: { category: 'Floor mats' } },
-    { label: 'Lattice Weave', image: matIkat, to: '/shop', search: { category: 'Floor mats', q: 'lattice' } },
-    { label: 'Chenille Rugs', image: matShag, to: '/shop', search: { category: 'Floor mats', q: 'shag' } },
-    { label: 'Bulk Orders', image: woven, to: '/contact-us', search: undefined },
-  ];
-
-  // Zouk-style full-bleed hero slides
   const heroSlides = [
     {
-      id: 'slide-1',
-      eyebrow: 'Proudly Indian · Direct From Bhavani',
-      title: (
-        <>
-          Handcrafted bags.<br />
-          Handloom spaces.<br />
-          <em>Made for everyday India.</em>
-        </>
-      ),
-      copy: 'Explore 100% eco-friendly cotton totes, golden jute shoppers, and vibrant handloom floor mats woven directly at our Bhavani, Tamil Nadu facility.',
+      id: 'hero-everyday',
+      tag: 'Direct from Bhavani Mill',
+      title: 'Handcrafted Cotton Bags & Handloom Floor Mats.',
+      subtitle:
+        'Eco-friendly pure cotton totes, biodegradable golden jute bags, reusable non-woven carry bags, and Bhavani handloom floor mats — crafted directly at our manufacturing unit.',
       image: hero,
-      alt: 'Natural canvas tote bag and handloom floor mat in a sunlit space',
-      primaryBtn: { text: 'Shop All Essentials', to: '/shop', search: undefined },
-      secondaryBtn: { text: 'Shop Bags', to: '/shop', search: { category: 'Bags' } },
+      alt: 'Natural canvas bag and floor mat',
+      cardLabel: 'Featured Collection',
+      cardTitle: 'Bags & Floor Mats',
+      cardMeta: `${products.length} Direct Mill Products`,
+      primaryBtn: { text: 'Shop All Products', to: '/shop', search: undefined },
+      secondaryBtn: { text: 'Bulk & Custom Orders', to: '/contact-us', search: undefined },
     },
     {
-      id: 'slide-2',
-      eyebrow: 'Signature Bag Edit · Zero Plastic',
-      title: (
-        <>
-          Golden jute &amp; khadi.<br />
-          Pure cotton totes.<br />
-          <em>Carry your craft with pride.</em>
-        </>
-      ),
-      copy: 'Breathable handloom totes, botanical block-print bags, and reusable carry bags trusted by shoppers and India’s premiere jewellery houses.',
+      id: 'hero-bags',
+      tag: 'Eco-Friendly Bag Collection',
+      title: 'Cotton Totes, Golden Jute & Non-Woven Bags.',
+      subtitle:
+        'From handblock floral totes and handspun khadi bags to sturdy retail & jewellery packaging bags — durable, washable, and 100% eco-conscious.',
       image: woven,
-      alt: 'Handcrafted cotton and golden jute tote bags',
-      primaryBtn: { text: 'Explore Bag Collection', to: '/shop', search: { category: 'Bags' } },
-      secondaryBtn: { text: 'Bulk & Branding', to: '/contact-us', search: undefined },
+      alt: 'Woven jute and cotton bags',
+      cardLabel: 'Bag Range',
+      cardTitle: 'Cotton · Jute · Non-Woven',
+      cardMeta: 'Starting ₹60 · Retail & Bulk',
+      primaryBtn: { text: 'Shop All Bags', to: '/shop', search: { category: 'Bags' } },
+      secondaryBtn: { text: 'Jewellery Bulk Orders', to: '/contact-us', search: undefined },
     },
     {
-      id: 'slide-3',
-      eyebrow: 'Bhavani Master Handlooms',
-      title: (
-        <>
-          Raised lattice knots.<br />
-          Pure cotton soles.<br />
-          <em>Warmth for every doorway.</em>
-        </>
-      ),
-      copy: 'Heavy handloom cotton cords in jewel tones and geometric patterns — effortlessly washable, ultra-durable, and dispatched directly from the mill.',
-      image: matDiamond,
-      alt: 'Artisan handloom floor mat with jewel-tone diamond weave',
+      id: 'hero-mats',
+      tag: 'Bhavani Handloom Looms',
+      title: 'Vasthu, Lattice & Everyday Cotton Floor Mats.',
+      subtitle:
+        'Explore Royal Vasthu mats, oval braided Vasthu mats, raised lattice weaves, chenille shag rugs, and everyday cotton floor mats starting at ₹50.',
+      image: matRoyalVasthu,
+      alt: 'Royal Vasthu handloom floor mat',
+      cardLabel: 'Floor Mat Range',
+      cardTitle: 'Designer & Vasthu Mats',
+      cardMeta: 'Starting ₹50 · Washable Cotton',
       primaryBtn: { text: 'Shop Floor Mats', to: '/shop', search: { category: 'Floor mats' } },
-      secondaryBtn: { text: 'Custom Sizing', to: '/contact-us', search: undefined },
+      secondaryBtn: { text: 'Custom Sizing Enquiry', to: '/contact-us', search: undefined },
     },
   ];
 
-  // 4-card Zouk-style "Shop by Category" grid
-  const shopCategories = [
+  // 6-Tile Zouk-Style Category Grid (100% matched to our real catalog)
+  const categoryTiles = [
     {
-      title: 'Cotton & Canvas Totes',
-      subtitle: 'Breathable daily handloom bags',
-      tag: 'Bestselling',
+      title: 'Cotton & Khadi Bags',
+      count: 'Handloom totes & canvas',
       image: bagCottonTote,
       search: { category: 'Bags', q: 'cotton' },
     },
     {
       title: 'Golden Jute Bags',
-      subtitle: '100% biodegradable natural burlap',
-      tag: 'Eco Choice',
+      count: '100% natural burlap',
       image: bagGoldenJute,
       search: { category: 'Bags', q: 'jute' },
     },
     {
-      title: 'Handloom Floor Mats',
-      subtitle: 'Washable pure cotton & lattice rugs',
-      tag: 'Bhavani Craft',
-      image: matIkat,
+      title: 'Non-Woven Bags',
+      count: 'Starting ₹60 · Reusable',
+      image: bagRoyalNonwoven,
+      search: { category: 'Bags', q: 'non-woven' },
+    },
+    {
+      title: 'Designer Floor Mats',
+      count: 'Lattice, diamond & shag',
+      image: matDiamond,
       search: { category: 'Floor mats' },
     },
     {
-      title: 'Non-Woven & Retail Bags',
-      subtitle: 'Lightweight utility & bulk branding',
-      tag: 'Factory Direct',
-      image: bagSageNonwoven,
-      search: { category: 'Bags', q: 'non-woven' },
+      title: 'Vasthu Floor Mats',
+      count: 'Royal & Oval Vasthu',
+      image: matRoyalVasthu,
+      search: { category: 'Floor mats', q: 'vasthu' },
+    },
+    {
+      title: 'Everyday ₹50 Mats',
+      count: 'Grape, Rainbow, Guptha',
+      image: matRainbow,
+      search: { category: 'Floor mats', q: 'floor mat' },
     },
   ];
 
-  // Zouk-style "Shop by Print & Weave" interactive lookbook
-  const spotlightWeaves = [
-    {
-      id: 'heritage-lattice',
-      title: 'Heritage Raised Lattice',
-      type: 'Heavy Handloom Cord',
-      desc: 'Plush crimson, turquoise and gold geometric knots designed for long-lasting doorstep comfort and effortless machine washing.',
-      image: matIkat,
-      accent: 'Artisan Favorite',
-      search: { category: 'Floor mats' as const, q: 'lattice' },
-    },
-    {
-      id: 'handblock-floral',
-      title: 'Botanical Handblock Print',
-      type: 'Vegetable-Dyed Handloom Cotton',
-      desc: 'Hand-pressed traditional wooden block motifs on raw unbleached cotton canvas — each tote is a wearable piece of Indian craft.',
-      image: bagBlockprintFloral,
-      accent: 'Signature Print',
-      search: { category: 'Bags' as const, q: 'floral' },
-    },
-    {
-      id: 'jaipur-diamond',
-      title: 'Jaipur Diamond Fringe',
-      type: 'Jewel-Tone Micro Weave',
-      desc: 'Intricate geometric diamond weaves finished with vibrant hand-braided tassels for living rooms and entryways.',
-      image: matDiamond,
-      accent: 'Signature Fringes',
-      search: { category: 'Floor mats' as const, q: 'diamond' },
-    },
-    {
-      id: 'pastel-shag',
-      title: 'Pastel Chenille Shag',
-      type: 'Multi-Textured Soft Tuft',
-      desc: 'Cloud-soft alternating ridges of blush, ochre, olive and indigo crafted for plush barefoot comfort.',
-      image: matShag,
-      accent: 'Ultra Soft',
-      search: { category: 'Floor mats' as const, q: 'shag' },
-    },
-    {
-      id: 'modern-grid',
-      title: 'Modern Dual-Grid & Ribbed',
-      type: 'Structured Everyday Weave',
-      desc: 'Crisp textural checkerboard and solid ribbed cotton weaves built for high-traffic corridors and daily use.',
-      image: matGrid,
-      accent: 'Everyday Classic',
-      search: { category: 'Floor mats' as const },
-    },
+  const trustedClients = [
+    { name: 'AVR Swarnamahal Jewelry Ltd', tag: 'Jewellery Bags' },
+    { name: 'Jewel One (Emerald JEWEL Industry)', tag: 'Custom Packaging' },
+    { name: 'Kirtilal Kalidas Jewellers Pvt Ltd', tag: 'Premium Pouches' },
+    { name: 'Thangamayil Jewellery Pvt Ltd', tag: 'Jewellery Bags' },
   ];
 
-  // Zouk-style customer testimonials
-  const reviews = [
-    {
-      name: 'Priya Ramasamy',
-      city: 'Coimbatore, TN',
-      product: 'The Classic Handloom Cotton Tote',
-      quote: 'The stitching and thickness of the cotton canvas are way better than mall brands. I use it daily for office and grocery runs and it still looks brand new after washing.',
-    },
-    {
-      name: 'Karthik Subramanian',
-      city: 'Chennai, TN',
-      product: 'The Heritage Lattice Weave Mat',
-      quote: 'Authentic Bhavani handloom quality! The raised cotton lattice feels super soft underfoot, grips the floor nicely, and doesn’t fade at all. Ordered 4 more for our parents’ home.',
-    },
-    {
-      name: 'Meenakshi Sundaram',
-      city: 'Madurai, TN',
-      product: 'Bulk Jute & Jewellery Bags',
-      quote: 'We ordered 500 custom jute and cotton bags for our showroom festive gifting. Timely dispatch from Bhavani, neat finishing, and very honest direct factory pricing.',
-    },
-  ];
-
-  const trustedPartners = [
-    'AVR Swarnamahal Jewelry Ltd',
-    'Jewel One (Emerald Jewel Industry)',
-    'Kirtilal Kalidas Jewellers',
-    'Thangamayil Jewellery Pvt Ltd',
-  ];
-
-  const [currentHeroSlide, setCurrentHeroSlide] = useState(0);
-  const [isHeroHovered, setIsHeroHovered] = useState(false);
-  const [bestsellerTab, setBestsellerTab] = useState<'All' | 'Bags' | 'Floor mats'>('All');
-  const [activeWeave, setActiveWeave] = useState(0);
-
-  const currentWeave = spotlightWeaves[activeWeave];
+  const [slideIdx, setSlideIdx] = useState(0);
+  const [heroPaused, setHeroPaused] = useState(false);
+  const [bagTab, setBagTab] = useState<'all' | 'cotton' | 'jute' | 'non-woven'>('all');
+  const [matTab, setMatTab] = useState<'all' | 'designer' | 'vasthu' | 'everyday'>('all');
 
   useEffect(() => {
-    if (isHeroHovered) return;
-    const timer = setInterval(() => {
-      setCurrentHeroSlide(prev => (prev + 1) % heroSlides.length);
-    }, 5500);
-    return () => clearInterval(timer);
-  }, [isHeroHovered, heroSlides.length]);
+    if (heroPaused) return;
+    const t = setInterval(() => {
+      setSlideIdx(prev => (prev + 1) % heroSlides.length);
+    }, 6000);
+    return () => clearInterval(t);
+  }, [heroPaused, heroSlides.length]);
 
-  // Curate balanced 8 bestsellers across tabs
-  const bestsellerProducts = (() => {
-    if (bestsellerTab === 'Bags') {
-      return products.filter(p => p.category === 'Bags').slice(0, 8);
+  const currentHero = heroSlides[slideIdx];
+
+  // Real Bag Products filtered by tab
+  const allBags = products.filter(p => p.category === 'Bags');
+  const visibleBags = (() => {
+    if (bagTab === 'cotton') {
+      return allBags.filter(p => /cotton|canvas|khadi|floral/i.test(`${p.name} ${p.material}`));
     }
-    if (bestsellerTab === 'Floor mats') {
-      return products.filter(p => p.category === 'Floor mats').slice(0, 8);
+    if (bagTab === 'jute') {
+      return allBags.filter(p => /jute|weave/i.test(`${p.name} ${p.material}`));
     }
-    const bags = products.filter(p => p.category === 'Bags').slice(0, 4);
-    const mats = products.filter(p => p.category === 'Floor mats').slice(0, 4);
-    const mixed = [];
-    for (let i = 0; i < 4; i++) {
-      if (bags[i]) mixed.push(bags[i]);
-      if (mats[i]) mixed.push(mats[i]);
+    if (bagTab === 'non-woven') {
+      return allBags.filter(p => /non-woven/i.test(`${p.name} ${p.material}`));
     }
-    return mixed;
+    return allBags.slice(0, 8);
+  })();
+
+  // Real Floor Mat Products filtered by tab
+  const allMats = products.filter(p => p.category === 'Floor mats');
+  const visibleMats = (() => {
+    if (matTab === 'designer') {
+      return allMats.filter(p => p.price >= 500).slice(0, 8);
+    }
+    if (matTab === 'vasthu') {
+      return allMats.filter(p => /vasthu|guptha|third eye|two in one/i.test(`${p.name} ${p.badge}`));
+    }
+    if (matTab === 'everyday') {
+      return allMats.filter(p => p.price <= 70).slice(0, 8);
+    }
+    // Mix of designer + Vasthu + everyday ₹50 mats so user sees full range immediately
+    const designer = allMats.filter(p => p.price >= 500).slice(0, 4);
+    const affordable = allMats.filter(p => p.price <= 70).slice(0, 4);
+    return [...designer, ...affordable];
   })();
 
   return (
     <>
-      {/* Subtle Fast Brand Splash */}
-      <div className="opening" aria-hidden="true">
-        <div className="opening-identity">
-          <img src={logo.url} alt="" width={112} height={112} />
-          <div className="opening-name">ShreeyaSudarshan</div>
-          <div className="opening-company">Proudly Indian · Bhavani</div>
-          <span className="opening-rule" />
-          <p>Handcrafted Bags &amp; Floor Mats</p>
-        </div>
-      </div>
-
-      {/* 1. ZOUK-STYLE CATEGORY QUICK-LINK STORY STRIP */}
-      <section aria-label="Quick category navigation" className="bg-white border-b border-[#ECE9E2]">
-        <div className="page-width py-3.5 sm:py-4">
-          <div className="flex items-center justify-start lg:justify-between gap-4 sm:gap-5 overflow-x-auto no-scrollbar py-0.5">
-            {storyCategories.map((cat) => (
-              <Link
-                key={cat.label}
-                to={cat.to as any}
-                search={cat.search as any}
-                className="group flex flex-col items-center gap-1.5 shrink-0 w-[68px] sm:w-[78px] text-center"
-              >
-                <div className="size-[60px] sm:size-[68px] rounded-full p-[2.5px] bg-gradient-to-tr from-[#164E33] via-[#2b7a53] to-[#D9A438] group-hover:scale-105 transition-transform duration-300 shadow-xs">
-                  <div className="w-full h-full rounded-full overflow-hidden bg-white p-[2px]">
-                    <img
-                      src={cat.image}
-                      alt={cat.label}
-                      className="w-full h-full rounded-full object-cover"
-                      width={72}
-                      height={72}
-                    />
-                  </div>
-                </div>
-                <span className="text-[11px] sm:text-[11.5px] font-semibold text-[#2A2A2A] group-hover:text-[#164E33] transition-colors leading-tight line-clamp-1">
-                  {cat.label}
-                </span>
-              </Link>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* 2. FULL-BLEED ZOUK-STYLE HERO BANNER CAROUSEL */}
+      {/* 1. ZOUK-STYLE BRIGHT 2-COLUMN SPLIT HERO SHOWCASE (NO DARK OVERLAY, NO SPLASH) */}
       <section
-        className="hero"
-        aria-label="Hero Showcase"
-        onMouseEnter={() => setIsHeroHovered(true)}
-        onMouseLeave={() => setIsHeroHovered(false)}
+        className="bg-[#F6F3EC] border-b border-[#EAE6DE]"
+        aria-label="Featured Storefront Showcase"
+        onMouseEnter={() => setHeroPaused(true)}
+        onMouseLeave={() => setHeroPaused(false)}
       >
-        {heroSlides.map((slide, idx) => {
-          const isActive = idx === currentHeroSlide;
-          return (
-            <div
-              key={slide.id}
-              className={`hero-slide ${isActive ? 'active' : ''}`}
-              aria-hidden={!isActive}
-            >
-              <img
-                className="hero-slide-bg"
-                src={slide.image}
-                alt={slide.alt}
-                width={1920}
-                height={1088}
-                fetchPriority={idx === 0 ? 'high' : 'auto'}
-              />
-              <div className="hero-content page-width">
-                <Eyebrow className="!text-[#F4D178]">{slide.eyebrow}</Eyebrow>
-                <h1>{slide.title}</h1>
-                <p className="hero-copy">{slide.copy}</p>
-                <div className="hero-actions">
-                  <Link
-                    to={slide.primaryBtn.to as any}
-                    search={slide.primaryBtn.search as any}
-                    className="inline-flex items-center gap-2 h-11 sm:h-12 px-6 sm:px-8 rounded-lg bg-[#164E33] hover:bg-[#0D3321] text-white text-xs sm:text-[13px] font-bold uppercase tracking-[0.1em] shadow-lg transition-all active:scale-95 border border-[#D9A438]/40"
-                  >
-                    <span>{slide.primaryBtn.text}</span>
-                    <ArrowRight size={15} />
-                  </Link>
-                  <Link
-                    to={slide.secondaryBtn.to as any}
-                    search={slide.secondaryBtn.search as any}
-                    className="inline-flex items-center gap-2 h-11 sm:h-12 px-5 sm:px-7 rounded-lg bg-white/95 hover:bg-white text-[#121212] text-xs sm:text-[13px] font-bold uppercase tracking-[0.1em] transition-all shadow-md active:scale-95"
-                  >
-                    <span>{slide.secondaryBtn.text}</span>
-                    <MoveUpRight size={14} />
-                  </Link>
+        <div className="page-width py-7 sm:py-10 lg:py-12">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-7 lg:gap-10 items-center">
+            {/* Left Copy Column */}
+            <div className="lg:col-span-6 order-2 lg:order-1">
+              <Eyebrow>{currentHero.tag}</Eyebrow>
+              <h1 className="font-['Manrope'] text-3xl sm:text-4xl lg:text-[46px] font-extrabold text-[#141414] leading-[1.12] tracking-tight mt-3">
+                {currentHero.title}
+              </h1>
+              <p className="text-sm sm:text-[15px] text-[#5C5952] leading-relaxed mt-3.5 max-w-xl">
+                {currentHero.subtitle}
+              </p>
+
+              <div className="flex flex-wrap items-center gap-3 mt-6">
+                <Link
+                  to={currentHero.primaryBtn.to as any}
+                  search={currentHero.primaryBtn.search as any}
+                  className="inline-flex items-center gap-2 h-11 sm:h-12 px-6 sm:px-7 rounded-lg bg-[#164E33] hover:bg-[#0E3824] text-white text-xs sm:text-[13px] font-bold uppercase tracking-[0.09em] shadow-sm transition-all active:scale-95"
+                >
+                  <span>{currentHero.primaryBtn.text}</span>
+                  <ArrowRight size={15} />
+                </Link>
+                <Link
+                  to={currentHero.secondaryBtn.to as any}
+                  search={currentHero.secondaryBtn.search as any}
+                  className="inline-flex items-center gap-2 h-11 sm:h-12 px-5 sm:px-6 rounded-lg bg-white hover:bg-[#FAF9F6] border border-[#D8D3C8] hover:border-[#164E33] text-[#141414] hover:text-[#164E33] text-xs sm:text-[13px] font-bold uppercase tracking-[0.09em] transition-all"
+                >
+                  <span>{currentHero.secondaryBtn.text}</span>
+                </Link>
+              </div>
+
+              {/* Real Catalog Quick Stats */}
+              <div className="grid grid-cols-3 gap-3 mt-7 pt-5 border-t border-[#E5E0D5] max-w-lg">
+                <div>
+                  <span className="font-['Manrope'] text-lg sm:text-xl font-extrabold text-[#164E33] block leading-none">
+                    {allBags.length}+
+                  </span>
+                  <span className="text-[11px] text-[#66635C] font-medium mt-1 block">
+                    Eco Bag Styles
+                  </span>
+                </div>
+                <div>
+                  <span className="font-['Manrope'] text-lg sm:text-xl font-extrabold text-[#164E33] block leading-none">
+                    {allMats.length}+
+                  </span>
+                  <span className="text-[11px] text-[#66635C] font-medium mt-1 block">
+                    Floor Mat Weaves
+                  </span>
+                </div>
+                <div>
+                  <span className="font-['Manrope'] text-lg sm:text-xl font-extrabold text-[#164E33] block leading-none">
+                    ₹50+
+                  </span>
+                  <span className="text-[11px] text-[#66635C] font-medium mt-1 block">
+                    Direct Mill Pricing
+                  </span>
                 </div>
               </div>
             </div>
-          );
-        })}
 
-        {/* Left/Right Edge Carousel Arrows (Desktop) */}
-        <button
-          type="button"
-          onClick={() => setCurrentHeroSlide(prev => (prev - 1 + heroSlides.length) % heroSlides.length)}
-          aria-label="Previous slide"
-          className="hidden md:flex absolute left-5 top-1/2 -translate-y-1/2 z-10 size-10 rounded-full bg-white/85 hover:bg-white text-[#121212] items-center justify-center shadow-md transition-all cursor-pointer active:scale-95"
-        >
-          <ChevronLeft size={18} />
-        </button>
-        <button
-          type="button"
-          onClick={() => setCurrentHeroSlide(prev => (prev + 1) % heroSlides.length)}
-          aria-label="Next slide"
-          className="hidden md:flex absolute right-5 top-1/2 -translate-y-1/2 z-10 size-10 rounded-full bg-white/85 hover:bg-white text-[#121212] items-center justify-center shadow-md transition-all cursor-pointer active:scale-95"
-        >
-          <ChevronRight size={18} />
-        </button>
-
-        {/* Bottom Centered Pagination Dots */}
-        <div className="hero-controls">
-          <div className="page-width hero-controls-inner">
-            <div className="flex items-center gap-2 bg-black/25 backdrop-blur-sm px-3 py-1.5 rounded-full">
-              {heroSlides.map((_, i) => (
-                <button
-                  key={i}
-                  type="button"
-                  onClick={() => setCurrentHeroSlide(i)}
-                  aria-label={`Go to slide ${i + 1}`}
-                  className={`h-2 rounded-full transition-all duration-300 cursor-pointer ${
-                    i === currentHeroSlide
-                      ? 'w-7 bg-[#F4D178]'
-                      : 'w-2 bg-white/60 hover:bg-white'
-                  }`}
+            {/* Right Bright Unobstructed Visual Stage */}
+            <div className="lg:col-span-6 order-1 lg:order-2">
+              <div className="relative rounded-2xl overflow-hidden bg-white border border-[#E5E0D5] shadow-[0_12px_36px_rgba(17,47,33,0.10)] aspect-[4/3] sm:aspect-[16/11]">
+                <img
+                  key={currentHero.id}
+                  src={currentHero.image}
+                  alt={currentHero.alt}
+                  className="w-full h-full object-cover transition-all duration-700"
+                  fetchPriority="high"
                 />
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
 
-      {/* 3. SIGNATURE ZOUK "BESTSELLERS" LIVE TABBED PRODUCT GRID */}
-      <section className="section bg-white">
-        <div className="page-width">
-          <div className="text-center max-w-2xl mx-auto mb-7">
-            <Eyebrow className="justify-center">Customer Favourites</Eyebrow>
-            <h2 className="font-['Manrope'] text-2xl sm:text-3xl lg:text-4xl font-extrabold text-[#121212] mt-2 tracking-tight">
-              Our Bestsellers
-            </h2>
-            <p className="text-xs sm:text-sm text-[#66645E] mt-1.5">
-              Loved by everyday shoppers &amp; boutique brands across India. Direct from our Bhavani looms.
-            </p>
+                {/* Clean Floating White Card Bottom-Left */}
+                <Link
+                  to={currentHero.primaryBtn.to as any}
+                  search={currentHero.primaryBtn.search as any}
+                  className="absolute bottom-3.5 left-3.5 bg-white/95 backdrop-blur-md px-4 py-2.5 rounded-xl border border-[#EAE6DE] shadow-md hover:border-[#164E33] transition-colors hidden sm:flex items-center gap-3"
+                >
+                  <div className="size-9 rounded-lg bg-[#164E33]/10 text-[#164E33] flex items-center justify-center shrink-0">
+                    <ShoppingBag size={17} />
+                  </div>
+                  <div>
+                    <span className="text-[10px] font-bold uppercase tracking-wider text-[#164E33] block leading-none">
+                      {currentHero.cardLabel}
+                    </span>
+                    <span className="font-['Manrope'] text-xs font-extrabold text-[#141414] block mt-0.5">
+                      {currentHero.cardTitle}
+                    </span>
+                    <span className="text-[10.5px] text-[#66635C] block">
+                      {currentHero.cardMeta}
+                    </span>
+                  </div>
+                </Link>
 
-            {/* Zouk-Style Category Pill Tabs */}
-            <div className="inline-flex items-center gap-1.5 bg-[#F7F5F0] p-1 rounded-full border border-[#E6E2D9] mt-5">
-              {(['All', 'Bags', 'Floor mats'] as const).map((tab) => {
-                const active = bestsellerTab === tab;
-                return (
+                {/* Slide Controls Bottom-Right */}
+                <div className="absolute bottom-3.5 right-3.5 flex items-center gap-1.5 bg-white/95 backdrop-blur-md p-1 rounded-full shadow-md border border-[#EAE6DE]">
                   <button
-                    key={tab}
                     type="button"
-                    onClick={() => setBestsellerTab(tab)}
-                    className={`px-4 sm:px-5 py-1.5 rounded-full text-xs sm:text-[13px] font-bold transition-all cursor-pointer ${
-                      active
-                        ? 'bg-[#164E33] text-white shadow-xs'
-                        : 'text-[#4A4843] hover:text-[#121212]'
-                    }`}
+                    onClick={() => setSlideIdx(prev => (prev - 1 + heroSlides.length) % heroSlides.length)}
+                    aria-label="Previous slide"
+                    className="size-7 rounded-full hover:bg-[#F6F3EC] text-[#141414] flex items-center justify-center cursor-pointer transition-colors"
                   >
-                    {tab === 'All' ? 'All Bestsellers' : tab}
+                    <ChevronLeft size={15} />
                   </button>
-                );
-              })}
+                  <div className="flex items-center gap-1 px-1">
+                    {heroSlides.map((_, i) => (
+                      <button
+                        key={i}
+                        type="button"
+                        onClick={() => setSlideIdx(i)}
+                        aria-label={`Slide ${i + 1}`}
+                        className={`h-1.5 rounded-full transition-all cursor-pointer ${
+                          i === slideIdx ? 'w-5 bg-[#164E33]' : 'w-1.5 bg-[#D4CFC4]'
+                        }`}
+                      />
+                    ))}
+                  </div>
+                  <button
+                    type="button"
+                    onClick={() => setSlideIdx(prev => (prev + 1) % heroSlides.length)}
+                    aria-label="Next slide"
+                    className="size-7 rounded-full hover:bg-[#F6F3EC] text-[#141414] flex items-center justify-center cursor-pointer transition-colors"
+                  >
+                    <ChevronRight size={15} />
+                  </button>
+                </div>
+              </div>
             </div>
-          </div>
-
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3.5 sm:gap-5">
-            {bestsellerProducts.map((item) => (
-              <ProductCard key={item.id} product={item} />
-            ))}
-          </div>
-
-          <div className="text-center mt-9">
-            <Link
-              to="/shop"
-              search={bestsellerTab === 'All' ? undefined : { category: bestsellerTab }}
-              className="inline-flex items-center gap-2 h-11 px-8 rounded-lg border-2 border-[#164E33] text-[#164E33] hover:bg-[#164E33] hover:text-white text-xs font-bold uppercase tracking-[0.12em] transition-all active:scale-95"
-            >
-              <span>View All {bestsellerTab === 'All' ? 'Products' : bestsellerTab}</span>
-              <ArrowRight size={14} />
-            </Link>
           </div>
         </div>
       </section>
 
-      {/* 4. ZOUK-STYLE "SHOP BY CATEGORY" 4-COLUMN EDITORIAL CARDS */}
-      <section className="section bg-[#F7F5F0] border-y border-[#EAE7E0]">
+      {/* 2. ZOUK-STYLE 6-TILE "SHOP BY CATEGORY" CLEAN GRID */}
+      <section className="section bg-white border-b border-[#EFECE5]">
         <div className="page-width">
           <div className="section-title">
             <div>
-              <Eyebrow>Curated For Every Purpose</Eyebrow>
+              <Eyebrow>Browse Our Range</Eyebrow>
               <h2>Shop by Category</h2>
             </div>
             <Link
               to="/shop"
               className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-[#164E33] hover:underline"
             >
-              <span>Explore Full Catalog</span>
+              <span>View All {products.length} Products</span>
               <ArrowRight size={14} />
             </Link>
           </div>
 
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-3.5 sm:gap-5">
-            {shopCategories.map((cat) => (
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3.5 sm:gap-4">
+            {categoryTiles.map(tile => (
               <Link
-                key={cat.title}
+                key={tile.title}
                 to="/shop"
-                search={cat.search as any}
-                className="group relative rounded-2xl overflow-hidden bg-white border border-[#E6E2D9] shadow-xs hover:shadow-[0_14px_34px_rgba(17,47,33,0.12)] hover:-translate-y-1 transition-all duration-300 flex flex-col"
+                search={tile.search as any}
+                className="group flex flex-col bg-white rounded-xl overflow-hidden border border-[#EAE6DE] hover:border-[#164E33]/50 hover:shadow-md transition-all duration-300"
               >
-                <div className="relative aspect-[4/5] overflow-hidden bg-[#EFECE4]">
+                <div className="aspect-square w-full overflow-hidden bg-[#F6F3EC]">
                   <img
-                    src={cat.image}
-                    alt={cat.title}
+                    src={tile.image}
+                    alt={tile.title}
                     loading="lazy"
-                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#112F21]/85 via-[#112F21]/15 to-transparent" />
-                  <span className="absolute top-3 left-3 px-2.5 py-0.5 rounded-md bg-white/95 text-[#164E33] text-[10px] font-bold uppercase tracking-wider shadow-xs">
-                    {cat.tag}
-                  </span>
-                  <div className="absolute inset-x-3.5 bottom-3.5 text-white flex items-end justify-between gap-2">
-                    <div>
-                      <h3 className="font-['Manrope'] text-sm sm:text-base font-extrabold leading-tight">
-                        {cat.title}
-                      </h3>
-                      <p className="text-[11px] text-white/85 mt-0.5 line-clamp-1">
-                        {cat.subtitle}
-                      </p>
-                    </div>
-                    <span className="size-8 rounded-full bg-white/20 group-hover:bg-[#164E33] backdrop-blur-xs flex items-center justify-center shrink-0 transition-colors">
-                      <MoveUpRight size={15} />
-                    </span>
-                  </div>
+                </div>
+                <div className="p-3 text-center bg-white">
+                  <h3 className="font-['Manrope'] text-xs sm:text-[13px] font-extrabold text-[#141414] group-hover:text-[#164E33] transition-colors leading-snug">
+                    {tile.title}
+                  </h3>
+                  <p className="text-[10.5px] text-[#737069] mt-0.5 line-clamp-1">
+                    {tile.count}
+                  </p>
                 </div>
               </Link>
             ))}
@@ -490,259 +362,243 @@ function Index() {
         </div>
       </section>
 
-      {/* 5. ZOUK-STYLE "SHOP BY PRINT & WEAVE" INTERACTIVE STUDIO */}
-      <section className="section bg-white">
+      {/* 3. ZOUK-STYLE SECTION 1: HANDCRAFTED BAGS (TABBED LIVE PRODUCT GRID) */}
+      <section className="section bg-[#FAF9F6]">
         <div className="page-width">
-          <div className="section-title items-start">
+          <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-6">
             <div>
-              <Eyebrow>Indian Craftsmanship</Eyebrow>
-              <h2>Shop by Weave &amp; Print</h2>
-              <p>Explore our signature Bhavani handloom patterns, raised cotton knots, and botanical block prints.</p>
+              <Eyebrow>Eco-Friendly Carry</Eyebrow>
+              <h2 className="font-['Manrope'] text-2xl sm:text-3xl font-extrabold text-[#141414] mt-1.5">
+                Handcrafted Bags Collection
+              </h2>
+              <p className="text-xs sm:text-sm text-[#66635C] mt-1">
+                Pure cotton totes, golden jute shoppers, handblock floral bags &amp; reusable non-woven bags.
+              </p>
             </div>
+
+            <div className="flex items-center gap-1.5 bg-white p-1 rounded-full border border-[#E5E0D5] self-start md:self-auto overflow-x-auto no-scrollbar max-w-full">
+              {(
+                [
+                  { id: 'all', label: 'All Bags' },
+                  { id: 'cotton', label: 'Cotton & Khadi' },
+                  { id: 'jute', label: 'Jute' },
+                  { id: 'non-woven', label: 'Non-Woven' },
+                ] as const
+              ).map(t => (
+                <button
+                  key={t.id}
+                  type="button"
+                  onClick={() => setBagTab(t.id)}
+                  className={`px-3.5 py-1.5 rounded-full text-xs font-bold transition-all cursor-pointer whitespace-nowrap ${
+                    bagTab === t.id
+                      ? 'bg-[#164E33] text-white shadow-xs'
+                      : 'text-[#4A4843] hover:text-[#141414]'
+                  }`}
+                >
+                  {t.label}
+                </button>
+              ))}
+            </div>
+          </div>
+
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3.5 sm:gap-5">
+            {visibleBags.map(item => (
+              <ProductCard key={item.id} product={item} />
+            ))}
+          </div>
+
+          <div className="text-center mt-8">
             <Link
               to="/shop"
-              className="inline-flex items-center gap-2 h-10 px-5 rounded-lg bg-[#164E33] hover:bg-[#0D3321] text-white text-xs font-bold uppercase tracking-wider transition-all shadow-xs"
+              search={{ category: 'Bags' }}
+              className="inline-flex items-center gap-2 h-11 px-7 rounded-lg border-2 border-[#164E33] text-[#164E33] hover:bg-[#164E33] hover:text-white text-xs font-bold uppercase tracking-[0.1em] transition-all"
             >
-              <span>Browse All Weaves</span>
+              <span>View All {allBags.length} Bags</span>
               <ArrowRight size={14} />
             </Link>
           </div>
+        </div>
+      </section>
 
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-center mt-2">
-            {/* Swatch / Pattern Selector List */}
-            <div className="lg:col-span-5 flex flex-col gap-2.5">
-              {spotlightWeaves.map((item, idx) => {
-                const isActive = activeWeave === idx;
-                return (
-                  <button
-                    key={item.id}
-                    type="button"
-                    onClick={() => setActiveWeave(idx)}
-                    className={`text-left p-3.5 rounded-xl border transition-all flex items-center justify-between cursor-pointer ${
-                      isActive
-                        ? 'bg-[#F7F5F0] border-[#164E33] shadow-sm ring-1 ring-[#164E33]/20'
-                        : 'bg-white border-[#EAE7E0] hover:bg-[#FAF9F6] hover:border-[#164E33]/40'
-                    }`}
-                  >
-                    <div className="flex items-center gap-3.5">
-                      <div className="w-12 h-12 rounded-lg overflow-hidden border border-[#E5E1D8] shrink-0 bg-[#F7F5F0]">
-                        <img src={item.image} alt={item.title} className="w-full h-full object-cover" />
-                      </div>
-                      <div>
-                        <h4 className="font-['Manrope'] text-sm font-bold text-[#121212] leading-tight">
-                          {item.title}
-                        </h4>
-                        <span className="text-[11.5px] text-[#66645E] block mt-0.5">
-                          {item.type}
-                        </span>
-                      </div>
-                    </div>
-                    <div className="flex items-center gap-2">
-                      <span
-                        className={`text-[9.5px] font-bold tracking-wider uppercase px-2.5 py-0.5 rounded-full hidden sm:inline-block ${
-                          isActive
-                            ? 'bg-[#164E33] text-white'
-                            : 'bg-[#164E33]/10 text-[#164E33]'
-                        }`}
-                      >
-                        {item.accent}
-                      </span>
-                      <ChevronRight
-                        size={16}
-                        className={`transition-transform duration-300 ${
-                          isActive ? 'text-[#164E33] translate-x-0.5' : 'text-[#9E9B94]'
-                        }`}
-                      />
-                    </div>
-                  </button>
-                );
-              })}
+      {/* 4. ZOUK-STYLE VISUAL PROMO BANNER: BHAVANI FLOOR MATS & VASTHU COLLECTION */}
+      <section className="py-10 sm:py-12 bg-white">
+        <div className="page-width">
+          <div className="rounded-2xl overflow-hidden bg-[#112F21] text-white grid grid-cols-1 lg:grid-cols-12 border border-[#164E33]">
+            <div className="lg:col-span-6 p-7 sm:p-10 lg:p-12 flex flex-col justify-center">
+              <span className="inline-flex items-center gap-2 text-[11px] font-bold uppercase tracking-[0.16em] text-[#F4D178]">
+                <Layers size={14} /> Bhavani Handloom Looms
+              </span>
+              <h2 className="font-['Manrope'] text-2xl sm:text-3xl lg:text-4xl font-extrabold leading-tight mt-3">
+                Handloom Floor Mats &amp; Vasthu Rugs — Direct Mill Rates.
+              </h2>
+              <p className="text-xs sm:text-sm text-white/80 leading-relaxed mt-3 max-w-md">
+                Discover Royal Vasthu mats, oval braided Vasthu mats, reversible two-in-one rugs, raised lattice knots, and everyday washable cotton floor mats starting from ₹50.
+              </p>
+              <div className="flex flex-wrap gap-3 mt-6">
+                <Link
+                  to="/shop"
+                  search={{ category: 'Floor mats' }}
+                  className="inline-flex items-center gap-2 h-11 px-6 rounded-lg bg-[#D4A037] hover:bg-[#c3912d] text-[#112F21] text-xs font-extrabold uppercase tracking-wider transition-all"
+                >
+                  <span>Shop All {allMats.length} Floor Mats</span>
+                  <ArrowRight size={14} />
+                </Link>
+                <Link
+                  to="/shop"
+                  search={{ category: 'Floor mats', q: 'vasthu' }}
+                  className="inline-flex items-center gap-2 h-11 px-5 rounded-lg bg-white/10 hover:bg-white/20 border border-white/25 text-white text-xs font-bold uppercase tracking-wider transition-all"
+                >
+                  <span>Explore Vasthu Mats</span>
+                </Link>
+              </div>
             </div>
 
-            {/* Active Weave Feature Stage */}
-            <div className="lg:col-span-7">
-              <div className="rounded-2xl overflow-hidden border border-[#EAE7E0] bg-white shadow-[0_8px_28px_rgba(17,47,33,0.07)] group">
-                <div className="aspect-[16/10] overflow-hidden bg-[#F7F5F0] relative">
-                  <img
-                    src={currentWeave.image}
-                    alt={currentWeave.title}
-                    key={currentWeave.id}
-                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-[1.03]"
-                  />
-                  <span className="absolute top-4 left-4 px-3 py-1 rounded-md text-[10.5px] font-bold uppercase tracking-wider bg-[#112F21]/90 text-white backdrop-blur-xs">
-                    {currentWeave.accent}
-                  </span>
-                </div>
-                <div className="p-5 sm:p-7 flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-t border-[#EAE7E0]">
-                  <div>
-                    <span className="text-[11px] font-bold text-[#164E33] uppercase tracking-wider block">
-                      {currentWeave.type}
-                    </span>
-                    <h3 className="font-['Manrope'] text-xl sm:text-2xl font-extrabold text-[#121212] mt-1">
-                      {currentWeave.title}
-                    </h3>
-                    <p className="text-xs sm:text-sm text-[#66645E] mt-1.5 max-w-md leading-relaxed">
-                      {currentWeave.desc}
-                    </p>
-                  </div>
-                  <Link
-                    to="/shop"
-                    search={currentWeave.search as any}
-                    className="self-start sm:self-center shrink-0 inline-flex items-center gap-2 h-10 px-5 rounded-lg bg-[#164E33] hover:bg-[#0D3321] text-white text-xs font-bold uppercase tracking-wider transition-all shadow-xs"
-                  >
-                    <span>Shop This Style</span>
-                    <ArrowRight size={14} />
-                  </Link>
-                </div>
-              </div>
+            <div className="lg:col-span-6 grid grid-cols-2 gap-1.5 p-1.5 bg-[#0C2217]">
+              <img src={matRoyalVasthu} alt="Royal Vasthu Floor Mat" loading="lazy" className="w-full h-40 sm:h-52 object-cover rounded-lg" />
+              <img src={matVasthuOval} alt="Vasthu Round Oval Mat" loading="lazy" className="w-full h-40 sm:h-52 object-cover rounded-lg" />
+              <img src={matIkat} alt="Heritage Lattice Weave Mat" loading="lazy" className="w-full h-40 sm:h-52 object-cover rounded-lg" />
+              <img src={matRainbow} alt="Rainbow Cotton Floor Mat" loading="lazy" className="w-full h-40 sm:h-52 object-cover rounded-lg" />
             </div>
           </div>
         </div>
       </section>
 
-      {/* 6. ZOUK-STYLE BRAND PILLARS / USP STRIP */}
-      <EverydayBand />
-
-      {/* 7. ZOUK-STYLE SOCIAL PROOF: CUSTOMER REVIEWS & TRUSTED BRANDS */}
-      <section className="section bg-white">
+      {/* 5. ZOUK-STYLE SECTION 2: HANDLOOM & VASTHU FLOOR MATS (TABBED LIVE PRODUCT GRID) */}
+      <section className="section bg-white !pt-4">
         <div className="page-width">
-          <div className="text-center max-w-2xl mx-auto mb-9">
-            <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#164E33]/8 text-[#164E33] text-xs font-bold mb-3">
-              <Star size={13} className="fill-[#D9A438] text-[#D9A438]" />
-              <span>4.9 / 5 Average Rating · Trusted Across India</span>
+          <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-6">
+            <div>
+              <Eyebrow>Woven in Bhavani</Eyebrow>
+              <h2 className="font-['Manrope'] text-2xl sm:text-3xl font-extrabold text-[#141414] mt-1.5">
+                Handloom &amp; Vasthu Floor Mats
+              </h2>
+              <p className="text-xs sm:text-sm text-[#66635C] mt-1">
+                Thick cotton cords, raised lattice knots, reversible weaves &amp; auspicious Vasthu designs.
+              </p>
             </div>
-            <h2 className="font-['Manrope'] text-2xl sm:text-3xl font-extrabold text-[#121212] tracking-tight">
-              Loved by Customers &amp; Retail Partners
-            </h2>
+
+            <div className="flex items-center gap-1.5 bg-[#F6F3EC] p-1 rounded-full border border-[#E5E0D5] self-start md:self-auto overflow-x-auto no-scrollbar max-w-full">
+              {(
+                [
+                  { id: 'all', label: 'Featured Mats' },
+                  { id: 'designer', label: 'Designer Weaves' },
+                  { id: 'vasthu', label: 'Vasthu & Traditional' },
+                  { id: 'everyday', label: 'Everyday (₹50–₹70)' },
+                ] as const
+              ).map(t => (
+                <button
+                  key={t.id}
+                  type="button"
+                  onClick={() => setMatTab(t.id)}
+                  className={`px-3.5 py-1.5 rounded-full text-xs font-bold transition-all cursor-pointer whitespace-nowrap ${
+                    matTab === t.id
+                      ? 'bg-[#164E33] text-white shadow-xs'
+                      : 'text-[#4A4843] hover:text-[#141414]'
+                  }`}
+                >
+                  {t.label}
+                </button>
+              ))}
+            </div>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
-            {reviews.map((rev) => (
-              <div
-                key={rev.name}
-                className="p-6 rounded-2xl bg-[#FAF9F6] border border-[#EAE7E0] flex flex-col justify-between gap-4 hover:border-[#164E33]/30 transition-colors"
-              >
-                <div>
-                  <div className="flex items-center gap-1 text-[#D9A438] mb-3">
-                    {[...Array(5)].map((_, i) => (
-                      <Star key={i} size={13} className="fill-[#D9A438]" />
-                    ))}
-                  </div>
-                  <p className="text-sm text-[#2A2A2A] leading-relaxed">
-                    “{rev.quote}”
-                  </p>
-                </div>
-                <div className="pt-3 border-t border-[#EAE7E0] flex items-center justify-between gap-2">
-                  <div>
-                    <div className="font-['Manrope'] text-xs font-extrabold text-[#121212] flex items-center gap-1.5">
-                      <span>{rev.name}</span>
-                      <CheckCircle2 size={13} className="text-[#164E33]" />
-                    </div>
-                    <span className="text-[11px] text-[#737069]">{rev.city}</span>
-                  </div>
-                  <span className="text-[10px] font-semibold text-[#164E33] bg-white border border-[#E5E1D8] px-2.5 py-1 rounded-md max-w-[140px] truncate">
-                    {rev.product}
-                  </span>
-                </div>
-              </div>
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3.5 sm:gap-5">
+            {visibleMats.map(item => (
+              <ProductCard key={item.id} product={item} />
             ))}
           </div>
 
-          {/* Trusted Jewellery & Brand Partners Bar */}
-          <div className="mt-10 pt-8 border-t border-[#EAE7E0]">
-            <p className="text-center text-[11px] font-bold uppercase tracking-[0.18em] text-[#737069] mb-5">
-              Trusted Manufacturing Partner For Leading Jewellery &amp; Lifestyle Brands
-            </p>
-            <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
-              {trustedPartners.map((partner) => (
-                <div
-                  key={partner}
-                  className="px-4 py-3.5 rounded-xl bg-[#F7F5F0] border border-[#EAE7E0] flex items-center justify-center gap-2 text-center"
+          <div className="text-center mt-8">
+            <Link
+              to="/shop"
+              search={{ category: 'Floor mats' }}
+              className="inline-flex items-center gap-2 h-11 px-7 rounded-lg border-2 border-[#164E33] text-[#164E33] hover:bg-[#164E33] hover:text-white text-xs font-bold uppercase tracking-[0.1em] transition-all"
+            >
+              <span>View All {allMats.length} Floor Mats</span>
+              <ArrowRight size={14} />
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* 6. BRAND VALUE PILLARS */}
+      <EverydayBand />
+
+      {/* 7. REAL MANUFACTURING FACILITY & ESTEEMED JEWELLERY CLIENTS */}
+      <section className="section bg-white">
+        <div className="page-width">
+          <div className="brand-story">
+            <div className="relative overflow-hidden rounded-2xl border border-[#EAE6DE] shadow-sm bg-[#F6F3EC]">
+              <img
+                className="story-photo rounded-2xl"
+                src={facilityImg}
+                alt="ShreeyaSudarshan Trading Company facility in Bhavani"
+                loading="lazy"
+                width={1024}
+                height={768}
+              />
+              <div className="absolute bottom-3.5 left-3.5 right-3.5 bg-white/95 backdrop-blur-md px-4 py-2.5 rounded-xl border border-[#EAE6DE] text-xs flex items-center justify-between shadow-sm">
+                <span className="flex items-center gap-2 font-bold text-[#141414]">
+                  <Factory size={15} className="text-[#164E33]" /> Direct Textile &amp; Bag Manufacturing
+                </span>
+                <span className="text-[10px] uppercase font-bold text-[#164E33] tracking-wider">Bhavani · Erode</span>
+              </div>
+            </div>
+
+            <div className="story-content">
+              <Eyebrow>ShreeyaSudarshan Trading Company</Eyebrow>
+              <h2 className="editorial-title">
+                Direct from our Bhavani looms to your home &amp; brand.
+              </h2>
+              <p>
+                We specialize in manufacturing <strong>Handloom Floor Mats</strong>, <strong>Cotton Bags</strong>, <strong>Golden Jute Bags</strong>, <strong>Non-Woven Bags</strong>, and <strong>Gada Cloth (20&apos;s)</strong> — serving both retail shoppers and leading jewellery houses across India with custom sizes and consistent quality.
+              </p>
+              <div className="flex flex-wrap gap-3">
+                <Link
+                  to="/our-story"
+                  className="inline-flex items-center gap-2 h-11 px-6 rounded-lg bg-[#164E33] hover:bg-[#0E3824] text-white text-xs font-bold uppercase tracking-wider transition-all"
                 >
-                  <ShieldCheck size={15} className="text-[#164E33] shrink-0" />
-                  <span className="font-['Manrope'] text-xs sm:text-[13px] font-bold text-[#121212]">
-                    {partner}
+                  <span>Our Story &amp; Facility</span>
+                  <ArrowRight size={14} />
+                </Link>
+                <Link
+                  to="/contact-us"
+                  className="inline-flex items-center gap-2 h-11 px-6 rounded-lg bg-[#F6F3EC] border border-[#DDD8CE] hover:border-[#164E33] text-[#141414] hover:text-[#164E33] text-xs font-bold uppercase tracking-wider transition-all"
+                >
+                  <span>Request Bulk Quote</span>
+                </Link>
+              </div>
+            </div>
+          </div>
+
+          {/* Trusted Jewellery & Brand Clients */}
+          <div className="mt-12 pt-9 border-t border-[#EAE6DE]">
+            <div className="text-center mb-6">
+              <span className="text-[11px] font-bold uppercase tracking-[0.18em] text-[#164E33]">
+                Trusted Packaging &amp; Textile Partner For
+              </span>
+            </div>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3.5">
+              {trustedClients.map(client => (
+                <div
+                  key={client.name}
+                  className="p-4 rounded-xl bg-[#F6F3EC] border border-[#EAE6DE] flex flex-col justify-between gap-2"
+                >
+                  <div className="flex items-center justify-between gap-2">
+                    <span className="text-[10px] font-bold uppercase tracking-wider text-[#164E33] bg-white border border-[#E5E0D5] px-2 py-0.5 rounded">
+                      {client.tag}
+                    </span>
+                    <ShieldCheck size={15} className="text-[#164E33] shrink-0" />
+                  </div>
+                  <h4 className="font-['Manrope'] text-[13px] font-extrabold text-[#141414] leading-snug mt-1">
+                    {client.name}
+                  </h4>
+                  <span className="text-[11px] text-[#66635C] flex items-center gap-1">
+                    <CheckCircle2 size={12} className="text-[#164E33]" /> Verified Client
                   </span>
                 </div>
               ))}
             </div>
-          </div>
-        </div>
-      </section>
-
-      {/* 8. HERITAGE SPLIT SECTION (BHAVANI FACILITY) */}
-      <section className="section bg-[#F7F5F0] border-t border-[#EAE7E0]">
-        <div className="page-width brand-story">
-          <div className="relative group overflow-hidden rounded-2xl border border-[#E5E1D8] shadow-md bg-white">
-            <img
-              className="story-photo rounded-2xl transition-transform duration-700 group-hover:scale-[1.03]"
-              src={facilityImg}
-              alt="ShreeyaSudarshan Trading Company facility in Bhavani"
-              loading="lazy"
-              width={1024}
-              height={768}
-            />
-            <div className="absolute bottom-3.5 left-3.5 right-3.5 bg-white/95 backdrop-blur-md px-4 py-2.5 rounded-xl border border-[#EAE7E0] text-xs flex items-center justify-between shadow-sm">
-              <span className="flex items-center gap-2 font-bold text-[#121212]">
-                <CheckCircle2 size={15} className="text-[#164E33]" /> Direct Mill Manufacturing Unit
-              </span>
-              <span className="text-[10px] uppercase font-bold text-[#164E33] tracking-wider">Bhavani · Erode</span>
-            </div>
-          </div>
-
-          <div className="story-content">
-            <Eyebrow>Our Heritage</Eyebrow>
-            <h2 className="editorial-title">
-              Proudly Indian.<br />
-              <em>Woven into everyday life.</em>
-            </h2>
-            <p>
-              From our manufacturing unit in Bhavani, Tamil Nadu, ShreeyaSudarshan Trading Company brings together generations of handloom mastery and modern eco-friendly utility — crafting cotton totes, golden jute bags, non-woven bags, gada cloth, and durable floor mats.
-            </p>
-            <div className="flex flex-wrap gap-3">
-              <Link
-                to="/our-story"
-                className="inline-flex items-center gap-2 h-11 px-6 rounded-lg bg-[#164E33] hover:bg-[#0D3321] text-white text-xs font-bold uppercase tracking-wider transition-all shadow-xs"
-              >
-                <span>Read Our Story</span>
-                <ArrowRight size={14} />
-              </Link>
-              <Link
-                to="/contact-us"
-                className="inline-flex items-center gap-2 h-11 px-6 rounded-lg bg-white border border-[#DEDAD0] hover:border-[#164E33] text-[#121212] hover:text-[#164E33] text-xs font-bold uppercase tracking-wider transition-all"
-              >
-                <span>Bulk &amp; Custom Enquiry</span>
-                <Sparkles size={14} />
-              </Link>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* 9. CLEAN CLOSING BANNER */}
-      <section className="bg-[#164E33] text-white text-center py-14 px-6 border-t border-[#D9A438]/30">
-        <div className="page-width max-w-2xl">
-          <Eyebrow className="justify-center !text-[#F4D178]">Factory-Direct Quality</Eyebrow>
-          <h2 className="font-['Manrope'] text-2xl sm:text-4xl font-extrabold mt-3 mb-2.5 tracking-tight">
-            Ready to elevate your everyday carry &amp; home?
-          </h2>
-          <p className="text-xs sm:text-sm text-white/80 mb-7 leading-relaxed">
-            Shop retail essentials or partner with us for bulk branded cotton, jute, and handloom mat orders with pan-India delivery.
-          </p>
-          <div className="flex items-center justify-center gap-3 flex-wrap">
-            <Link
-              to="/shop"
-              className="inline-flex items-center gap-2 h-11 px-7 rounded-lg bg-white hover:bg-[#F7F5F0] text-[#112F21] text-xs font-extrabold uppercase tracking-[0.1em] shadow-md transition-all active:scale-95"
-            >
-              <span>Shop All Products</span>
-              <ArrowRight size={14} />
-            </Link>
-            <Link
-              to="/contact-us"
-              className="inline-flex items-center gap-2 h-11 px-7 rounded-lg bg-transparent border border-white/40 hover:bg-white/10 text-white text-xs font-bold uppercase tracking-[0.1em] transition-all"
-            >
-              <span>Request Bulk Quote</span>
-            </Link>
           </div>
         </div>
       </section>
