@@ -1,5 +1,5 @@
 import { createFileRoute, Link } from '@tanstack/react-router';
-import { ArrowRight, Sparkles, Building2, CheckCircle2, ShieldCheck, Factory } from 'lucide-react';
+import { ArrowLeft, ArrowRight, Sparkles, Building2, CheckCircle2, ShieldCheck, Factory } from 'lucide-react';
 import { Eyebrow, EverydayBand } from '@/components/storefront';
 import { Button } from '@/components/ui/button';
 import { pageHead } from '@/lib/catalog';
@@ -28,6 +28,14 @@ function Story() {
       {/* Heading Header */}
       <section className="catalog-heading">
         <img src={logo.url} alt="" aria-hidden="true" />
+        <nav aria-label="Breadcrumb" className="flex items-center justify-center gap-1.5 text-xs text-[#66645E] mb-3">
+          <Link to="/" className="inline-flex items-center gap-1 font-semibold text-[#164E33] hover:underline transition-colors">
+            <ArrowLeft size={13} />
+            <span>Home</span>
+          </Link>
+          <span className="text-[#66645E]/50">/</span>
+          <span className="font-semibold text-[#121212]">Our Story &amp; Clients</span>
+        </nav>
         <Eyebrow>ShreeyaSudarshan Trading Company</Eyebrow>
         <h1>Crafted with Heritage &amp; Care.</h1>
         <p>Eco-Friendly Textile &amp; Bag Manufacturers · Quality That Endures</p>

@@ -1,6 +1,7 @@
 import { useState } from 'react';
-import { createFileRoute } from '@tanstack/react-router';
+import { createFileRoute, Link } from '@tanstack/react-router';
 import {
+  ArrowLeft,
   Phone,
   Mail,
   MapPin,
@@ -50,6 +51,14 @@ function ContactUs() {
       {/* Header Heading */}
       <section className="catalog-heading">
         <img src={logo.url} alt="" aria-hidden="true" />
+        <nav aria-label="Breadcrumb" className="flex items-center justify-center gap-1.5 text-xs text-[#66645E] mb-3">
+          <Link to="/" className="inline-flex items-center gap-1 font-semibold text-[#164E33] hover:underline transition-colors">
+            <ArrowLeft size={13} />
+            <span>Home</span>
+          </Link>
+          <span className="text-[#66645E]/50">/</span>
+          <span className="font-semibold text-[#121212]">Contact Us &amp; Bulk Orders</span>
+        </nav>
         <Eyebrow>Direct Manufacturer Support</Eyebrow>
         <h1>Get in Touch</h1>
         <p>Bulk Orders, Custom Packaging &amp; Handloom Floor Mat Enquiries</p>

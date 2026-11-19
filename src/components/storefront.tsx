@@ -1,6 +1,7 @@
-import { createContext, useContext, useState, useEffect, type ReactNode } from 'react';
+import { createContext, useContext, useState, useEffect, useRef, useCallback, type ReactNode } from 'react';
 import { Link, useLocation } from '@tanstack/react-router';
 import {
+  ArrowLeft,
   ArrowRight,
   Heart,
   Search,
@@ -295,6 +296,68 @@ export function Storefront({ children }: { children: ReactNode }) {
 
   const location = useLocation();
 
+  const isAnyModalOpen = Boolean(
+    product || cartOpen || searchOpen || menuOpen || savedOpen || checkoutModalOpen || orderSuccessModal
+  );
+
+  const historyPushedRef = useRef(false);
+  const prevPathnameRef = useRef(location.pathname);
+
+  // Close all open dialogs helper
+  const closeAllModals = useCallback(() => {
+    setProduct(null);
+    setCartOpen(false);
+    setSearchOpen(false);
+    setMenuOpen(false);
+    setSavedOpen(false);
+    setCheckoutModalOpen(false);
+    setOrderSuccessModal(null);
+  }, []);
+
+  // Listen for browser/phone Back button (popstate event)
+  // Ensures mobile back gestures close modals/drawers instead of exiting the site completely
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+
+    const onPopState = () => {
+      if (historyPushedRef.current) {
+        historyPushedRef.current = false;
+        closeAllModals();
+      }
+    };
+
+    window.addEventListener('popstate', onPopState);
+    return () => {
+      window.removeEventListener('popstate', onPopState);
+    };
+  }, [closeAllModals]);
+
+  // Sync open state with browser history: pushState when opened, back() when closed via UI
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+
+    if (isAnyModalOpen) {
+      if (!historyPushedRef.current) {
+        window.history.pushState({ modalOpen: true }, '');
+        historyPushedRef.current = true;
+      }
+    } else {
+      if (historyPushedRef.current) {
+        historyPushedRef.current = false;
+        window.history.back();
+      }
+    }
+  }, [isAnyModalOpen]);
+
+  // If route changes (e.g. user clicked a link in menu), reset modal states without popping history
+  useEffect(() => {
+    if (prevPathnameRef.current !== location.pathname) {
+      prevPathnameRef.current = location.pathname;
+      historyPushedRef.current = false;
+      closeAllModals();
+    }
+  }, [location.pathname, closeAllModals]);
+
   const toggleSave = (id: string) => {
     const willSave = !saved.includes(id);
     setSaved(prev => (willSave ? [...prev, id] : prev.filter(x => x !== id)));
@@ -475,11 +538,24 @@ export function Storefront({ children }: { children: ReactNode }) {
       <div className="header-wrapper">
         {/* Row 1: Brand + Centered Search Bar + Wishlist & Bag */}
         <header className="site-header page-width">
-          <div className="flex items-center gap-1.5 sm:gap-3 min-w-0 flex-1 md:flex-initial">
+          <div className="flex items-center gap-1 sm:gap-2.5 min-w-0 flex-1 md:flex-initial">
+            {location.pathname !== '/' && (
+              <Link
+                to="/"
+                className="-ml-1 size-8 sm:size-9 hover:bg-black/5 text-[#164E33] shrink-0 inline-flex items-center justify-center rounded-md"
+                aria-label="Back to home"
+                title="Back to home"
+              >
+                <ArrowLeft size={20} />
+              </Link>
+            )}
             <Button
               variant="ghost"
               size="icon"
-              className="mobile-menu -ml-1.5 size-8 sm:size-9 hover:bg-black/5 text-[#141414] shrink-0"
+              className={cn(
+                "mobile-menu size-8 sm:size-9 hover:bg-black/5 text-[#141414] shrink-0",
+                location.pathname === '/' ? "-ml-1.5" : ""
+              )}
               aria-label="Open menu"
               onClick={() => setMenuOpen(true)}
             >
@@ -535,6 +611,22 @@ export function Storefront({ children }: { children: ReactNode }) {
             </Button>
           </div>
         </header>
+
+        {/* Mobile Sub-page Back Navigation Bar */}
+        {location.pathname !== '/' && (
+          <div className="md:hidden px-3.5 py-1.5 bg-[#FAF9F6] border-t border-[#ECE8E0] flex items-center justify-between text-xs">
+            <Link
+              to="/"
+              className="inline-flex items-center gap-1.5 font-bold text-[#164E33] hover:underline"
+            >
+              <ArrowLeft size={13} />
+              <span>Back to Home</span>
+            </Link>
+            <span className="text-[11px] font-semibold uppercase tracking-wider text-[#737069]">
+              {location.pathname === '/shop' ? 'The Collection' : location.pathname === '/contact-us' ? 'Contact Us' : 'Our Story'}
+            </span>
+          </div>
+        )}
 
         {/* Zouk-Style Mobile Search Pill Bar */}
         <div className="md:hidden pb-2.5 px-3">
@@ -1100,6 +1192,28 @@ export function Storefront({ children }: { children: ReactNode }) {
             <>
               <DialogTitle className="sr-only">{product.name}</DialogTitle>
               <DialogDescription className="sr-only">Product preview and specifications</DialogDescription>
+
+              {/* Back Bar inside Modal for clear mobile/desktop return */}
+              <div className="flex items-center justify-between pb-3 mb-3 border-b border-[#EAE6DE]">
+                <button
+                  type="button"
+                  onClick={() => setProduct(null)}
+                  className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-bold text-[#164E33] hover:text-[#112F21] py-1 px-2.5 -ml-1 rounded-lg hover:bg-[#F6F3EC] transition-colors cursor-pointer"
+                  aria-label="Back to collection"
+                >
+                  <ArrowLeft size={16} />
+                  <span>Back to Collection</span>
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setProduct(null)}
+                  className="size-8 rounded-full bg-[#F6F3EC] hover:bg-[#EAE6DE] flex items-center justify-center text-[#141414] transition-colors cursor-pointer"
+                  aria-label="Close dialog"
+                >
+                  <X size={15} />
+                </button>
+              </div>
+
               <div className="detail-grid">
                 <div className="relative rounded-xl overflow-hidden border border-border/80 bg-paper">
                   <img

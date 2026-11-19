@@ -1,5 +1,5 @@
 import { createFileRoute, Link } from '@tanstack/react-router';
-import { ChevronRight } from 'lucide-react';
+import { ChevronRight, ArrowLeft } from 'lucide-react';
 import { Eyebrow, ProductCollection, EverydayBand } from '@/components/storefront';
 import { pageHead } from '@/lib/catalog';
 import logo from '@/assets/company-logo.png.asset.json';
@@ -34,7 +34,10 @@ function Shop() {
         <img src={logo.url} alt="" aria-hidden="true" />
         <div className="page-width">
           <nav aria-label="Breadcrumb" className="flex items-center justify-center gap-1.5 text-xs text-[#66645E] mb-3">
-            <Link to="/" className="hover:text-[#164E33] transition-colors">Home</Link>
+            <Link to="/" className="inline-flex items-center gap-1 font-semibold text-[#164E33] hover:underline transition-colors">
+              <ArrowLeft size={13} />
+              <span>Home</span>
+            </Link>
             <ChevronRight size={12} />
             <span className="font-semibold text-[#121212]">{category ?? (q ? `Search: ${q}` : 'All Collections')}</span>
           </nav>
