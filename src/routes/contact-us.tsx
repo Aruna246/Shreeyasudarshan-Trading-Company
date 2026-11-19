@@ -59,7 +59,7 @@ function ContactUs() {
       <section className="section page-width !pt-10">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
           {/* Left Royal Forest Green Contact Card */}
-          <div className="lg:col-span-5 bg-gradient-to-br from-[#123826] to-[#0c261a] text-white p-8 sm:p-10 rounded-2xl shadow-xl flex flex-col justify-between border-t-2 border-[#EDBC3D] border-x border-b border-[#EDBC3D]/25">
+          <div className="lg:col-span-5 bg-gradient-to-br from-[#123826] to-[#0c261a] text-white p-5 sm:p-10 rounded-2xl shadow-xl flex flex-col justify-between border-t-2 border-[#EDBC3D] border-x border-b border-[#EDBC3D]/25">
             <div>
               <span className="text-[10px] font-semibold tracking-widest uppercase text-[#EDBC3D] bg-white/15 border border-white/20 px-3 py-1 rounded-full inline-block mb-4">
                 Headquarters
@@ -127,7 +127,7 @@ function ContactUs() {
                         href="https://maps.google.com/maps?q=Anna+Nagar+1st+Street,+Bhavani,+Erode+638301"
                         target="_blank"
                         rel="noreferrer"
-                        className="inline-flex items-center gap-1.5 text-xs text-[#164E33] hover:text-[#EDBC3D] hover:underline uppercase tracking-wider font-semibold transition-colors"
+                        className="inline-flex items-center gap-1.5 text-xs text-[#F4D178] hover:text-white hover:underline uppercase tracking-wider font-semibold transition-colors"
                       >
                         <MapPin size={13} />
                         <span>View on Google Maps</span>
@@ -164,8 +164,8 @@ function ContactUs() {
           </div>
 
           {/* Right Enquiry Form Card */}
-          <div className="lg:col-span-7 bg-white border border-[rgba(14,14,14,0.08)] rounded-2xl p-8 sm:p-10 shadow-[0_4px_20px_rgba(0,0,0,0.06)]">
-            <h2 className="font-['Manrope'] text-3xl font-bold tracking-tight text-foreground mb-2 uppercase">
+          <div className="lg:col-span-7 bg-white border border-[rgba(14,14,14,0.08)] rounded-2xl p-5 sm:p-10 shadow-[0_4px_20px_rgba(0,0,0,0.06)]">
+            <h2 className="font-['Manrope'] text-2xl sm:text-3xl font-bold tracking-tight text-foreground mb-2 uppercase">
               Send us an enquiry
             </h2>
             <p className="text-xs sm:text-sm text-muted-foreground mb-6">

@@ -86,19 +86,19 @@ export function useStore() {
 
 export function Brand() {
   return (
-    <Link to="/" className="brand group select-none shrink-0 min-w-0" aria-label="ShreeyaSudarshan home">
+    <Link to="/" className="brand group select-none min-w-0" aria-label="ShreeyaSudarshan home">
       <img
         src={logo.url}
         alt="ShreeyaSudarshan Trading Company"
-        className="w-9 h-9 sm:w-11 sm:h-11 rounded-full object-cover ring-1.5 ring-[#164E33]/35 shadow-xs transition-transform duration-300 group-hover:scale-105 shrink-0 bg-[#F7F5F0]"
+        className="w-8 h-8 sm:w-11 sm:h-11 rounded-full object-cover ring-1.5 ring-[#164E33]/35 shadow-xs transition-transform duration-300 group-hover:scale-105 shrink-0 bg-[#F7F5F0]"
         width={44}
         height={44}
       />
       <div className="flex flex-col min-w-0">
-        <span className="font-['Manrope'] text-[14px] sm:text-[17px] font-extrabold tracking-[0.12em] text-[#121212] group-hover:text-[#164E33] transition-colors leading-none truncate uppercase">
+        <span className="font-['Manrope'] text-[12.5px] sm:text-[17px] font-extrabold tracking-[0.06em] sm:tracking-[0.12em] text-[#141414] group-hover:text-[#164E33] transition-colors leading-none truncate uppercase">
           ShreeyaSudarshan
         </span>
-        <span className="text-[9px] sm:text-[9.5px] font-semibold uppercase tracking-[0.18em] text-[#164E33] block mt-1">
+        <span className="text-[8px] sm:text-[9.5px] font-semibold uppercase tracking-[0.12em] sm:tracking-[0.18em] text-[#164E33] block mt-0.5 sm:mt-1 truncate">
           Trading Company · Bhavani
         </span>
       </div>
@@ -107,9 +107,9 @@ export function Brand() {
 }
 
 const ANNOUNCEMENTS = [
-  { text: 'Direct Factory Rates from Bhavani · Handloom Floor Mats, Cotton, Jute & Non-Woven Bags', link: '/shop' },
-  { text: 'Bulk & Custom Orders for Jewellery & Retail Brands · Call +91 98422 70384', link: '/contact-us' },
-  { text: 'Handloom Floor Mats Starting ₹50 · Pure Cotton, Vasthu & Designer Weaves', link: '/shop' },
+  { text: 'Direct Factory Rates · Bags & Handloom Floor Mats', link: '/shop' },
+  { text: 'Bulk & Jewellery Orders · Call +91 98422 70384', link: '/contact-us' },
+  { text: 'Bhavani Handloom & Vasthu Floor Mats from ₹50', link: '/shop' },
 ];
 
 export function Storefront({ children }: { children: ReactNode }) {
@@ -475,20 +475,20 @@ export function Storefront({ children }: { children: ReactNode }) {
       <div className="header-wrapper">
         {/* Row 1: Brand + Centered Search Bar + Wishlist & Bag */}
         <header className="site-header page-width">
-          <div className="flex items-center gap-2 sm:gap-3 min-w-0">
+          <div className="flex items-center gap-1.5 sm:gap-3 min-w-0 flex-1 md:flex-initial">
             <Button
               variant="ghost"
               size="icon"
-              className="mobile-menu -ml-2 hover:bg-black/5 text-[#141414]"
+              className="mobile-menu -ml-1.5 size-8 sm:size-9 hover:bg-black/5 text-[#141414] shrink-0"
               aria-label="Open menu"
               onClick={() => setMenuOpen(true)}
             >
-              <Menu size={21} />
+              <Menu size={20} />
             </Button>
             <Brand />
           </div>
 
-          {/* Prominent Centered Zouk Search Bar */}
+          {/* Prominent Centered Zouk Search Bar (Desktop) */}
           <button
             type="button"
             onClick={() => setSearchOpen(true)}
@@ -503,24 +503,13 @@ export function Storefront({ children }: { children: ReactNode }) {
             <Button
               variant="ghost"
               size="icon"
-              title="Search collection"
-              aria-label="Search collection"
-              onClick={() => setSearchOpen(true)}
-              className="md:hidden rounded-full size-9 hover:text-[#164E33] hover:bg-[#F6F3EC] text-[#141414]"
-            >
-              <Search size={19} />
-            </Button>
-
-            <Button
-              variant="ghost"
-              size="icon"
-              className="relative rounded-full size-9 hover:text-[#164E33] hover:bg-[#F6F3EC] text-[#141414]"
+              className="relative rounded-full size-8 sm:size-9 hover:text-[#164E33] hover:bg-[#F6F3EC] text-[#141414]"
               title="Saved favourites"
               aria-label="Saved favourites"
               onClick={() => setSavedOpen(true)}
             >
               <Heart
-                size={19}
+                size={18}
                 fill={saved.length > 0 ? '#164E33' : 'none'}
                 color={saved.length > 0 ? '#164E33' : 'currentColor'}
               />
@@ -533,21 +522,34 @@ export function Storefront({ children }: { children: ReactNode }) {
 
             <Button
               variant="ghost"
-              className="h-9 px-3 rounded-full bg-[#164E33] hover:bg-[#0F3925] text-white flex items-center gap-1.5 shadow-xs"
+              className="h-8 sm:h-9 px-2 sm:px-3 rounded-full bg-[#164E33] hover:bg-[#0F3925] text-white flex items-center gap-1 sm:gap-1.5 shadow-xs"
               title="Open shopping bag"
               aria-label="Open shopping bag"
               onClick={() => setCartOpen(true)}
             >
-              <ShoppingBag size={16} className="text-white" />
+              <ShoppingBag size={15} className="text-white" />
               <span className="hidden sm:inline text-xs font-bold">Bag</span>
-              <span className="min-w-4.5 h-4.5 px-1 rounded-full bg-white text-[#164E33] text-[10px] font-extrabold inline-grid place-items-center">
+              <span className="min-w-4 h-4 sm:min-w-4.5 sm:h-4.5 px-1 rounded-full bg-white text-[#164E33] text-[10px] font-extrabold inline-grid place-items-center">
                 {totalCartCount}
               </span>
             </Button>
           </div>
         </header>
 
-        {/* Row 2: Zouk-Style Category Sub-Navigation Bar */}
+        {/* Zouk-Style Mobile Search Pill Bar */}
+        <div className="md:hidden pb-2.5 px-3">
+          <button
+            type="button"
+            onClick={() => setSearchOpen(true)}
+            aria-label="Search products"
+            className="w-full h-9 px-3.5 rounded-full bg-[#F6F3EC] border border-[#E5E0D5] flex items-center gap-2.5 text-xs text-[#66635C] active:bg-[#EFECE3] transition-colors cursor-pointer"
+          >
+            <Search size={14} className="text-[#164E33] shrink-0" />
+            <span className="truncate">Search Cotton Bags, Jute Totes, Vasthu Mats...</span>
+          </button>
+        </div>
+
+        {/* Row 2: Zouk-Style Category Sub-Navigation Bar (Desktop) */}
         <div className="zouk-subnav">
           <nav className="desktop-nav page-width" aria-label="Product categories navigation">
             {nav}
@@ -559,12 +561,12 @@ export function Storefront({ children }: { children: ReactNode }) {
       <main className="relative z-10">{children}</main>
 
       {/* Floating WhatsApp Quick Action Button */}
-      <aside aria-label="WhatsApp Support" className="fixed bottom-6 right-4 sm:right-6 z-40">
+      <aside aria-label="WhatsApp Support" className="fixed bottom-4 right-3.5 sm:bottom-6 sm:right-6 z-40">
         <a
           href="https://wa.me/919842270384?text=Hello%20ShreeyaSudarshan%20Trading%20Company,%20I%20am%20interested%20in%20custom%20and%20bulk%20orders%20for%20bags%20and%20floor%20mats."
           target="_blank"
           rel="noopener noreferrer"
-          className="group relative flex items-center justify-center size-13 md:size-14 rounded-full bg-[#25D366] text-white shadow-[0_4px_18px_rgba(37,211,102,0.45)] hover:shadow-[0_6px_24px_rgba(37,211,102,0.65)] hover:bg-[#20ba59] hover:scale-105 active:scale-95 transition-all duration-300"
+          className="group relative flex items-center justify-center size-12 md:size-14 rounded-full bg-[#25D366] text-white shadow-[0_4px_18px_rgba(37,211,102,0.45)] hover:shadow-[0_6px_24px_rgba(37,211,102,0.65)] hover:bg-[#20ba59] hover:scale-105 active:scale-95 transition-all duration-300"
           aria-label="Chat with manufacturer on WhatsApp"
         >
           <span
@@ -665,20 +667,23 @@ export function Storefront({ children }: { children: ReactNode }) {
 
       {/* Mobile Drawer */}
       <Sheet open={menuOpen} onOpenChange={setMenuOpen}>
-        <SheetContent className="w-[300px] sm:w-[360px] flex flex-col justify-between p-6">
+        <SheetContent className="w-[86vw] max-w-[330px] flex flex-col justify-between p-5 overflow-y-auto">
           <div>
-            <div className="flex items-center gap-3 pb-6 border-b border-border/70">
-              <img src={logo.url} alt="ShreeyaSudarshan" className="w-12 h-12 object-contain" />
-              <div>
-                <h3 className="font-serif text-lg font-bold">ShreeyaSudarshan</h3>
-                <p className="text-[10px] uppercase tracking-wider text-muted-foreground font-semibold">Trading Company · Bhavani</p>
+            <div className="flex items-center gap-3 pb-4 border-b border-border/70">
+              <img src={logo.url} alt="ShreeyaSudarshan" className="w-10 h-10 rounded-full object-cover ring-1 ring-[#164E33]/30" />
+              <div className="min-w-0">
+                <h3 className="font-['Manrope'] text-sm font-extrabold uppercase tracking-wider truncate text-[#141414]">ShreeyaSudarshan</h3>
+                <p className="text-[9.5px] uppercase tracking-wider text-[#164E33] font-semibold">Trading Company · Bhavani</p>
               </div>
             </div>
-            <nav className="flex flex-col gap-4 mt-6 text-base font-medium" aria-label="Mobile navigation">
+            <nav className="flex flex-col gap-1 mt-4 text-[14.5px] font-semibold [&>a]:py-2.5 [&>a]:px-3 [&>a]:rounded-lg [&>a]:text-[#262626] [&>a:hover]:bg-[#F6F3EC] [&>a:hover]:text-[#164E33] [&>a.active]:bg-[#164E33]/10 [&>a.active]:text-[#164E33]" aria-label="Mobile navigation">
+              <Link to="/" className={location.pathname === '/' ? 'active' : ''} onClick={() => setMenuOpen(false)}>
+                Home
+              </Link>
               {nav}
               <button
                 type="button"
-                className="flex items-center justify-between text-left py-2.5 border-t border-border/70 text-sm font-medium mt-3 pt-4 text-foreground cursor-pointer"
+                className="flex items-center justify-between text-left py-2.5 px-3 rounded-lg border-t border-border/70 text-sm font-semibold mt-2 pt-3.5 text-foreground hover:bg-[#F6F3EC] cursor-pointer"
                 onClick={() => {
                   setMenuOpen(false);
                   setSavedOpen(true);
@@ -687,15 +692,15 @@ export function Storefront({ children }: { children: ReactNode }) {
                 <span className="flex items-center gap-2">
                   <Heart size={16} fill={saved.length > 0 ? '#164E33' : 'none'} color={saved.length > 0 ? '#164E33' : 'currentColor'} /> Saved Favourites
                 </span>
-                <span className="text-xs font-semibold px-2 py-0.5 rounded-full bg-secondary text-primary">
+                <span className="text-xs font-bold px-2 py-0.5 rounded-full bg-secondary text-primary">
                   {saved.length}
                 </span>
               </button>
             </nav>
           </div>
 
-          <div className="pt-6 border-t border-border/70 space-y-3 text-xs text-muted-foreground">
-            <div className="flex items-center gap-2 text-foreground font-medium">
+          <div className="pt-4 mt-4 border-t border-border/70 space-y-2.5 text-xs text-muted-foreground">
+            <div className="flex items-center gap-2 text-foreground font-semibold">
               <Phone size={14} className="text-primary" />
               <a href="tel:+919842270384">+91 98422 70384</a>
             </div>
@@ -1090,48 +1095,57 @@ export function Storefront({ children }: { children: ReactNode }) {
           if (!open) setProduct(null);
         }}
       >
-        <DialogContent className="max-w-3xl max-h-[92vh] overflow-auto p-6 sm:p-8">
+        <DialogContent className="w-[calc(100%-24px)] max-w-3xl max-h-[90vh] overflow-y-auto p-4 sm:p-8 rounded-2xl">
           {product && (
             <>
               <DialogTitle className="sr-only">{product.name}</DialogTitle>
               <DialogDescription className="sr-only">Product preview and specifications</DialogDescription>
               <div className="detail-grid">
                 <div className="relative rounded-xl overflow-hidden border border-border/80 bg-paper">
-                  <img src={product.image} alt={product.name} className="w-full aspect-square object-cover" />
+                  <img
+                    src={product.image}
+                    alt={product.name}
+                    className="w-full max-h-[240px] sm:max-h-none aspect-[4/3] sm:aspect-square object-cover"
+                  />
                   {product.badge && (
-                    <span className="product-badge top-3 left-3">{product.badge}</span>
+                    <span className="absolute top-2.5 left-2.5 px-2.5 py-0.5 rounded-md text-[10px] font-bold uppercase tracking-wider bg-white/95 text-[#164E33] border border-[#164E33]/20 shadow-xs">
+                      {product.badge}
+                    </span>
                   )}
                 </div>
                 <div>
                   <div className="eyebrow">{product.category}</div>
-                  <h2 className="mt-2 text-3xl font-serif font-medium">{product.name}</h2>
+                  <h2 className="mt-1.5 text-xl sm:text-3xl font-['Manrope'] font-extrabold leading-tight">{product.name}</h2>
                   
                   {product.priceNote ? (
-                    <div className="mt-3 py-2.5 px-3.5 rounded-lg bg-amber-500/10 border border-amber-500/20">
-                      <p className="font-semibold text-base text-primary">
+                    <div className="mt-2.5 py-2 px-3 rounded-lg bg-[#F6F3EC] border border-[#E5E0D5]">
+                      <p className="font-bold text-sm sm:text-base text-primary">
                         {product.priceNote}
                       </p>
-                      <p className="text-xs text-muted-foreground mt-0.5">
-                        Base starting rate: ₹{product.price.toLocaleString('en-IN')} · Final quotation depends on order volume and custom dimension requirements.
+                      <p className="text-[11px] text-muted-foreground mt-0.5 leading-snug">
+                        Base starting rate: ₹{product.price.toLocaleString('en-IN')} · Final quotation depends on volume &amp; size.
                       </p>
                     </div>
                   ) : (
-                    <p className="mt-3 font-semibold text-2xl text-primary font-serif">₹{product.price.toLocaleString('en-IN')}</p>
+                    <p className="mt-2.5 font-extrabold text-xl sm:text-2xl text-primary font-['Manrope']">
+                      ₹{product.price.toLocaleString('en-IN')}
+                    </p>
                   )}
 
-                  <p className="detail-copy text-sm">{product.description}</p>
+                  <p className="detail-copy text-xs sm:text-sm">{product.description}</p>
                   
-                  <div className="bg-secondary/60 rounded-lg p-3 text-xs space-y-1 my-4 border border-border/60">
+                  <div className="bg-secondary/60 rounded-lg p-3 text-xs space-y-1 my-3.5 border border-border/60">
                     <p><strong className="text-foreground">Fabric/Material:</strong> {product.material}</p>
                     <p><strong className="text-foreground">Dimensions / Spec:</strong> {product.size}</p>
                     <p><strong className="text-foreground">Origin:</strong> Master Handloom Sheds · Bhavani, Tamil Nadu</p>
                   </div>
 
-                  <div className="flex items-center gap-4">
-                    <div className="quantity-control my-0">
+                  <div className="flex items-center gap-2.5 sm:gap-4 flex-wrap sm:flex-nowrap">
+                    <div className="quantity-control my-0 shrink-0">
                       <Button
                         variant="ghost"
                         size="icon"
+                        className="size-9"
                         aria-label="Decrease quantity"
                         disabled={quantity <= 1}
                         onClick={() => setQuantity(n => Math.max(1, n - 1))}
@@ -1139,14 +1153,14 @@ export function Storefront({ children }: { children: ReactNode }) {
                         <Minus size={14} />
                       </Button>
                       <span aria-label="Quantity" className="text-xs font-semibold">{quantity}</span>
-                      <Button variant="ghost" size="icon" aria-label="Increase quantity" onClick={() => setQuantity(n => n + 1)}>
+                      <Button variant="ghost" size="icon" className="size-9" aria-label="Increase quantity" onClick={() => setQuantity(n => n + 1)}>
                         <Plus size={14} />
                       </Button>
                     </div>
 
                     <Button
                       variant="editorial"
-                      className="flex-1 h-11"
+                      className="flex-1 min-w-[170px] h-10 sm:h-11 text-xs"
                       onClick={() => {
                         addToCart(product, quantity);
                         setProduct(null);
@@ -1157,14 +1171,14 @@ export function Storefront({ children }: { children: ReactNode }) {
                     </Button>
                   </div>
 
-                  <div className="mt-3 pt-3 border-t border-border/70 flex items-center justify-between">
+                  <div className="mt-3 pt-3 border-t border-border/70 flex items-center justify-between gap-2 flex-wrap">
                     <a
                       href={`https://wa.me/919842270384?text=Hello%20ShreeyaSudarshan,%20I%20am%20interested%20in%20bulk%20enquiry%20for%20${encodeURIComponent(product.name)}.`}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-xs font-medium text-emerald-700 hover:underline flex items-center gap-1.5"
+                      className="text-xs font-semibold text-emerald-700 hover:underline flex items-center gap-1.5"
                     >
-                      <MessageCircle size={14} /> Enquire Bulk Pricing on WhatsApp
+                      <MessageCircle size={14} /> Bulk Enquiry on WhatsApp
                     </a>
                     <button
                       type="button"
@@ -1216,9 +1230,9 @@ export function ProductCard({ product }: { product: Product }) {
           height={1024}
         />
 
-        {/* Top-Left Real Product Tag */}
+        {/* Top-Left Real Product Tag (constrained on mobile so it never collides with heart button) */}
         {badge ? (
-          <span className="absolute top-2.5 left-2.5 z-10 px-2.5 py-0.5 rounded-md text-[9.5px] font-bold uppercase tracking-wider bg-white/95 text-[#164E33] border border-[#164E33]/15 shadow-xs pointer-events-none">
+          <span className="absolute top-2 left-2 sm:top-2.5 sm:left-2.5 z-10 max-w-[calc(100%-46px)] truncate px-2 sm:px-2.5 py-0.5 rounded-md text-[8.5px] sm:text-[9.5px] font-bold uppercase tracking-wider bg-white/95 text-[#164E33] border border-[#164E33]/15 shadow-xs pointer-events-none">
             {badge}
           </span>
         ) : null}
@@ -1231,55 +1245,55 @@ export function ProductCard({ product }: { product: Product }) {
             store.toggleSave(product.id);
           }}
           aria-label={saved ? "Remove from favourites" : "Add to favourites"}
-          className={`absolute top-2.5 right-2.5 z-10 size-8 rounded-full flex items-center justify-center transition-all cursor-pointer shadow-xs ${
+          className={`absolute top-2 right-2 sm:top-2.5 sm:right-2.5 z-10 size-7 sm:size-8 rounded-full flex items-center justify-center transition-all cursor-pointer shadow-xs ${
             saved
               ? "bg-[#164E33] text-white"
               : "bg-white/90 hover:bg-white text-[#141414]"
           }`}
         >
-          <Heart className={`size-3.5 ${saved ? "fill-white" : ""}`} strokeWidth={1.75} />
+          <Heart className={`size-3 sm:size-3.5 ${saved ? "fill-white" : ""}`} strokeWidth={1.75} />
         </button>
 
         {/* Bottom-Left Real Dimension Pill */}
         {product.size ? (
-          <span className="absolute bottom-2.5 left-2.5 z-10 px-2 py-0.5 rounded-md bg-white/92 backdrop-blur-xs text-[10px] font-semibold text-[#3A3834] shadow-xs pointer-events-none">
+          <span className="absolute bottom-2 left-2 sm:bottom-2.5 sm:left-2.5 z-10 px-1.5 sm:px-2 py-0.5 rounded-md bg-white/92 backdrop-blur-xs text-[9px] sm:text-[10px] font-semibold text-[#3A3834] shadow-xs pointer-events-none">
             {product.size}
           </span>
         ) : null}
       </div>
 
       {/* Zouk-Style Clean Product Info & Full-Width Add to Bag CTA */}
-      <div className="p-3 sm:p-3.5 flex flex-col flex-1 justify-between gap-2.5 bg-white">
+      <div className="p-2.5 sm:p-3.5 flex flex-col flex-1 justify-between gap-2 sm:gap-2.5 bg-white">
         <div>
           <h3
             onClick={() => store.setProduct(product)}
-            className="font-['Manrope'] text-[13px] sm:text-[14px] font-bold text-[#141414] line-clamp-2 min-h-[2.3rem] sm:min-h-[2.5rem] leading-snug cursor-pointer hover:text-[#164E33] transition-colors"
+            className="font-['Manrope'] text-[12px] sm:text-[14px] font-bold text-[#141414] line-clamp-2 min-h-[2.1rem] sm:min-h-[2.5rem] leading-snug cursor-pointer hover:text-[#164E33] transition-colors"
             title={product.name}
           >
             {product.name}
           </h3>
 
-          <p className="text-[11px] text-[#737069] line-clamp-1 mt-0.5">
+          <p className="text-[10.5px] sm:text-[11px] text-[#737069] line-clamp-1 mt-0.5">
             {product.material}
           </p>
 
           {/* Honest Direct Price Display */}
-          <div className="mt-2">
+          <div className="mt-1.5 sm:mt-2">
             {product.priceNote ? (
               <div className="flex flex-col">
-                <span className="font-['Manrope'] text-[14px] sm:text-[15px] font-extrabold text-[#141414]">
+                <span className="font-['Manrope'] text-[13.5px] sm:text-[15px] font-extrabold text-[#141414]">
                   From ₹{product.price.toLocaleString('en-IN')}
                 </span>
-                <span className="text-[10px] text-[#164E33] font-medium mt-0.5 line-clamp-1">
+                <span className="text-[9.5px] sm:text-[10px] text-[#164E33] font-medium mt-0.5 line-clamp-1">
                   {product.priceNote}
                 </span>
               </div>
             ) : (
-              <div className="flex items-baseline gap-2 flex-wrap">
-                <span className="font-['Manrope'] text-[15px] sm:text-[16px] font-extrabold tabular-nums text-[#141414]">
+              <div className="flex items-baseline gap-1.5 flex-wrap">
+                <span className="font-['Manrope'] text-[14px] sm:text-[16px] font-extrabold tabular-nums text-[#141414]">
                   ₹{product.price.toLocaleString('en-IN')}
                 </span>
-                <span className="text-[10px] font-semibold text-[#164E33] bg-[#164E33]/8 px-1.5 py-0.5 rounded">
+                <span className="hidden sm:inline-block text-[10px] font-semibold text-[#164E33] bg-[#164E33]/8 px-1.5 py-0.5 rounded">
                   Direct Mill Price
                 </span>
               </div>
@@ -1287,17 +1301,17 @@ export function ProductCard({ product }: { product: Product }) {
           </div>
         </div>
 
-        {/* Full-Width Zouk Conversion Button */}
-        <div className="flex items-center gap-1.5 pt-1">
+        {/* Full-Width Zouk Conversion Button (Full width on mobile so it never wraps!) */}
+        <div className="flex items-center gap-1.5 pt-0.5 sm:pt-1">
           <button
             type="button"
             onClick={(e) => {
               e.stopPropagation();
               store.addToCart(product, 1);
             }}
-            className="flex-1 h-9 sm:h-10 rounded-lg bg-[#164E33] hover:bg-[#0E3824] text-white text-[11px] sm:text-xs font-bold uppercase tracking-[0.07em] transition-all flex items-center justify-center gap-1.5 cursor-pointer active:scale-[0.98]"
+            className="flex-1 h-8.5 sm:h-10 px-2 rounded-lg bg-[#164E33] hover:bg-[#0E3824] text-white text-[10.5px] sm:text-xs font-bold uppercase tracking-[0.06em] transition-all flex items-center justify-center gap-1.5 cursor-pointer active:scale-[0.98] whitespace-nowrap"
           >
-            <ShoppingBag className="size-3.5" strokeWidth={1.75} />
+            <ShoppingBag className="size-3 sm:size-3.5 shrink-0" strokeWidth={1.75} />
             <span>Add to Bag</span>
           </button>
           <button
@@ -1308,7 +1322,7 @@ export function ProductCard({ product }: { product: Product }) {
             }}
             aria-label={`View details for ${product.name}`}
             title="View Details"
-            className="h-9 sm:h-10 px-2.5 rounded-lg border border-[#E2DFD7] hover:border-[#164E33] hover:text-[#164E33] text-[#45433E] text-[11px] font-semibold transition-colors cursor-pointer bg-[#F6F3EC] hover:bg-white shrink-0"
+            className="hidden sm:inline-flex items-center justify-center h-10 px-2.5 rounded-lg border border-[#E2DFD7] hover:border-[#164E33] hover:text-[#164E33] text-[#45433E] text-[11px] font-semibold transition-colors cursor-pointer bg-[#F6F3EC] hover:bg-white shrink-0"
           >
             View
           </button>
@@ -1356,9 +1370,9 @@ export function ProductCollection({
 
   return (
     <>
-      <div className="flex flex-col gap-4 mb-7 pb-4 border-b border-[#EAE6DE]">
-        <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
-          <div className="flex items-center gap-2 flex-wrap" aria-label="Product categories">
+      <div className="flex flex-col gap-3.5 mb-6 pb-4 border-b border-[#EAE6DE]">
+        <div className="flex flex-col md:flex-row md:items-center justify-between gap-3">
+          <div className="flex items-center gap-2 overflow-x-auto no-scrollbar pb-0.5" aria-label="Product categories">
             {(['All', 'Bags', 'Floor mats'] as const).map(t => (
               <button
                 key={t}
@@ -1368,7 +1382,7 @@ export function ProductCollection({
                   setSearchFilter('');
                 }}
                 className={cn(
-                  "px-4 py-2 rounded-full text-xs font-bold tracking-wide transition-all cursor-pointer",
+                  "px-3.5 sm:px-4 py-1.5 sm:py-2 rounded-full text-xs font-bold tracking-wide transition-all cursor-pointer shrink-0 whitespace-nowrap",
                   tab === t && !searchFilter
                     ? "bg-[#164E33] text-white shadow-xs"
                     : "bg-[#F6F3EC] border border-[#E5E0D5] text-[#2A2A2A] hover:border-[#164E33]/50"
@@ -1379,21 +1393,21 @@ export function ProductCollection({
             ))}
           </div>
 
-          <div className="flex items-center gap-2.5 flex-wrap">
-            <div className="relative flex-1 sm:flex-initial">
+          <div className="grid grid-cols-12 sm:flex items-center gap-2">
+            <div className="relative col-span-7 sm:w-56">
               <Search size={14} className="absolute left-3 top-1/2 -translate-y-1/2 text-[#737069]" />
               <input
                 type="text"
-                placeholder="Filter by product or material..."
+                placeholder="Filter products..."
                 value={searchFilter}
                 onChange={e => setSearchFilter(e.target.value)}
-                className="pl-8 pr-8 h-9 rounded-lg border border-[#E2DFD7] text-xs bg-[#F6F3EC] focus:bg-white text-[#141414] focus:outline-none focus:ring-2 focus:ring-[#164E33]/20 focus:border-[#164E33] w-full sm:w-56 transition-all"
+                className="pl-8 pr-7 h-9 rounded-lg border border-[#E2DFD7] text-xs bg-[#F6F3EC] focus:bg-white text-[#141414] focus:outline-none focus:ring-2 focus:ring-[#164E33]/20 focus:border-[#164E33] w-full transition-all"
               />
               {searchFilter && (
                 <button
                   type="button"
                   onClick={() => setSearchFilter('')}
-                  className="absolute right-2.5 top-1/2 -translate-y-1/2 text-[#737069] hover:text-[#141414] cursor-pointer"
+                  className="absolute right-2 top-1/2 -translate-y-1/2 text-[#737069] hover:text-[#141414] cursor-pointer"
                   aria-label="Clear search filter"
                 >
                   <X size={13} />
@@ -1405,11 +1419,11 @@ export function ProductCollection({
               value={sortBy}
               onChange={e => setSortBy(e.target.value as any)}
               aria-label="Sort products"
-              className="h-9 px-3 rounded-lg border border-[#E2DFD7] text-xs font-medium bg-white text-[#141414] focus:outline-none focus:border-[#164E33] cursor-pointer"
+              className="col-span-5 h-9 px-2.5 sm:px-3 rounded-lg border border-[#E2DFD7] text-xs font-medium bg-white text-[#141414] focus:outline-none focus:border-[#164E33] cursor-pointer w-full sm:w-auto"
             >
               <option value="featured">Sort: Featured</option>
-              <option value="price-asc">Price: Low to High</option>
-              <option value="price-desc">Price: High to Low</option>
+              <option value="price-asc">Price: Low–High</option>
+              <option value="price-desc">Price: High–Low</option>
             </select>
           </div>
         </div>

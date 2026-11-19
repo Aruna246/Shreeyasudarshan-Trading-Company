@@ -64,12 +64,12 @@ function ZoukProductCarousel({ items }: { items: Product[] }) {
       {/* Scrollable Product Track */}
       <div
         ref={scrollRef}
-        className="flex gap-3.5 sm:gap-5 overflow-x-auto no-scrollbar scroll-smooth snap-x snap-mandatory pb-2"
+        className="flex gap-3 sm:gap-5 overflow-x-auto no-scrollbar scroll-smooth snap-x snap-mandatory pb-2"
       >
         {items.map(item => (
           <div
             key={item.id}
-            className="w-[46%] sm:w-[42%] md:w-[31%] lg:w-[23.6%] shrink-0 snap-start"
+            className="w-[64%] sm:w-[44%] md:w-[31%] lg:w-[23.6%] shrink-0 snap-start"
           >
             <ProductCard product={item} />
           </div>
@@ -210,6 +210,25 @@ function Index() {
   const [heroIdx, setHeroIdx] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
   const [bestsellerTab, setBestsellerTab] = useState<'All' | 'Bags' | 'Floor mats' | 'Vasthu'>('All');
+  const touchStartX = useRef<number | null>(null);
+
+  const handleHeroTouchStart = (e: React.TouchEvent) => {
+    touchStartX.current = e.touches[0]?.clientX ?? null;
+  };
+
+  const handleHeroTouchEnd = (e: React.TouchEvent) => {
+    if (touchStartX.current === null) return;
+    const endX = e.changedTouches[0]?.clientX ?? touchStartX.current;
+    const diff = touchStartX.current - endX;
+    if (Math.abs(diff) > 40) {
+      if (diff > 0) {
+        setHeroIdx(prev => (prev + 1) % heroSlides.length);
+      } else {
+        setHeroIdx(prev => (prev - 1 + heroSlides.length) % heroSlides.length);
+      }
+    }
+    touchStartX.current = null;
+  };
 
   useEffect(() => {
     if (isPaused) return;
@@ -260,9 +279,11 @@ function Index() {
       {/* 1. ZOUK-STYLE FULL-WIDTH EDGE-TO-EDGE HERO BANNER CAROUSEL */}
       <section
         aria-label="Featured Banners"
-        className="relative w-full h-[420px] sm:h-[490px] lg:h-[550px] overflow-hidden bg-[#112F21]"
+        className="relative w-full h-[430px] sm:h-[490px] lg:h-[550px] overflow-hidden bg-[#112F21]"
         onMouseEnter={() => setIsPaused(true)}
         onMouseLeave={() => setIsPaused(false)}
+        onTouchStart={handleHeroTouchStart}
+        onTouchEnd={handleHeroTouchEnd}
       >
         {heroSlides.map((slide, idx) => {
           const active = idx === heroIdx;
@@ -280,33 +301,33 @@ function Index() {
                 className="w-full h-full object-cover object-center"
                 fetchPriority={idx === 0 ? 'high' : 'auto'}
               />
-              {/* Clean readable bottom-left gradient vignette */}
-              <div className="absolute inset-0 bg-gradient-to-r from-[#0C2217]/82 via-[#0C2217]/45 to-transparent" />
+              {/* Bottom-up vignette on mobile for clear bright top image + readable bottom text; left-to-right on desktop */}
+              <div className="absolute inset-0 bg-gradient-to-t from-[#0C2217]/92 via-[#0C2217]/55 to-[#0C2217]/15 sm:bg-gradient-to-r sm:from-[#0C2217]/82 sm:via-[#0C2217]/45 sm:to-transparent" />
 
-              <div className="absolute inset-0 flex items-center">
+              <div className="absolute inset-0 flex items-end pb-12 sm:items-center sm:pb-0">
                 <div className="page-width">
                   <div className="max-w-xl text-white">
-                    <span className="inline-block text-[11px] sm:text-xs font-bold uppercase tracking-[0.2em] text-[#F4D178] mb-2.5">
+                    <span className="inline-block text-[10px] sm:text-xs font-bold uppercase tracking-[0.16em] sm:tracking-[0.2em] text-[#F4D178] mb-2">
                       {slide.eyebrow}
                     </span>
-                    <h1 className="font-['Manrope'] text-3xl sm:text-5xl lg:text-[54px] font-extrabold leading-[1.08] tracking-tight text-white">
+                    <h1 className="font-['Manrope'] text-[26px] sm:text-5xl lg:text-[54px] font-extrabold leading-[1.1] tracking-tight text-white">
                       {slide.headline}
                     </h1>
-                    <p className="text-xs sm:text-base text-white/90 mt-3.5 leading-relaxed max-w-md">
+                    <p className="text-xs sm:text-base text-white/90 mt-2.5 sm:mt-3.5 leading-relaxed max-w-md line-clamp-3 sm:line-clamp-none">
                       {slide.subtext}
                     </p>
-                    <div className="mt-6 flex items-center gap-3 flex-wrap">
+                    <div className="mt-4 sm:mt-6 flex items-center gap-2.5 sm:gap-3 flex-wrap">
                       <Link
                         to={slide.ctaTo as any}
                         search={slide.ctaSearch as any}
-                        className="inline-flex items-center gap-2 h-11 sm:h-12 px-7 sm:px-9 rounded-md bg-white hover:bg-[#F6F3EC] text-[#112F21] text-xs sm:text-[13px] font-extrabold uppercase tracking-[0.12em] shadow-lg transition-all active:scale-95"
+                        className="inline-flex items-center gap-2 h-10 sm:h-12 px-5 sm:px-9 rounded-md bg-white hover:bg-[#F6F3EC] text-[#112F21] text-[11.5px] sm:text-[13px] font-extrabold uppercase tracking-[0.1em] sm:tracking-[0.12em] shadow-lg transition-all active:scale-95"
                       >
                         <span>{slide.ctaText}</span>
-                        <ArrowRight size={15} />
+                        <ArrowRight size={14} />
                       </Link>
                       <Link
                         to="/contact-us"
-                        className="inline-flex items-center gap-2 h-11 sm:h-12 px-5 sm:px-6 rounded-md bg-[#164E33]/90 hover:bg-[#164E33] border border-white/30 text-white text-xs sm:text-[13px] font-bold uppercase tracking-[0.1em] transition-all"
+                        className="inline-flex items-center gap-2 h-10 sm:h-12 px-4 sm:px-6 rounded-md bg-[#164E33]/90 hover:bg-[#164E33] border border-white/30 text-white text-[11.5px] sm:text-[13px] font-bold uppercase tracking-[0.08em] sm:tracking-[0.1em] transition-all"
                       >
                         <span>Bulk Enquiry</span>
                       </Link>
@@ -337,7 +358,7 @@ function Index() {
         </button>
 
         {/* Bottom Centered Dots */}
-        <div className="absolute bottom-4 left-1/2 -translate-x-1/2 z-20 flex items-center gap-2">
+        <div className="absolute bottom-3.5 sm:bottom-4 left-1/2 -translate-x-1/2 z-20 flex items-center gap-2">
           {heroSlides.map((_, i) => (
             <button
               key={i}
@@ -353,19 +374,19 @@ function Index() {
       </section>
 
       {/* 2. ZOUK-STYLE VALUE PROPOSITION / TRUST BADGES BAR (DIRECTLY UNDER HERO) */}
-      <section className="bg-[#F6F3EC] border-b border-[#EAE6DE] py-5">
+      <section className="bg-[#F6F3EC] border-b border-[#EAE6DE] py-4 sm:py-5">
         <div className="page-width">
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-6">
             {trustBadges.map(badge => (
-              <div key={badge.title} className="flex items-center justify-start sm:justify-center gap-3">
-                <div className="size-10 rounded-full bg-white border border-[#E5E0D5] text-[#164E33] flex items-center justify-center shrink-0 shadow-2xs">
+              <div key={badge.title} className="flex items-center justify-start sm:justify-center gap-2.5 sm:gap-3">
+                <div className="size-9 sm:size-10 rounded-full bg-white border border-[#E5E0D5] text-[#164E33] flex items-center justify-center shrink-0 shadow-2xs">
                   {badge.icon}
                 </div>
-                <div>
-                  <div className="font-['Manrope'] text-xs sm:text-[13px] font-extrabold text-[#141414] leading-tight">
+                <div className="min-w-0">
+                  <div className="font-['Manrope'] text-[11.5px] sm:text-[13px] font-extrabold text-[#141414] leading-tight truncate">
                     {badge.title}
                   </div>
-                  <div className="text-[11px] text-[#66635C] mt-0.5">{badge.sub}</div>
+                  <div className="text-[10px] sm:text-[11px] text-[#66635C] mt-0.5 truncate">{badge.sub}</div>
                 </div>
               </div>
             ))}
@@ -374,10 +395,10 @@ function Index() {
       </section>
 
       {/* 3. ZOUK-STYLE "SHOP BY CATEGORY" CENTERED VISUAL ROW */}
-      <section className="py-10 sm:py-14 bg-white">
+      <section className="py-8 sm:py-14 bg-white">
         <div className="page-width">
-          <div className="text-center mb-7">
-            <h2 className="font-['Manrope'] text-2xl sm:text-3xl font-extrabold text-[#141414] tracking-tight">
+          <div className="text-center mb-5 sm:mb-7">
+            <h2 className="font-['Manrope'] text-xl sm:text-3xl font-extrabold text-[#141414] tracking-tight">
               Shop By Category
             </h2>
             <p className="text-xs sm:text-sm text-[#66635C] mt-1">
@@ -385,7 +406,7 @@ function Index() {
             </p>
           </div>
 
-          <div className="grid grid-cols-3 lg:grid-cols-6 gap-3.5 sm:gap-6">
+          <div className="grid grid-cols-3 lg:grid-cols-6 gap-2.5 sm:gap-6">
             {shopCategories.map(cat => (
               <Link
                 key={cat.title}
@@ -393,7 +414,7 @@ function Index() {
                 search={cat.search as any}
                 className="group flex flex-col items-center text-center"
               >
-                <div className="w-full aspect-square rounded-2xl overflow-hidden bg-[#F6F3EC] border border-[#EAE6DE] group-hover:border-[#164E33] group-hover:shadow-md transition-all duration-300">
+                <div className="w-full aspect-square rounded-xl sm:rounded-2xl overflow-hidden bg-[#F6F3EC] border border-[#EAE6DE] group-hover:border-[#164E33] group-hover:shadow-md transition-all duration-300">
                   <img
                     src={cat.image}
                     alt={cat.title}
@@ -401,7 +422,7 @@ function Index() {
                     className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                   />
                 </div>
-                <span className="font-['Manrope'] text-xs sm:text-[13.5px] font-bold text-[#141414] group-hover:text-[#164E33] mt-2.5 transition-colors">
+                <span className="font-['Manrope'] text-[11px] sm:text-[13.5px] font-bold text-[#141414] group-hover:text-[#164E33] mt-2 sm:mt-2.5 leading-tight transition-colors">
                   {cat.title}
                 </span>
               </Link>
@@ -411,9 +432,9 @@ function Index() {
       </section>
 
       {/* 4. ZOUK-STYLE 2-COLUMN SIDE-BY-SIDE PROMO BANNER GRID */}
-      <section className="pb-10 sm:pb-14 bg-white">
+      <section className="pb-8 sm:pb-14 bg-white">
         <div className="page-width">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-3.5 sm:gap-6">
             {/* Left Promo Banner: Bags */}
             <Link
               to="/shop"
@@ -426,15 +447,15 @@ function Index() {
                 loading="lazy"
                 className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-[#0C2217]/88 via-[#0C2217]/30 to-transparent" />
-              <div className="absolute inset-x-5 sm:inset-x-7 bottom-5 sm:bottom-7 text-white">
-                <span className="text-[10.5px] font-bold uppercase tracking-[0.18em] text-[#F4D178]">
+              <div className="absolute inset-0 bg-gradient-to-t from-[#0C2217]/90 via-[#0C2217]/30 to-transparent" />
+              <div className="absolute inset-x-4 sm:inset-x-7 bottom-4 sm:bottom-7 text-white">
+                <span className="text-[10px] sm:text-[10.5px] font-bold uppercase tracking-[0.16em] text-[#F4D178]">
                   STARTING AT ₹60 · {allBags.length} STYLES
                 </span>
-                <h3 className="font-['Manrope'] text-xl sm:text-2xl font-extrabold mt-1">
+                <h3 className="font-['Manrope'] text-lg sm:text-2xl font-extrabold mt-0.5 sm:mt-1 leading-snug">
                   Cotton, Jute &amp; Non-Woven Bags
                 </h3>
-                <span className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider mt-3 text-white group-hover:text-[#F4D178] transition-colors">
+                <span className="inline-flex items-center gap-1.5 text-[11px] sm:text-xs font-bold uppercase tracking-wider mt-2 sm:mt-3 text-white group-hover:text-[#F4D178] transition-colors">
                   Shop Bags <ArrowRight size={14} />
                 </span>
               </div>
@@ -452,15 +473,15 @@ function Index() {
                 loading="lazy"
                 className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-[#0C2217]/88 via-[#0C2217]/30 to-transparent" />
-              <div className="absolute inset-x-5 sm:inset-x-7 bottom-5 sm:bottom-7 text-white">
-                <span className="text-[10.5px] font-bold uppercase tracking-[0.18em] text-[#F4D178]">
+              <div className="absolute inset-0 bg-gradient-to-t from-[#0C2217]/90 via-[#0C2217]/30 to-transparent" />
+              <div className="absolute inset-x-4 sm:inset-x-7 bottom-4 sm:bottom-7 text-white">
+                <span className="text-[10px] sm:text-[10.5px] font-bold uppercase tracking-[0.16em] text-[#F4D178]">
                   STARTING AT ₹50 · {allMats.length} WEAVES
                 </span>
-                <h3 className="font-['Manrope'] text-xl sm:text-2xl font-extrabold mt-1">
+                <h3 className="font-['Manrope'] text-lg sm:text-2xl font-extrabold mt-0.5 sm:mt-1 leading-snug">
                   Handloom &amp; Vasthu Floor Mats
                 </h3>
-                <span className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider mt-3 text-white group-hover:text-[#F4D178] transition-colors">
+                <span className="inline-flex items-center gap-1.5 text-[11px] sm:text-xs font-bold uppercase tracking-wider mt-2 sm:mt-3 text-white group-hover:text-[#F4D178] transition-colors">
                   Shop Floor Mats <ArrowRight size={14} />
                 </span>
               </div>
@@ -470,14 +491,14 @@ function Index() {
       </section>
 
       {/* 5. ZOUK-STYLE "BESTSELLERS" HORIZONTAL CAROUSEL WITH UNDERLINE TABS */}
-      <section className="py-10 sm:py-14 bg-[#FAF9F6] border-y border-[#ECE8E0]">
+      <section className="py-8 sm:py-14 bg-[#FAF9F6] border-y border-[#ECE8E0]">
         <div className="page-width">
-          <div className="text-center mb-7">
-            <h2 className="font-['Manrope'] text-2xl sm:text-3xl font-extrabold text-[#141414] tracking-tight">
+          <div className="text-center mb-6 sm:mb-7">
+            <h2 className="font-['Manrope'] text-xl sm:text-3xl font-extrabold text-[#141414] tracking-tight">
               Bestsellers
             </h2>
-            {/* Zouk-Style Clean Underline Tabs */}
-            <div className="flex items-center justify-center gap-5 sm:gap-8 mt-4 border-b border-[#E5E0D5] max-w-lg mx-auto">
+            {/* Zouk-Style Clean Underline Tabs (single-line scrollable on narrow phones) */}
+            <div className="flex items-center justify-start sm:justify-center gap-5 sm:gap-8 mt-3.5 border-b border-[#E5E0D5] max-w-lg mx-auto overflow-x-auto no-scrollbar px-1">
               {(
                 [
                   { id: 'All', label: 'All' },
@@ -492,7 +513,7 @@ function Index() {
                     key={tab.id}
                     type="button"
                     onClick={() => setBestsellerTab(tab.id)}
-                    className={`pb-2.5 text-xs sm:text-sm font-bold transition-all cursor-pointer relative ${
+                    className={`pb-2.5 text-xs sm:text-sm font-bold transition-all cursor-pointer relative whitespace-nowrap shrink-0 ${
                       active ? 'text-[#164E33]' : 'text-[#66635C] hover:text-[#141414]'
                     }`}
                   >

@@ -598,44 +598,61 @@ button, a, input, select, textarea {
 
 @media (max-width: 768px) {
   .page-width {
-    width: calc(100% - 28px);
+    width: calc(100% - 24px);
   }
   .announcement {
-    font-size: 11px;
-    padding: 6px 10px;
+    font-size: 10.5px;
+    padding: 6px 8px;
   }
   .site-header {
-    height: 62px;
+    height: 56px;
+    gap: 6px;
+  }
+  .brand {
     gap: 8px;
   }
   .brand img {
-    width: 36px;
-    height: 36px;
+    width: 32px;
+    height: 32px;
+  }
+  .header-tools {
+    gap: 4px;
   }
   .section {
-    padding-block: 36px;
+    padding-block: 32px;
   }
   .section-title {
     flex-direction: column;
     align-items: flex-start;
     gap: 6px;
-    margin-bottom: 18px;
+    margin-bottom: 16px;
   }
   .brand-story {
     grid-template-columns: 1fr;
-    gap: 24px;
+    gap: 20px;
+  }
+  .catalog-heading {
+    padding: 26px 0 22px;
   }
   .footer-grid {
     grid-template-columns: 1fr;
-    gap: 28px;
+    gap: 26px;
   }
   .footer-bottom {
     flex-direction: column;
     align-items: flex-start;
-    gap: 8px;
+    gap: 6px;
   }
   .detail-grid {
     grid-template-columns: 1fr;
-    gap: 18px;
+    gap: 14px;
+  }
+  .cart-row {
+    grid-template-columns: 64px 1fr;
+    gap: 12px;
+  }
+  .cart-row img {
+    width: 64px;
+    height: 78px;
   }
 }
